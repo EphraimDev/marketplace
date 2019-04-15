@@ -14,17 +14,17 @@ class CreateTherapistsTable extends Migration
     public function up()
     {
         Schema::create('therapists', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('location');
             $table->string('fee_per_hour');
             $table->string('rating');
             $table->integer('age');
             $table->integer('years_of_experience');
             $table->boolean('availability');
-            $table->string('user_id');
+            $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('uid')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

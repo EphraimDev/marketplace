@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class therapist extends Model
+class Therapist extends Model
 {
     //
+    protected $guarded = ['id'];
 
     public function user()
     {
