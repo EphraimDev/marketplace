@@ -19,6 +19,8 @@ Route::post('/auth/login',"API\AuthController@login");
 
 Route::post('/user-details',"API\AuthController@details");
 
+Route::get('/marketplace', "API\TherapistController@index");
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     
