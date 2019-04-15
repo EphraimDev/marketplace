@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from './Components/Navbar';
+import {Footer} from './components/Footer/Footer';
 import { BrowserRouter } from 'react-router-dom'
 
 class App extends Component {
@@ -9,10 +10,12 @@ class App extends Component {
       <div>
         <Navbar />
         </div>
+      <div>
+        <Footer />
+      </div>
         </BrowserRouter>
     );
   }
 }
 
 export default App;
-
