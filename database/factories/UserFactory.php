@@ -20,6 +20,7 @@ use Faker\Generator as Faker;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
+        'uid' => uniqid(true),
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'role'=>'therapist',
@@ -36,7 +37,6 @@ $factory->define(App\therapist::class, function (Faker $faker) {
        'fee_per_hour'=>rand(10000,20000),
        'years_of_experience'=>rand(2,10),
        'availability'=>true,
-
        'user_id'=>App\User::all()->random()->id
     ];
 });
