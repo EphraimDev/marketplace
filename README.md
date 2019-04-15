@@ -48,9 +48,3 @@ Launch Postman or Insomia and send a GET request to
 http://localhost:8000/api
 ```
 You should get "OK" as a response
-
-# Making a PR
-1. Push your changes to your repo
-2. Make a PR to the project repo, select compare across forks
-3. In the dropdown section, select the client branch
-4. Make the PR
