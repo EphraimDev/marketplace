@@ -9,7 +9,7 @@ git checkout server
 5. Make your changes
 6. Push your changes to your repo
 7. Make a PR to the project repo, select compare across forks
-8. In the dropdown section, select the client branch
+8. In the dropdown section, select the server branch
 9. Make the PR
 
 # Initial Set Up
