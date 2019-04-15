@@ -15,7 +15,6 @@ class CreateTherapistsTable extends Migration
     {
         Schema::create('therapists', function (Blueprint $table) {
             $table->bigIncrements('id');
-    
             $table->string('location');
             $table->string('fee_per_hour');
             $table->string('rating');
@@ -23,8 +22,9 @@ class CreateTherapistsTable extends Migration
             $table->integer('years_of_experience');
             $table->boolean('availability');
             $table->string('user_id');
-
             $table->timestamps();
+
+            $table->foreign('user_id')->references('uid')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
