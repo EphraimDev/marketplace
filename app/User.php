@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'role', 'email', 'password',
+        'first_name', 'last_name', 'role', 'email', 'password', 'uid',
     ];
 
     /**
@@ -41,6 +41,6 @@ class User extends Authenticatable
 
     public function therapist()
     {
-        return $this->hasOne('App\therapist');
+        return $this->hasOne(therapist::class);
     }
 }
