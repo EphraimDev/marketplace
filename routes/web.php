@@ -29,3 +29,7 @@ Route::post('/auth/register',"API\AuthController@register");
 Route::post('/auth/login',"API\AuthController@login");
 
 Route::post('/user-details',"API\AuthController@details");
+
+Route::get('/marketplace',"API\TherapistController@index"); 
+
+Route::delete('/user/{user}/leave-marketplace',"API\TherapistController@destroy"); 

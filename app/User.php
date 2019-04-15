@@ -41,6 +41,6 @@ class User extends Authenticatable
 
     public function therapist()
     {
-        return $this->hasOne('App\therapist');
+        return $this->hasOne(Therapist::class);
     }
 }
