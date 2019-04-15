@@ -22,3 +22,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::post('/auth/register',"API\AuthController@register");
+
+Route::post('/auth/login',"API\AuthController@login");
+
+Route::post('/user-details',"API\AuthController@details");
