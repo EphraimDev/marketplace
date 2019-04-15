@@ -15,8 +15,8 @@ npm i
 5. Make changes
 6. Push to your repo
 7. Make a PR to the project repo, select compare across forks
-8. In the dropdown section, select the client branch
-9. Make the PR
+8. In the dropdown section, select the client branch and make head repository your own repo
+9. Create PR
 
 ## Available Scripts
 
