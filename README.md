@@ -39,6 +39,10 @@ php artisan migrate
 ```
 php artisan passport:install
 ```
+7. Start server
+```
+php artisan serve
+```
 Launch Postman or Insomia and send a GET request to
 ```
 http://localhost:8000/api
