@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use DB;
 
 class AuthController extends Controller
 {
@@ -57,7 +58,7 @@ public $successStatus = 200;
             'last_name'=>$request->get('last_name'),
             'email'=>$request->get('email'),
             'password'=>bcrypt($request->get('password')),
-            'role'=>'user',
+            'role'=>$request->get('user_type'),
             ]);
         $success['token'] =  $user->createToken('MyApp')-> accessToken;
         $success['first_name'] =  $user->first_name;
