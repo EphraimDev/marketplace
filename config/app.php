@@ -123,6 +123,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'Paystack_skey' => env('PAYSTACK_SKEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

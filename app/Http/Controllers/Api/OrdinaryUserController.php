@@ -4,10 +4,22 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Client;
 use App\User;
 
 class OrdinaryUserController extends Controller
 {
+    private $paystack = 'https://api.paystack.co';
+    //Paystack private key set in the .env file
+    private $paystack_skey;
+
+    public function __construct()
+    {
+        //Paystack private key set in the .env file
+        $this->paystack_skey = Config('app.Paystack_skey');
+    }
+
     /**
      * Fetch all ordinary users
      *
@@ -86,6 +98,53 @@ class OrdinaryUserController extends Controller
      */
     public function pay($id)
     {
-        return response(["status" > true, "msg" => "Pay method"]);
+        //return response(["status" => true, "msg" => "you are in the pay controller"]);
+
+        if (!$id) {
+            return response(["status" => false, "msg" => "User does not exit"]);
+        }
+
+        $rate = 500;
+
+        $fee = $rate * 100;
+        $reference = 12344988;
+        //dd($request);
+        $processStatu = $this->verifyTransaction($fee, $reference);
+        return response(["status" => $processStatu]);
+    }
+
+    private function verifyTransaction($fee, $reference)
+    {
+        try {
+            $client = new Client([
+                'headers' => ['Authorization' => $this->paystack_skey]
+            ]);
+
+            $api = $this->paystack . '/transaction/verify/';
+            $paystackApi = $api . $reference;
+
+            $res = $client->request('GET', $paystackApi);
+            $response = $res->getBody();
+
+            $result = json_decode($response, true);
+
+            $dataExist = array_key_exists('data', $result);
+            $statusExist = array_key_exists('status', $result['data']);
+
+            $statusResult = $result['data']['status'];
+            $amountResult = $result['data']['amount'];
+
+            if (!$dataExist && !$statusExist) {
+                return false;
+            }
+
+            if ($statusResult != 'success' && $amountResult != $fee * 100) {
+                return false;
+            }
+            return true;
+        } catch (\Exception $e) {
+            Log::error($e);
+            return false;
+        }
     }
 }
