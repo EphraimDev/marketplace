@@ -3,7 +3,7 @@
 }
 
 .banner {
-	background-image: url(https://res.cloudinary.com/mrphemi/image/upload/v1555358464/massage-835468_1280.jpg);
+	background-image: url("https://res.cloudinary.com/mrphemi/image/upload/v1555358464/massage-835468_1280.jpg");
 	height: 60vh;
 	width: 100%;
 	background-size: 100%;
@@ -81,14 +81,17 @@
 	.banner {
 		margin-bottom: 0;
 	}
+
 	.info {
 		margin-top: 20px;
 	}
+
 	.button {
 		display: inline-block;
 		margin-right: 20px;
 		margin-bottom: 0;
 	}
+
 	.data-form {
 		padding: 0;
 		border: none;
