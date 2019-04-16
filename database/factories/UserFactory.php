@@ -20,7 +20,7 @@ use Faker\Generator as Faker;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'uid' => uniqid(true),
+       // 'uid' => uniqid(true),
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'role'=>'therapist',

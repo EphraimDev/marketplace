@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request; 
 use App\Http\Controllers\Controller; 
@@ -66,6 +66,17 @@ return response()->json(['success'=>$success], $this-> successStatus);
         $user = Auth::user(); 
         return response()->json(['success' => $user], $this-> successStatus); 
     } 
+
+    public function logout()
+    {
+        DB::table('oauth_access_tokens')
+        ->where('user_id', Auth::user()->id)
+        ->update([
+            'revoked' => true
+        ]);
+
+        return response()->json(['status'=>true]);
+    }
 
    
 }
