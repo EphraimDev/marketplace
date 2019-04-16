@@ -14,9 +14,9 @@ class OrdinaryUsersTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('users')->delete();
+        DB::table('OrdinaryUsers')->delete();
 
-        User::create(array('email' => ''));
+        OrdinaryUser::create(array('email' => ''));
     }
 
 }
