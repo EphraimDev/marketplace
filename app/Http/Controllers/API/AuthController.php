@@ -75,5 +75,16 @@ public $successStatus = 200;
         return response()->json(['success' => $user], $this-> successStatus);
     }
 
+    public function logout()
+    {
+        DB::table('oauth_access_tokens')
+        ->where('user_id', Auth::user()->id)
+        ->update([
+            'revoked' => true
+        ]);
+
+        return response()->json(['status'=>true]);
+    }
+
 
 }

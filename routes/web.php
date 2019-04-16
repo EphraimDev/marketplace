@@ -32,4 +32,4 @@ Route::post('/user-details',"API\AuthController@details");
 
 Route::get('/marketplace',"API\TherapistController@index"); 
 
-Route::delete('/user/{user}/leave-marketplace',"API\TherapistController@destroy"); 
+//Route::delete('/user/{user}/leave-marketplace',"API\TherapistController@destroy"); 

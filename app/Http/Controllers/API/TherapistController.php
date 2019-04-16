@@ -104,7 +104,7 @@ use App\Http\Controllers\Controller;
             }
         }
 
-        return response()->json([$therapist,$therapist->user], 200, []);
+        return response()->json([$therapist->user], 200, []);
     }
 
     /**
@@ -136,8 +136,50 @@ use App\Http\Controllers\Controller;
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         //
     }
+    public function getAllTherapist()
+    {
+    	$allTherapist=User::where('role','therapist')->get();
+    	 return response()->json([$allTherapist]);
+    }
+
+    public function search($name)
+    {
+        $therapists=User::where([['first_name','like',"%{$name}%"],['role','=','therapist']])
+        ->orWhere([['last_name','like',"%{$name}%"],['role','=','therapist']])
+        ->get();
+    	  return response()->json([$therapists]);
+    }
+
+    public function getCurrStatus($user)
+    {
+    	$user=User::findOrFail($user);
+    	return $user->therapist->availability;
+
+    }
+/**
+	 * toggles the availability of the user
+	 *
+	 * @param string  $id
+	 * @return array
+     */
+    public function changeStatus($user)
+    {
+    	if($this->getCurrStatus($user) == 1)
+    	{
+    		Therapist::where('user_id',$user)->update(['availability'=>0]);
+    		return response()->json(['curr_state'=>'off']);
+    	}
+    	else{
+
+    		Therapist::where('user_id',$user)->update(['availability'=>1]);
+    		return response()->json(['curr_state'=>'on']);
+    	}
+
+    }
+
+
 }
