@@ -8,18 +8,17 @@ use App\User;
 
 class OrdinaryUserController extends Controller
 {
-	/**
+    /**
      * Fetch all ordinary users
      *
      * @return array
      */
     public function index()
     {
-    	// 
-        $user=User::where('role','ordinary_user')->get();
+        // 
+        $user = User::where('role', 'ordinary_user')->get();
 
-        return  response()->json(["users"=>$user]);
-
+        return  response()->json(["users" => $user]);
     }
 
     /**
@@ -30,11 +29,11 @@ class OrdinaryUserController extends Controller
      */
     public function show($id)
     {
-    	// 
+        // 
 
-       $user=User::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        return  response()->json(["users"=>$user]);
+        return  response()->json(["users" => $user]);
     }
 
     /**
@@ -43,14 +42,14 @@ class OrdinaryUserController extends Controller
      * @param  int  $id
      * @return array
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-    	// 
+        // 
         return $request->all();
-        $user=User::findOrFail($id);
+        $user = User::findOrFail($id);
         $user->update($request->all());
 
-        return response()->json(['suuccess'=>true]);
+        return response()->json(['suuccess' => true]);
     }
 
     /**
@@ -61,11 +60,11 @@ class OrdinaryUserController extends Controller
      */
     public function destroy($id)
     {
-    
-        $user=User::findOrFail($id);
+
+        $user = User::findOrFail($id);
         $user->delete();
 
-          return response()->json(['suuccess'=>true]);
+        return response()->json(['suuccess' => true]);
     }
 
     /**
@@ -76,7 +75,7 @@ class OrdinaryUserController extends Controller
      */
     public function updateStatus($id)
     {
-    	// 
+        // 
     }
 
     /**
@@ -87,6 +86,6 @@ class OrdinaryUserController extends Controller
      */
     public function pay($id)
     {
-    	// 
+        return response(["status" > true, "msg" => "Pay method"]);
     }
 }
