@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,6 +27,7 @@ public $successStatus = 200;
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
+            $success['role'] = $user->role;
             return response()->json(['success' => $success], $this-> successStatus);
         }
         else{
@@ -41,10 +42,10 @@ public $successStatus = 200;
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'first_name' => 'required|min:2',
+            'last_name' => 'required|min:2',
             'email' => 'required|email|unique:users',
             'password' => 'required',
-            'role' => 'required',
 
         ]);
         if ($validator->fails()) {
@@ -52,13 +53,15 @@ public $successStatus = 200;
         }
 
         $user = User::create([
-            'name'=>$request->get('name'),
+            'first_name'=>$request->get('first_name'),
+            'last_name'=>$request->get('last_name'),
             'email'=>$request->get('email'),
             'password'=>bcrypt($request->get('password')),
-            'role'=>$request->get('role'),
+            'role'=>'user',
             ]);
         $success['token'] =  $user->createToken('MyApp')-> accessToken;
-        $success['name'] =  $user->name;
+        $success['first_name'] =  $user->first_name;
+        $success['role'] = $user->role;
         return response()->json(['success'=>$success], $this-> successStatus);
     }
 /**

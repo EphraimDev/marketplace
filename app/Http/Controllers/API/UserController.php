@@ -1,30 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-namespace App\Http\Controllers\Api;
-
-use App\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-class UserController extends Controller
-{
-    //
-
-
-    /**
-     * returns the details of a user.
-     *
-     * @param App\User user
-     * @return \Illuminate\Http\Response
-     */
-
-     public function fetchUser(User $user){
-        return response()->json($user, 200, []);
-     }
-
-
-=======
 namespace App\Http\Controllers\API;
 
 use App\User;
@@ -36,14 +11,30 @@ class UserController extends Controller
 {
     /**
 	 * Get single user record
-	 * 
+	 *
 	 * @param string  $id
 	 * @return array
      */
     public function getSingleUser($id)
     {
     	$user = User::where('uid', $id)->with('therapist')->first();
-    	return new UserResource($user); 
+    	return new UserResource($user);
     }
->>>>>>> upstream/server
+
+    /**
+     * returns the details of a user.
+     *
+     * @param \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function fetchProfile(Request $request,$id){
+        $user = User::whereId($id)->first();
+        $user['own'] = false;
+        if($request->user()->id == $user->id){
+            $user['own'] = true;
+        }
+
+        return response()->json($user, 200, []);
+    }
 }
