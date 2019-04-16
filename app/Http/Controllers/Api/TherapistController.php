@@ -30,6 +30,9 @@ class TherapistController extends Controller
     public function show($id)
     {
         //
+
+        $therapist=Therapist::findOrFail($id);
+        return response()->json([$therapist]);
     }
 
     /**
@@ -39,6 +42,7 @@ class TherapistController extends Controller
      */
     public function avilableTherapists()
     {
+
         $therapists = Therapist::where('availability', true)->get();
 
         return response()->json([$therapists]);
@@ -51,7 +55,8 @@ class TherapistController extends Controller
      */
     public function search($name)
     {
-    	$therapists=User::where([['name','like',"%{$name}%"],['role','=','therapist']])->get();
+    	$therapists=User::where([['first_name','like',"%{$name}%"],['role','=','therapist']])
+        ->orWhere([['last_name','like',"%{$name}%"],['role','=','therapist']])->get();
 
     	return response()->json([$therapists]);
     }
@@ -114,9 +119,15 @@ class TherapistController extends Controller
      * @param int  $id
      * @return array
      */
-    public function update($id)
+    public function update(Request $request,$id)
     {
         //
+        return $request->all();
+        
+        $therapist=Therapist::findOrFail($id);
+        $therapist->update($request->all());
+
+        return response()->json(['success'=>true]);
     }
     
     /**
@@ -147,6 +158,16 @@ class TherapistController extends Controller
     {
         $user = User::findOrFail($id);
         return $user->therapist->availability;
+    }
+
+    public function destroy($id)
+    {
+        $therapist=Therapist::findOrFail($id);
+        $user_record=$therapist->user_id;
+        $therapist->delete();
+        User::findOrFail($user_record)->delete();
+
+        return response()->json(['status'=>true]);
     }
 
 }
