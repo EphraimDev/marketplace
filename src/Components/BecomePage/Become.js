@@ -3,7 +3,7 @@ import Banner from "./Banner";
 import Info from "./Info";
 import Form from "./Form";
 
-import styles from "./become.css";
+import "./become.css";
 
 const Become = props => (
 	<div className="become_therapist">
