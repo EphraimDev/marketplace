@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { BrowserRouter } from "react-router-dom";
+
 import Navbar from "./Components/Navbar";
 import Footer from "./components/Footer/Footer";
-import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
   render() {
