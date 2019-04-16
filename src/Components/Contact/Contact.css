@@ -1,340 +1,336 @@
-body {
-    padding: 0;
-    margin: 0;
-    background: #ffffff;
+/*  body {
+   padding: 0;
+   margin: 0;
+   background: #ffffff;
 }
 
 body,
 input,
 button {
-    font-family: 'Lato', san-serif;
+   font-family: "Lato", san-serif;
 }
 
-/* Global */
+Global
 .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
+   width: 80%;
+   margin: auto;
+   overflow: hidden;
 }
 
 .container1 {
-    width: 70%;
-    margin: auto;
-    overflow: hidden;
+   width: 70%;
+   margin: auto;
+   overflow: hidden;
 }
 
-/* Showcase */
+Showcase
 #showcase {
-    min-height: 550px;
-    background: url('../../images/showcase.jpg') no-repeat 0 -400px;
-    background-size: cover;
-    text-align: center;
-    color: #ffffff;
+   min-height: 550px;
+   background: url("../../images/showcase.jpg") no-repeat 0 -400px;
+   background-size: cover;
+   text-align: center;
+   color: #ffffff;
 }
 
 #showcase h1 {
-    margin-top: 164px;
-    margin-bottom: 10px;
-    font-size: 60px;
-    font-weight: bold;
-    font-style: normal;
-    line-height: normal;
+   margin-top: 164px;
+   margin-bottom: 10px;
+   font-size: 60px;
+   font-weight: bold;
+   font-style: normal;
+   line-height: normal;
 }
 
 #showcase p {
-    margin-top: 29px;
-    margin-bottom: 10px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: normal;
+   margin-top: 29px;
+   margin-bottom: 10px;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 16px;
+   line-height: normal;
 }
 
 .rect {
-    width: 373px;
-    height: 150px;
-    margin-top: -99px;
-    margin-left: 128px;
-    background: rgba(1, 173, 186, 0.5);
+   width: 373px;
+   height: 150px;
+   margin-top: -99px;
+   margin-left: 128px;
+   background: rgba(1, 173, 186, 0.5);
 }
 
-/* Address and Phone Numbers */
+Address and Phone Numbers
 .address p {
-    margin-top: 64px;
-    margin-bottom: 10px;
-    color: #333333;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: normal;
-    text-align: center;
+   margin-top: 64px;
+   margin-bottom: 10px;
+   color: #333333;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 24px;
+   line-height: normal;
+   text-align: center;
 }
 
 hr {
-    border: 5px solid #01ADBA;
+   border: 5px solid #01adba;
 }
 
 #info {
-    margin-top: 69px;
+   margin-top: 69px;
 }
 
 #info .box {
-    margin-right: 94px;
-    padding-right: 25px;
-    float: left;
-    text-align: left;
-    width: 235px;
+   margin-right: 94px;
+   padding-right: 25px;
+   float: left;
+   text-align: left;
+   width: 235px;
 }
 
-
 #info h1 {
-    font-weight: bold;
-    font-style: normal;
-    font-size: 24px;
-    line-height: normal;
-    color: #01ADBA;
+   font-weight: bold;
+   font-style: normal;
+   font-size: 24px;
+   line-height: normal;
+   color: #01adba;
 }
 
 #info p {
-    padding: none;
-    width: 235px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 26px;
-    color: #333333;
+   padding: none;
+   width: 235px;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 18px;
+   line-height: 26px;
+   color: #333333;
 }
 
-/* Contact Form */
+Contact Form
 .msg p {
-    margin-top: 118px;
-    margin-bottom: 10px;
-    color: #333333;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: normal;
-    text-align: center;
+   margin-top: 118px;
+   margin-bottom: 10px;
+   color: #333333;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 24px;
+   line-height: normal;
+   text-align: center;
 }
 
 form div {
-    margin-top: 18px;
-    margin-bottom: 20px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: normal;
-    color: #333333;
+   margin-top: 18px;
+   margin-bottom: 20px;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 24px;
+   line-height: normal;
+   color: #333333;
 }
 
 input {
-    padding-left: 20px;
-    width: 1063.43px;
-    height: 54px;
-    border: 1px solid #01ADBA;
-    box-sizing: border-box;
-    border-radius: 14px;
-    font-size: 20px;
+   padding-left: 20px;
+   width: 1063.43px;
+   height: 54px;
+   border: 1px solid #01adba;
+   box-sizing: border-box;
+   border-radius: 14px;
+   font-size: 20px;
 }
 
 textarea {
-    padding: 20px;
-    width: 1063.43px;
-    height: 388px;
-    border: 1px solid #01ADBA;
-    box-sizing: border-box;
-    border-radius: 14px;
-    font-size: 20px;
+   padding: 20px;
+   width: 1063.43px;
+   height: 388px;
+   border: 1px solid #01adba;
+   box-sizing: border-box;
+   border-radius: 14px;
+   font-size: 20px;
 }
 
 #send {
-    background: #01ADBA;
-    border: 1px solid #01ADBA;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin-top: 36px;
-    padding-top: 4px;
-    width: 214px;
-    height: 50px;
-    float: right;
-    text-align: center;
-    color: #ffffff;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
+   background: #01adba;
+   border: 1px solid #01adba;
+   border-radius: 5px;
+   box-sizing: border-box;
+   margin-top: 36px;
+   padding-top: 4px;
+   width: 214px;
+   height: 50px;
+   float: right;
+   text-align: center;
+   color: #ffffff;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 16px;
+   cursor: pointer;
 }
 
 #send:hover {
-    background: #008D98;
-
+   background: #008d98;
 }
 
 #cancel {
-    background: #ffffff;
-    border: 1px solid #01ADBA;
-    border-radius: 5px;
-    margin-top: 36px;
-    margin-right: 24px;
-    padding-top: 4px;
-    width: 214px;
-    height: 50px;
-    float: right;
-    text-align: center;
-    color: #01ADBA;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
+   background: #ffffff;
+   border: 1px solid #01adba;
+   border-radius: 5px;
+   margin-top: 36px;
+   margin-right: 24px;
+   padding-top: 4px;
+   width: 214px;
+   height: 50px;
+   float: right;
+   text-align: center;
+   color: #01adba;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 16px;
+   cursor: pointer;
 }
 
 #cancel:hover {
-    border: 1px solid #008D98;
+   border: 1px solid #008d98;
 }
 
-/* Responsiveness */
+Responsiveness
 
-@media(max-width: 1476px) {
-    #showcase {
-        width: 100%;
-    }
+@media (max-width: 1476px) {
+   #showcase {
+       width: 100%;
+   }
 
-    .rect {
-        margin-top: -90px;
-        margin-left: 115px;
-    }
+   .rect {
+       margin-top: -90px;
+       margin-left: 115px;
+   }
 
-    #info,
-    .box {
-        float: left;
-        margin-right: 110px;
-        text-align: left;
-        width: 20%;
-    }
+   #info,
+   .box {
+       float: left;
+       margin-right: 110px;
+       text-align: left;
+       width: 20%;
+   }
 
-    input,
-    textarea {
-        width: 1023px;
-    }
+   input,
+   textarea {
+       width: 1023px;
+   }
 
-    #send {
-        margin-right: 10px;
-    }
+   #send {
+       margin-right: 10px;
+   }
 
-    #send,
-    #cancel {
-        width: 210px;
-    }
+   #send,
+   #cancel {
+       width: 210px;
+   }
 }
 
-@media(max-width: 1440px) {
-    #info .box {
-        float: left;
-        margin-right: 90px;
-        text-align: left;
-        width: 20%;
-    }
+@media (max-width: 1440px) {
+   #info .box {
+       float: left;
+       margin-right: 90px;
+       text-align: left;
+       width: 20%;
+   }
 
-    .rect {
-        margin-left: 100px;
-    }
+   .rect {
+       margin-left: 100px;
+   }
 
-    input,
-    textarea {
-        width: 100%;
-    }
+   input,
+   textarea {
+       width: 100%;
+   }
 }
 
-@media(max-width: 1248px) {
+@media (max-width: 1248px) {
+   .container,
+   .container1 {
+       width: 80%;
+   }
 
-    .container,
-    .container1 {
-        width: 80%;
-    }
-
-    #info .box {
-        float: left;
-        width: 15%;
-    }
+   #info .box {
+       float: left;
+       width: 15%;
+   }
 }
 
-@media(max-width: 1024px) {
-    #showcase {
-        background-size: 100%;
-        min-height: 250px;
-    }
+@media (max-width: 1024px) {
+   #showcase {
+       background-size: 100%;
+       min-height: 250px;
+   }
 
-    #showcase h1,
-    #showcas p {
-        font-size: 40px;
-        margin-top: 70px;
-    }
+   #showcase h1,
+   #showcas p {
+       font-size: 40px;
+       margin-top: 70px;
+   }
 
-    .rect {
-        width: 240px;
-        height: 100px;
-        margin-top: -78px;
-    }
+   .rect {
+       width: 240px;
+       height: 100px;
+       margin-top: -78px;
+   }
 
-    #info .box {
-        float: left;
-        width: 15%;
-        text-align: left;
-        margin-right: 90px;
+   #info .box {
+       float: left;
+       width: 15%;
+       text-align: left;
+       margin-right: 90px;
+   }
 
-    }
+   #info h1 {
+       font-size: 17px;
+   }
 
-    #info h1 {
-        font-size: 17px;
-    }
+   #info p {
+       width: 120px;
+       font-size: 14px;
+   }
 
-    #info p {
-        width: 120px;
-        font-size: 14px;
-    }
+   .msg p {
+       margin-top: 20px;
+   }
 
-    .msg p {
-        margin-top: 20px;
-
-    }
-
-    input,
-    textarea {
-        width: 100%;
-    }
+   input,
+   textarea {
+       width: 100%;
+   }
 }
 
-@media(max-width: 916px) {
-    form div {
-        font-size: 18px;
-    }
+@media (max-width: 916px) {
+   form div {
+       font-size: 18px;
+   }
 
-    input,
-    textarea {
-        font-size: 18px;
-    }
+   input,
+   textarea {
+       font-size: 18px;
+   }
 
-    textarea {
-        height: 200px;
-    }
+   textarea {
+       height: 200px;
+   }
 }
 
-@media(max-width: 792px) {
-    body {
-        text-align: center;
-    }
+@media (max-width: 792px) {
+   body {
+       text-align: center;
+   }
 
-    .container,
-    .container1 {
-        width: 50%;
-    }
+   .container,
+   .container1 {
+       width: 50%;
+   }
 
-    #info .box {
-        float: none;
-        margin-left: 150px;
-    }
+   #info .box {
+       float: none;
+       margin-left: 150px;
+   }
 
-    button {
-        margin-right: 1000px;
-    }
+   button {
+       margin-right: 1000px;
+   }
 }
+ */

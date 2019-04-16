@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Btn from "./Btn";
 
 class Form extends Component {
 	state = {};
@@ -233,7 +232,7 @@ class Form extends Component {
 				<p>Personal Statement</p>
 				{/* Personal Statement */}
 				<div class="row">
-					<div class="form-group col-md-11 offset-md-1">
+					<div class="form-group col-md-12">
 						<textarea class="form-control" name="statement" rows="3" />
 					</div>
 				</div>
