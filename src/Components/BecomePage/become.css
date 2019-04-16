@@ -3,13 +3,12 @@
 }
 
 .banner {
-	background-image: url(https://res.cloudinary.com/mrphemi/image/upload/v1555358464/massage-835468_1280.jpg);
+	background-image: url("https://res.cloudinary.com/mrphemi/image/upload/v1555358464/massage-835468_1280.jpg");
 	height: 60vh;
 	width: 100%;
-	background-size: 100%;
+	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	margin-top: -20px;
 	margin-bottom: 50px;
 	color: #fff;
 	display: grid;
@@ -17,15 +16,25 @@
 	align-items: center;
 }
 
-.title h1 {
-	margin: 0;
+.title {
+	position: relative;
 }
 
-.title h1 span {
+.title h1 {
+	margin: 0;
+	z-index: 2;
+	position: relative;
+}
+
+.title .box {
 	background: #01adba;
+	position: absolute;
+	top: -50%;
+	z-index: 1;
 	opacity: 0.5;
-	padding: 30px 0 60px 60px;
-	padding-right: -10px;
+	width: 52%;
+	margin-left: -135px;
+	padding: 60px 65px 60px 200px;
 }
 
 .info {
@@ -66,4 +75,37 @@
 	border: none;
 	color: #fff;
 	margin-left: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+	.banner {
+		margin-bottom: 0;
+	}
+
+	.info {
+		margin-top: 20px;
+	}
+
+	.button {
+		display: inline-block;
+		margin-right: 12px;
+		margin-bottom: 0;
+	}
+
+	.data-form {
+		padding: 0;
+		border: none;
+		margin-top: 40px;
+	}
+}
+
+@media only screen and (max-width: 359px) {
+	.title h1 {
+		text-align: center;
+	}
+	.button {
+		display: block;
+		margin-right: 0;
+		margin-bottom: 20px;
+	}
 }
