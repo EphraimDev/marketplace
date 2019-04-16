@@ -1,20 +1,22 @@
 import React, { Component } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
-import Navbar from "./Components/Navbar";
-import Footer from "./components/Footer/Footer";
+import Navbar from "./Components/Navbar/Navbar";
+import Become from "./Components/become-a-therapist";
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <Navbar />
-        </div>
-        <div>
-          <Footer />
-        </div>
-      </BrowserRouter>
+      <div>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={H} />
+          <Route exact path="/login" component={L} />
+          <Route exact path="/register" component={R} />
+          <Route exact path="/profile" component={} />
+          <Route exact path="/become-a-therapist" component={Become} />
+        </Switch>
+      </div>
     );
   }
 }

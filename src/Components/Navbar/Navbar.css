@@ -1,0 +1,41 @@
+.main-nav {
+    background-color: #01ADBA;
+    color: white;
+}
+
+body {
+    font-family: Lato;
+    font-size: 14px;
+}
+
+.navbar-brand {
+    font-size: 20px;
+    color: white;
+}
+
+.main-nav {
+    color: white;
+}
+
+.nav a {
+    color: white;
+
+}
+
+.nav {
+    font-size: 12px;
+
+
+}
+
+.icon-bar {
+    border: 1px solid white;
+}
+
+.icon {
+    margin: 20px;
+    box-sizing: border-box;
+    border-left: 1px solid white;
+    border-right: 1px solid right;
+    display: inline-block;
+}
