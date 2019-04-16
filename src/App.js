@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Navbar from "./Components/Navbar/Navbar";
-import Become from "./Components/become-a-therapist";
+import Become from "./Components/BecomeATherapist";
 
 class App extends Component {
   render() {
