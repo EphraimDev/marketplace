@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/Footer/Footer";
+// import Footer from "./Components/Footer/Footer";
 import { Switch, Route } from "react-router-dom";
 import Become from "./Components/BecomePage/Become";
 import Contact from "./Components/Contact/Contact";
@@ -11,11 +11,11 @@ class App extends Component {
     return (
       <div>
         <Switch>
-          <Route exact path="/" component={Become} />
+          <Route exact path="/" component={Contact} />
+          <Route exact path="/become-a-therapist" component={Become} />
           {/*<Route exact path="/" component={H} /> */}
           {/*<Route exact path="/register" component={R} />
-          <Route exact path="/profile" component={} />
-          <Route exact path="/become-a-therapist" component={Become} />*/}{" "}
+          <Route exact path="/profile" component={} /> */}
         </Switch>
       </div>
     );
