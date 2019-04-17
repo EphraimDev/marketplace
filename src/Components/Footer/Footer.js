@@ -194,7 +194,7 @@ class Footer extends Component {
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
                 <p class="list-unstyled list-inline text-left">
                 Copyright &copy;{new Date().getFullYear()} All rights reserved |
-                TherapyApp
+                TherapyMart
               </p>
               <div class="col-xs-12 col-sm-3 col-md-3"></div>
                 <ul class="list-unstyled quick-links text-center">
