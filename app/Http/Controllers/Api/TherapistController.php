@@ -122,11 +122,11 @@ class TherapistController extends Controller
     public function update(Request $request,$id)
     {
         //
-        return $request->all();
+     
         
         $therapist=Therapist::findOrFail($id);
         $therapist->update($request->all());
-
+return $therapist;
         return response()->json(['success'=>true]);
     }
     

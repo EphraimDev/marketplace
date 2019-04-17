@@ -27,15 +27,27 @@
                           
                           
                           
-                          
+                          @forelse($users as $user)
                         <tr role="row" class="odd">
-                            <td class="v-align-middle semi-bold sorting_1">Fifth tour</td>
-                            <td class="v-align-middle">Simple but not simpler</td>
+                            <td class="v-align-middle semi-bold sorting_1">{{$user['first_name']}}  {{$user['last_name']}}</td>
+                            <td class="v-align-middle">{{$user['email']}}</td>
                             <td class="v-align-middle semi-bold">
                             	<button class="btn btn-primary">view</button>
-                            	<button class="btn btn-danger">delete</button>
+                            	<form method="post" action="{{route('delete_user',['id'=>$user['id']])}}">
+
+
+                            	<button class="btn btn-danger delete_buttons" >delete</button>
+
+                            	{{method_field('DELETE')}}
+                            		{{csrf_field()}}
+                            </form>
                             </td>
                           </tr>
+                          @empty
+                          No user currently registered!
+                          @endforelse
+
+                          {{$users->links()}}
                         </tbody>
                       </table></div>
                     </div>
@@ -46,7 +58,24 @@
 
 
 
+    <script src="{{asset('superadmin/assets/plugins/jquery/jquery-1.11.1.min.js')}}" type="text/javascript"></script>
 
+
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		$('.delete_buttons').each(function(){
+    			$(this).click(function(){
+    				if(confirm('do you really want to delete this user?'))
+    				{
+    					return true;
+    				}
+    				else{
+    					return false;
+    				}
+    			})
+    		})
+    	})
+    </script>
            
 
 

@@ -30,7 +30,7 @@
                             <div class="row">
                               <div class="col-sm-6">
                                 <div class="p-l-20">
-                                  <h3 class="no-margin p-b-5 text-white">14,000</h3>
+                                  <h3 class="no-margin p-b-5 text-white">{{count($allUsers)}}</h3>
                                  
                                 </div>
                               </div>
@@ -72,7 +72,7 @@
                         <div class="row-xs-height">
                           <div class="col-xs-height col-top">
                             <div class="p-l-20 p-t-15">
-                              <h3 class="no-margin p-b-5 text-white">23,000</h3>
+                              <h3 class="no-margin p-b-5 text-white">{{count($allTherapists)}}</h3>
                               <a href="#" class="btn-circle-arrow text-white"><i class="pg-arrow_minimize"></i>
             </a>
                               
@@ -114,20 +114,9 @@
                       <div class="panel-body p-t-40">
                         <div class="row">
                           <div class="col-sm-12">
-                            <h4 class="no-margin p-b-5 text-danger semi-bold">APPL 2.032</h4>
-                            <div class="pull-left small">
-                              <span>WMHC</span>
-                              <span class=" text-success font-montserrat">
-                                                    <i class="fa fa-caret-up m-l-10"></i> 9%
-                                                </span>
-                            </div>
-                            <div class="pull-left m-l-20 small">
-                              <span>HCRS</span>
-                              <span class=" text-danger font-montserrat">
-                                                    <i class="fa fa-caret-up m-l-10"></i> 21%
-                                                </span>
-                            </div>
-                            <div class="clearfix"></div>
+                            <h3 class="no-margin p-b-5 text-danger semi-bold">{{count($allAppointment)}}</h3>
+                           
+                           
                           </div>
                         </div>
                         <div class="p-t-10 full-width">
@@ -158,20 +147,24 @@
                     <div class="table-responsive">
                       <div id="condensedTable_wrapper" class="dataTables_wrapper form-inline no-footer"><table class="table table-hover table-condensed dataTable no-footer" id="condensedTable" role="grid">
                         <thead>
-                          <tr role="row"><th style="width:30%" class="sorting_asc" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Title: activate to sort column descending">Title</th><th style="width: 118px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Key: activate to sort column ascending">Key</th><th style="width: 158px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Condensed: activate to sort column ascending">Condensed</th></tr>
+                          <tr role="row"><th style="width:30%" class="sorting_asc" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Title: activate to sort column descending">Name</th><th style="width: 118px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Key: activate to sort column ascending">Email</th><th style="width: 158px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Condensed: activate to sort column ascending">Date Added</th></tr>
                         </thead>
                         <tbody>
                           
                           
                           
                           
-                          
+                          @forelse($recentlyAddedUsers as $user)
                         <tr role="row" class="odd">
-                            <td class="v-align-middle semi-bold sorting_1">Fifth tour</td>
-                            <td class="v-align-middle">Simple but not simpler</td>
-                            <td class="v-align-middle semi-bold">Wonders can be true. Believe in your dreams!
+                            <td class="v-align-middle semi-bold sorting_1">{{$user['first_name']}}   {{$user['last_name']}}</td>
+                            <td class="v-align-middle">{{$user['email']}}</td>
+                            <td class="v-align-middle semi-bold">
+                              {{$user['created_at']}}
                             </td>
                           </tr>
+                          @empty
+                          No user was added recently
+                          @endforelse
                         </tbody>
                       </table></div>
                     </div>
@@ -199,20 +192,29 @@
                     <div class="table-responsive">
                       <div id="condensedTable_wrapper" class="dataTables_wrapper form-inline no-footer"><table class="table table-hover table-condensed dataTable no-footer" id="condensedTable" role="grid">
                         <thead>
-                          <tr role="row"><th style="width:30%" class="sorting_asc" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Title: activate to sort column descending">Title</th><th style="width: 118px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Key: activate to sort column ascending">Key</th><th style="width: 158px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Condensed: activate to sort column ascending">Condensed</th></tr>
+                          <tr role="row"><th style="width:30%" class="sorting_asc" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Title: activate to sort column descending">user</th><th style="width: 118px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Key: activate to sort column ascending">therapist</th><th style="width: 158px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Condensed: activate to sort column ascending">status</th></tr>
                         </thead>
                         <tbody>
                           
                           
                           
                           
-                          
+                          @forelse($recentlyConcludedAppointments as $appointment)
                         <tr role="row" class="odd">
-                            <td class="v-align-middle semi-bold sorting_1">Fifth tour</td>
-                            <td class="v-align-middle">Simple but not simpler</td>
-                            <td class="v-align-middle semi-bold">Wonders can be true. Believe in your dreams!
+                            <td class="v-align-middle semi-bold sorting_1">{{App\User::where('id',$appointment->user_id)->first()->first_name}}  {{App\User::where('id',$appointment->user_id)->first()->first_name}}</td>
+                            <td class="v-align-middle">
+                              
+                              {{App\User::where('id',$appointment->therapist_id)->first()->first_name}}  {{App\User::where('id',$appointment->therapist_id)->first()->last_name}}
+                            </td>
+                            <td class="v-align-middle semi-bold">
+                              {{$appointment->status}}
                             </td>
                           </tr>
+                          @empty
+                          no appointment currently
+                          @endforelse
+
+
                         </tbody>
                       </table></div>
                     </div>

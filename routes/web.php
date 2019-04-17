@@ -14,18 +14,16 @@
 
 
 
-Route::get('/',function(){
-	return view('superadminBE.index');
-})->name('index');
+Route::get('/',"SuperAdmin\SuperAdminController@index")->name('index');
 
-Route::get('/users',function(){
-	return view('superadminBE.all_users');
-})->name('users');
+Route::get('/admin/view-users',"SuperAdmin\SuperAdminController@allUsers")->name('users');
+
+Route::delete('/admin/delete-user/{id}',"SuperAdmin\SuperAdminController@deleteUser")->name('delete_user');
+
+Route::get('/admin/view-therapist',"SuperAdmin\SuperAdminController@allTherapists")->name('therapists');
 
 
-Route::get('/therapist',function(){
-	return view('superadminBE.all_therapist');
-})->name('therapists');
+Route::get('/admin/appointments/{query?}',"SuperAdmin\SuperAdminController@getAppointments")->name('appointments');
 
 
 

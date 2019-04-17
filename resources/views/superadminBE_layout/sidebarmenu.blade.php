@@ -16,26 +16,90 @@
             <span class="icon-thumbnail"><i class="pg-menu_lv"></i></span>
             <ul class="sub-menu">
               <li>
-                <a href="javascript:;">View all</a>
+                <a href="{{route('users')}}">View all</a>
+                <span class="icon-thumbnail">L1</span>
+              </li>
+
+             <li>
+                <a href="{{route('users')}}">Add new</a>
                 <span class="icon-thumbnail">L1</span>
               </li>
              
+
             </ul>
           </li>
 
            <li class="">
-            <a href="{{route('therapists')}}"><span class="title">Therapists</span>
+            <a href=""><span class="title">Therapists</span>
             <span class="arrow"></span></a>
             <span class="icon-thumbnail"><i class="pg-menu_lv"></i></span>
             <ul class="sub-menu">
               <li>
-                <a href="javascript:;">view all</a>
+                <a href="{{route('therapists')}}"">view all</a>
                 <span class="icon-thumbnail">L1</span>
               </li>
+
+              <li>
+                <a href="{{route('therapists')}}"">Add new</a>
+                <span class="icon-thumbnail">L1</span>
+              </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
              
             </ul>
           </li>
+ <li class="">
+            <a ><span class="title">Appointments</span>
+            <span class="arrow"></span></a>
+            <span class="icon-thumbnail"><i class="pg-menu_lv"></i></span>
+            <ul class="sub-menu">
+              <li>
+                <a href="{{route('appointments')}}"">view all</a>
+                <span class="icon-thumbnail">L1</span>
+              </li>
 
+              <li>
+                <a href="{{route('appointments',['query'=>'accepted'])}}">accepted</a>
+                <span class="icon-thumbnail">L1</span>
+              </li>
+
+              <li>
+                <a href="{{route('appointments',['query'=>'pending'])}}">pending</a>
+                <span class="icon-thumbnail">L1</span>
+              </li>
+
+              <li>
+                <a href="{{route('appointments',['query'=>'rejected'])}}">rejected</a>
+                <span class="icon-thumbnail">L1</span>
+              </li>
+
+               <li>
+                <a href="{{route('appointments',['query'=>'started'])}}">on going</a>
+                <span class="icon-thumbnail">L1</span>
+              </li>
+
+
+                <li>
+                <a href="{{route('appointments',['query'=>'ended'])}}">ended</a>
+                <span class="icon-thumbnail">L1</span>
+              </li>
+
+
+              
 
         </ul>
         <div class="clearfix"></div>
