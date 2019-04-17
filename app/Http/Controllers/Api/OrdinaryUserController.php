@@ -100,17 +100,18 @@ class OrdinaryUserController extends Controller
     {
         //return response(["status" => true, "msg" => "you are in the pay controller"]);
 
-        if (!$id) {
-            return response(["status" => false, "msg" => "User does not exit"]);
+        if (!User::where('id', $id)->exists()) {
+            return response(["success" => false, "msg" => "User does not exit"]);
         }
 
-        $rate = 500;
+        $rate = 500; //The fixed charge
 
-        $fee = $rate * 100;
-        $reference = 12344988;
-        //dd($request);
-        $processStatu = $this->verifyTransaction($fee, $reference);
-        return response(["status" => $processStatu]);
+        $fee = $rate * 100; //Paystack deals in kobo
+
+        $reference = 12344988; //Reference number from backend
+
+        $verificationStatus = $this->verifyTransaction($fee, $reference);
+        return response(["success" => $verificationStatus]);
     }
 
     private function verifyTransaction($fee, $reference)
@@ -138,7 +139,7 @@ class OrdinaryUserController extends Controller
                 return false;
             }
 
-            if ($statusResult != 'success' && $amountResult != $fee * 100) {
+            if ($statusResult != 'success' && $amountResult != $fee) {
                 return false;
             }
             return true;
