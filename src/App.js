@@ -12,9 +12,11 @@ class App extends Component {
     return (
       <div>
         <Switch>
-          <Route exact path="/" component={Become} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/become-a-therapist" component={Become} />
           {/*<Route exact path="/" component={H} /> */}
           {/*<Route exact path="/register" component={R} />
+          <Route exact path="/profile" component={} /> */}
           <Route exact path="/profile" component={} />
           <Route exact path="/become-a-therapist" component={Become} />*/}{" "}
           <Route path="/landing" component={Landing} />

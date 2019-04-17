@@ -5,86 +5,89 @@ import "./Contact.css";
 class Contact extends Component {
   render() {
     return (
-      <div>
-        <header>
-          <div>
-            <h1> Header and Nav </h1>
-          </div>
-        </header>
-
-        <section id="showcase">
-          <div class="container">
-            <h1> Contact Us </h1>
+      <div className="contact">
+        {/* header */}
+        <div className="contact-header">
+          <div className="contact-header_title text-center">
+            <h1>Contact Us</h1>
             <p>
-              {" "}
               Ask us anything and we will guide you on how to use this platform
             </p>
-            <div class="rect"> </div>
+            <span />
           </div>
-        </section>
-
-        <div class="address">
-          <p> Our Address </p>
         </div>
-
-        <hr width="50px" />
-
-        <section id="info">
-          <div class="container1">
-            <div class="box">
-              <h1> Address </h1>
-              <p>1209 Abuja Street, Karu, 93001 FCT-Abuja, Nigeria</p>
-            </div>
-            <div class="box">
-              <h1> Phone: </h1>
-              <p>
-                {" "}
-                +234 1234567891 <br />
-                +234 1234567891{" "}
-              </p>
-            </div>
-            <div class="box">
-              <h1> Online Service</h1>
-              <p>
-                {" "}
-                www.therapymart.com.ng <br />
-                info@therapymart.com.ng
-              </p>
+        {/* Contact Informations */}
+        <div className="container">
+          <div className="contact-info">
+            <h4 className="text-center">Our Adress</h4>
+            <span className="blue-line" />
+            <div className="row">
+              <div className="col-md-4">
+                <h5>Adress</h5>
+                <p>
+                  1209 Abuja street, Karu <br />
+                  930001
+                  <br />
+                  FCT-Abuja, Nigeria
+                </p>
+              </div>
+              <div className="col-md-4">
+                <h5>Phone</h5>
+                <p>
+                  +234 1234567891
+                  <br />
+                  +234 1234567891
+                </p>
+              </div>
+              <div className="col-md-4">
+                <h5>Online Service</h5>
+                <p>
+                  www.therapymart.com.ng <br />
+                  info@therapymart.com.ng
+                </p>
+              </div>
             </div>
           </div>
-        </section>
-
-        <div class="msg">
-          <p> Send Us a Message </p>
+          {/* Contact form */}
+          <form className="contact-form">
+            <h4 className="text-center">Send Us a Message</h4>
+            <span className="blue-line" />
+            <div className="row">
+              <div className="form-group col-md-12">
+                <label for="fullName">Full Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="fullName"
+                  name="fullName"
+                  placeholder="Your Name"
+                />
+              </div>
+              <div className="form-group col-md-12">
+                <label for="fullName">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="You@example.com"
+                />
+              </div>
+              <div className="form-group col-md-12">
+                <textarea
+                  className="form-control"
+                  name="message"
+                  rows="8"
+                  placeholder="Your message...."
+                />
+              </div>
+              <div className="buttons">
+                <button className="button">Cancel</button>
+                <button className="button button-alt">Send Message</button>
+              </div>
+            </div>
+          </form>
         </div>
-        <hr width="50px" />
-
-        <section id="form">
-          <div class="container1">
-            <form action="">
-              <div> Full Name </div>
-              <input type="text" name="name" value="" placeholder="Your Name" />
-              <div> Email </div>
-              <input
-                type="text"
-                name="email"
-                value=""
-                placeholder="you@example"
-              />
-              <div> Message </div>
-              <textarea name="" id="" placeholder="Your message..." />
-              <br />
-              <button id="send" type="submit" name="" value="">
-                Send Message
-              </button>
-              <button id="cancel" type="" name="" value="">
-                Cancel
-              </button>
-            </form>
-          </div>
-        </section>
-
-        <footer>Footer</footer>
       </div>
     );
   }
