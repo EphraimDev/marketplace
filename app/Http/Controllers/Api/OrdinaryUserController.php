@@ -101,7 +101,7 @@ class OrdinaryUserController extends Controller
         //return response(["status" => true, "msg" => "you are in the pay controller"]);
 
         if (!User::where('id', $id)->exists()) {
-            return response(["success" => false, "msg" => "User does not exit"]);
+            return response(["success" => false, "msg" => "User not found."]);
         }
 
         $rate = 500; //The fixed charge
