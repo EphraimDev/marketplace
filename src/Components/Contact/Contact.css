@@ -1,115 +1,336 @@
-/* Contact page header */
-
-.contact-header {
-  background-image: url("https://res.cloudinary.com/mrphemi/image/upload/v1555435595/tablet-1075790_1280.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 60vh;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
+/*  body {
+   padding: 0;
+   margin: 0;
+   background: #ffffff;
 }
 
-.contact-header_title {
-  position: relative;
+body,
+input,
+button {
+   font-family: "Lato", san-serif;
 }
 
-.contact-header_title h1,
-.contact-header_title p {
-  margin: 0;
-  z-index: 2;
-  position: relative;
-  font-weight: bold;
+Global
+.container {
+   width: 80%;
+   margin: auto;
+   overflow: hidden;
 }
 
-.contact-header_title span {
-  background: #01adba;
-  display: block;
-  position: absolute;
-  top: 30%;
-  z-index: 1;
-  opacity: 0.5;
-  width: 52%;
-  margin-left: -140px;
-  padding: 60px 65px 40px 200px;
+.container1 {
+   width: 70%;
+   margin: auto;
+   overflow: hidden;
 }
 
-.blue-line {
-  background-color: #01adba;
-  display: block;
-  height: 5px;
-  width: 50px;
-  margin: 0 auto;
-  margin-bottom: 40px;
+Showcase
+#showcase {
+   min-height: 550px;
+   background: url("../../images/showcase.jpg") no-repeat 0 -400px;
+   background-size: cover;
+   text-align: center;
+   color: #ffffff;
 }
 
-/* Contact page info */
-
-.contact-info {
-  padding: 50px 0;
+#showcase h1 {
+   margin-top: 164px;
+   margin-bottom: 10px;
+   font-size: 60px;
+   font-weight: bold;
+   font-style: normal;
+   line-height: normal;
 }
 
-.contact-info h5 {
-  color: #01adba;
-  font-weight: bold;
+#showcase p {
+   margin-top: 29px;
+   margin-bottom: 10px;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 16px;
+   line-height: normal;
 }
 
-.contact-info h4,
-.contact-form h4 {
-  font-weight: bold;
+.rect {
+   width: 373px;
+   height: 150px;
+   margin-top: -99px;
+   margin-left: 128px;
+   background: rgba(1, 173, 186, 0.5);
 }
 
-.contact-form {
-  padding-bottom: 40px;
+Address and Phone Numbers
+.address p {
+   margin-top: 64px;
+   margin-bottom: 10px;
+   color: #333333;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 24px;
+   line-height: normal;
+   text-align: center;
 }
 
-.contact-form input,
-.contact-form textarea {
-  border-color: #01adba;
+hr {
+   border: 5px solid #01adba;
 }
 
-/* Contact page form */
-
-.contact-form input {
-  padding-top: 25px;
-  padding-bottom: 25px;
+#info {
+   margin-top: 69px;
 }
 
-.contact-form .button {
-  background: #fff;
-  display: inline-block;
-  border: 1px solid #01adba;
-  border-radius: 5px;
-  color: #01adba;
-  padding: 10px;
-  min-width: 100px;
-  margin-right: 15px;
+#info .box {
+   margin-right: 94px;
+   padding-right: 25px;
+   float: left;
+   text-align: left;
+   width: 235px;
 }
 
-.contact-form .button-alt {
-  background: #01adba;
-  border: none;
-  color: #fff;
-  margin-left: 20px;
+#info h1 {
+   font-weight: bold;
+   font-style: normal;
+   font-size: 24px;
+   line-height: normal;
+   color: #01adba;
 }
 
-.contact-form .buttons {
-  margin-left: auto;
+#info p {
+   padding: none;
+   width: 235px;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 18px;
+   line-height: 26px;
+   color: #333333;
 }
 
-/* Media queries */
-@media only screen and (max-width: 767px) {
-  .contact-header_title p {
-    padding: 0 10px;
-  }
-  .contact-info {
-    text-align: center;
-  }
-  .contact-form .button {
-    margin-right: 0;
-  }
-  .contact-form .buttons {
-    margin: auto;
-  }
+Contact Form
+.msg p {
+   margin-top: 118px;
+   margin-bottom: 10px;
+   color: #333333;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 24px;
+   line-height: normal;
+   text-align: center;
 }
+
+form div {
+   margin-top: 18px;
+   margin-bottom: 20px;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 24px;
+   line-height: normal;
+   color: #333333;
+}
+
+input {
+   padding-left: 20px;
+   width: 1063.43px;
+   height: 54px;
+   border: 1px solid #01adba;
+   box-sizing: border-box;
+   border-radius: 14px;
+   font-size: 20px;
+}
+
+textarea {
+   padding: 20px;
+   width: 1063.43px;
+   height: 388px;
+   border: 1px solid #01adba;
+   box-sizing: border-box;
+   border-radius: 14px;
+   font-size: 20px;
+}
+
+#send {
+   background: #01adba;
+   border: 1px solid #01adba;
+   border-radius: 5px;
+   box-sizing: border-box;
+   margin-top: 36px;
+   padding-top: 4px;
+   width: 214px;
+   height: 50px;
+   float: right;
+   text-align: center;
+   color: #ffffff;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 16px;
+   cursor: pointer;
+}
+
+#send:hover {
+   background: #008d98;
+}
+
+#cancel {
+   background: #ffffff;
+   border: 1px solid #01adba;
+   border-radius: 5px;
+   margin-top: 36px;
+   margin-right: 24px;
+   padding-top: 4px;
+   width: 214px;
+   height: 50px;
+   float: right;
+   text-align: center;
+   color: #01adba;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 16px;
+   cursor: pointer;
+}
+
+#cancel:hover {
+   border: 1px solid #008d98;
+}
+
+Responsiveness
+
+@media (max-width: 1476px) {
+   #showcase {
+       width: 100%;
+   }
+
+   .rect {
+       margin-top: -90px;
+       margin-left: 115px;
+   }
+
+   #info,
+   .box {
+       float: left;
+       margin-right: 110px;
+       text-align: left;
+       width: 20%;
+   }
+
+   input,
+   textarea {
+       width: 1023px;
+   }
+
+   #send {
+       margin-right: 10px;
+   }
+
+   #send,
+   #cancel {
+       width: 210px;
+   }
+}
+
+@media (max-width: 1440px) {
+   #info .box {
+       float: left;
+       margin-right: 90px;
+       text-align: left;
+       width: 20%;
+   }
+
+   .rect {
+       margin-left: 100px;
+   }
+
+   input,
+   textarea {
+       width: 100%;
+   }
+}
+
+@media (max-width: 1248px) {
+   .container,
+   .container1 {
+       width: 80%;
+   }
+
+   #info .box {
+       float: left;
+       width: 15%;
+   }
+}
+
+@media (max-width: 1024px) {
+   #showcase {
+       background-size: 100%;
+       min-height: 250px;
+   }
+
+   #showcase h1,
+   #showcas p {
+       font-size: 40px;
+       margin-top: 70px;
+   }
+
+   .rect {
+       width: 240px;
+       height: 100px;
+       margin-top: -78px;
+   }
+
+   #info .box {
+       float: left;
+       width: 15%;
+       text-align: left;
+       margin-right: 90px;
+   }
+
+   #info h1 {
+       font-size: 17px;
+   }
+
+   #info p {
+       width: 120px;
+       font-size: 14px;
+   }
+
+   .msg p {
+       margin-top: 20px;
+   }
+
+   input,
+   textarea {
+       width: 100%;
+   }
+}
+
+@media (max-width: 916px) {
+   form div {
+       font-size: 18px;
+   }
+
+   input,
+   textarea {
+       font-size: 18px;
+   }
+
+   textarea {
+       height: 200px;
+   }
+}
+
+@media (max-width: 792px) {
+   body {
+       text-align: center;
+   }
+
+   .container,
+   .container1 {
+       width: 50%;
+   }
+
+   #info .box {
+       float: none;
+       margin-left: 150px;
+   }
+
+   button {
+       margin-right: 1000px;
+   }
+}
+ */
