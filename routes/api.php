@@ -23,7 +23,10 @@ Route::delete('/users/{id}',"UserController@destroy");
 Route::put('/users/{id}',"UserController@update");
 
 
-// Auth routes
+/**
+ * Auth routes
+ *
+ */
 Route::post('/auth/register',"AuthController@register");
 
 Route::post('/auth/login',"AuthController@login");
@@ -32,9 +35,11 @@ Route::post('/auth/logout',"AuthController@logout");
 
 Route::get('/auth/user',"AuthController@details");  
 
-
-// Therapist routes
-
+/**
+ * Therapist routes
+ * Routes here are strictly for the therapist
+ *
+ */
 Route::get('/therapists', "TherapistController@index");
 
 Route::get('/therapists/{id}', "TherapistController@show");
@@ -51,14 +56,11 @@ Route::delete('/therapists/{id}', "TherapistController@destroy");
 
 Route::post('/therapists/{name}/verify', "TherapistController@verify"); 
 
-
-
 /**
  * Ordinary user routes
  * The ordinary user is also known as the therapist's client
  *
  */
-// Fetch all ordinary users
 Route::get('/ordinary-users', "OrdinaryUserController@index"); 
 
 Route::get('/ordinary-users/{id}', "OrdinaryUserController@show"); 
@@ -71,6 +73,26 @@ Route::put('/ordinary-users/{id}/status', "OrdinaryUserController@updateStatus")
 
 Route::post('/ordinary-users/{id}/pay', "OrdinaryUserController@pay"); 
 
+/**
+ * Appointment routes
+ * Routes here are strictly for appointments
+ *
+ */
+Route::post('/appointments/ordinary-user/{userId}/book', "AppointmentController@book"); 
+
+Route::get('/appointments/ordinary-user/{userId}', "AppointmentController@userAppointments"); 
+
+Route::put('/appointments/{appointmentId}/ordinary-user/{userId}/start', "AppointmentController@startSession"); 
+
+Route::put('/appointments/{appointmentId}/ordinary-user/{userId}/end', "AppointmentController@endSession"); 
+
+Route::get('/appointments/therapist/{therapistId}', "AppointmentController@therapistAppointments"); 
+
+Route::get('/appointments/{appointmentId}/therapist/{therapistId}', "AppointmentController@singleAppointment"); 
+
+Route::put('/appointments/{appointmentId}/therapist/{therapistId}/reject', "AppointmentController@rejectAppointment"); 
+
+Route::put('/appointments/{appointmentId}/therapist/{therapistId}/accept', "AppointmentController@acceptAppointment"); 
 
 
 // Please delete don't the code below
