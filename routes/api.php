@@ -37,6 +37,7 @@ Route::post('/auth/logout', "AuthController@logout");
 
 Route::get('/auth/user', "AuthController@details");
 
+Route::get('/auth/user', "AuthController@registerTherapist");
 /**
  * Therapist routes
  * Routes here are strictly for the therapist
@@ -58,12 +59,13 @@ Route::delete('/therapists/{id}', "TherapistController@destroy");
 
 Route::post('/therapists/{name}/verify', "TherapistController@verify");
 
+Route::post('/therapists/{id}/requestVerify', "TherapistController@requestVerify");
 /**
  * Ordinary user routes
  * The ordinary user is also known as the therapist's client
  *
  */
-Route::get('/ordinary-users', "OrdinaryUserController@index"); 
+Route::get('/ordinary-users', "OrdinaryUserController@index");
 
 Route::get('/ordinary-users/{id}', "OrdinaryUserController@show");
 
@@ -73,31 +75,31 @@ Route::put('/ordinary-users/{id}', "OrdinaryUserController@update");
 
 Route::put('/ordinary-users/{id}/status', "OrdinaryUserController@updateStatus");
 
-Route::post('/ordinary-users/{id}/pay', "OrdinaryUserController@pay"); 
+Route::post('/ordinary-users/{id}/pay', "OrdinaryUserController@pay");
 
 /**
  * Appointment routes
  * Routes here are strictly for appointments
  *
  */
-Route::post('/appointments/ordinary-user/{userId}/therapist/{therapistId}/book', "AppointmentController@book"); 
+Route::post('/appointments/ordinary-user/{userId}/therapist/{therapistId}/book', "AppointmentController@book");
 
-Route::get('/appointments/ordinary-user/{userId}', "AppointmentController@userAppointments"); 
+Route::get('/appointments/ordinary-user/{userId}', "AppointmentController@userAppointments");
 
-Route::put('/appointments/{appointmentId}/ordinary-user/{userId}/start', "AppointmentController@startSession"); 
+Route::put('/appointments/{appointmentId}/ordinary-user/{userId}/start', "AppointmentController@startSession");
 
-Route::put('/appointments/{appointmentId}/ordinary-user/{userId}/end', "AppointmentController@endSession"); 
+Route::put('/appointments/{appointmentId}/ordinary-user/{userId}/end', "AppointmentController@endSession");
 
-Route::get('/appointments/therapist/{therapistId}', "AppointmentController@therapistAppointments"); 
+Route::get('/appointments/therapist/{therapistId}', "AppointmentController@therapistAppointments");
 
-Route::get('/appointments/{appointmentId}/therapist/{therapistId}', "AppointmentController@singleAppointment"); 
+Route::get('/appointments/{appointmentId}/therapist/{therapistId}', "AppointmentController@singleAppointment");
 
-Route::put('/appointments/{appointmentId}/therapist/{therapistId}/reject', "AppointmentController@rejectAppointment"); 
+Route::put('/appointments/{appointmentId}/therapist/{therapistId}/reject', "AppointmentController@rejectAppointment");
 
-Route::put('/appointments/{appointmentId}/therapist/{therapistId}/accept', "AppointmentController@acceptAppointment"); 
+Route::put('/appointments/{appointmentId}/therapist/{therapistId}/accept', "AppointmentController@acceptAppointment");
 
 
 // Please delete don't the code below
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
-    
+
 });*/
