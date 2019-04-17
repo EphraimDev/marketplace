@@ -47,20 +47,18 @@ import { Link } from 'react-router-dom';
                           <input className="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
                           required="" type="email">
                           <button className="click-btn btn btn-default text-uppercase">subscribe</button>
-                          <div style="position: absolute; left: -5000px;">
-                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                          </div>
+                          </input>
+                          </form>
                             </div>
                           <div class="info"></div>
-                        </form>
                       </div>
                     </div>
                   </div>
                   <hr></hr>
                   <div class="footer-bottom row align-items-left">
-                    <p class="footer-text m-0 col-lg-8 col-md-12">
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | TherapyApp</a>
-            </p>
+                    <p class="footer-text m-0 col-lg-8 col-md-12">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | TherapyApp</p>
+            </div>
+            </footer>
                     <div class="footer-bottom row align-items-center">
                     <p class="footer-text m-0 col-lg-8 col-md-12">
                         <a href="#">Find a Treatment Center</a>
@@ -72,9 +70,6 @@ import { Link } from 'react-router-dom';
                       <a href="#"><i class="fa fa-twitter"></i></a>
                     </div>
                   </div>
-                </div>
-        </footer>
-      </div>
     );
   }
 }
