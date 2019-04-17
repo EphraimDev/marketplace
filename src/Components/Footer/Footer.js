@@ -126,7 +126,7 @@ class Footer extends Component {
                   <li>
                     <p style={{ color: "white" }}>
                       Subscribe to our newsletter and be the first to get latest
-                      updates about theraphy from us
+                      updates about therapy from us
                     </p>
                   </li>
                   <li>
