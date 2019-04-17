@@ -31,7 +31,7 @@ class Footer extends Component {
                     </a>
                   </li>
                   <li>
-                    <a href="javascript:void();">
+                    <a href="/contact">
                       <i class="fa fa-angle-double-right" />
                       Contact Us
                     </a>
@@ -93,7 +93,7 @@ class Footer extends Component {
                     </a>
                   </li>
                   <li>
-                    <a href="javascript:void();">
+                    <a href="#">
                       <i class="fa fa-angle-double-right" />
                       Issues Treated in Therapy
                     </a>
@@ -105,16 +105,13 @@ class Footer extends Component {
                     </a>
                   </li>
                   <li>
-                    <Link to="/faq">
+                    <a href="/faq">
                       <i class="fa fa-angle-double-right" />
                       Client FAQs
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <a
-                      href="https://wwwe.sunlimetech.com"
-                      title="Design and developed by"
-                    >
+                    <a href="#" title="Design and developed by">
                       <i class="fa fa-angle-double-right" />
                       Membership Fee
                     </a>
@@ -195,9 +192,7 @@ class Footer extends Component {
               <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
                 <p>
                   <u>
-                    <a href="https://www.nationaltransaction.com/">
-                      National Transaction Corporation
-                    </a>
+                    <a href="#">National Transaction Corporation</a>
                   </u>{" "}
                   is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly
                   owned subsidiary of U.S. Bancorp, Minneapolis, MN]
@@ -206,7 +201,7 @@ class Footer extends Component {
                   &copy All right Reversed.
                   <a
                     class="text-green ml-2"
-                    href="https://www.sunlimetech.com"
+                    href="#"
                     target="_blank"
                   >
                     Sunlimetech
