@@ -1,0 +1,84 @@
+/* signup-container
+signup-quote
+signup-quote-author
+signup-form
+signup-link */
+:root {
+  --background: rgba(0, 0, 0, 0.5);
+  --border-radius: 5px;
+  --color: #01adba;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.signup-container {
+  /* margin-top: 2rem; */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 100vw;
+  color: #fff;
+  padding: 0.5rem;
+  background: url(signup.jpg);
+  background-size: cover;
+}
+.signup-container::before {
+  content: "";
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.signup-quote {
+  background: var(--background);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  font-weight: bold;
+  z-index: 99;
+}
+.signup-quote-author {
+  display: block;
+  font-weight: lighter;
+  margin-top: 0.2rem;
+}
+.signup-form {
+    z-index: 99;
+  padding: 2rem;
+  background: var(--background);
+  border-radius: var(--border-radius);
+  width: 80%;
+  max-width: 20rem;
+}
+.signup-form form > input {
+  outline: none;
+  border: none;
+  margin: 1rem 0;
+  background: #fff;
+  height: 9px;
+  padding: 1rem;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+}
+.signup-link {
+  color: var(--color);
+}
+.signup-btn {
+  background: var(--color);
+  border-radius: 0.3rem;
+  padding: 0.5rem 5rem;
+  font-size: 1.2rem;
+  color: #fff;
+  border: none;
+  margin: 1rem auto;
+}
+.signup-btn:hover {
+  cursor: pointer;
+}
