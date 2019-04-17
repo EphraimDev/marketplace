@@ -3,7 +3,7 @@ import React from 'react';
 import Header from './header';
 import './Landing.css';
 
-const Landing = props => (
+const Home = props => (
     <div className="landing">
         <div className="row">
             <Header />
@@ -11,4 +11,4 @@ const Landing = props => (
     </div>
 )
 
-export default Landing;
+export default Home;
