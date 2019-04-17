@@ -23,13 +23,16 @@ Route::delete('/users/{id}', "UserController@destroy");
 Route::put('/users/{id}', "UserController@update");
 
 
-
+<<<<<<< HEAD
+// Auth routes
+Route::post('/auth/register', "AuthController@register");
+=======
 /**
  * Auth routes
  *
  */
 Route::post('/auth/register',"AuthController@register");
-
+>>>>>>> server
 
 Route::post('/auth/login', "AuthController@login");
 
@@ -63,7 +66,12 @@ Route::post('/therapists/{name}/verify', "TherapistController@verify");
  * The ordinary user is also known as the therapist's client
  *
  */
+<<<<<<< HEAD
+// Fetch all ordinary users
+Route::get('/ordinary-users', "OrdinaryUserController@index");
+=======
 Route::get('/ordinary-users', "OrdinaryUserController@index"); 
+>>>>>>> server
 
 Route::get('/ordinary-users/{id}', "OrdinaryUserController@show");
 
