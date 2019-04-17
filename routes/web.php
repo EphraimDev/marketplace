@@ -12,3 +12,25 @@
 */
 
 
+
+
+Route::get('/',function(){
+	return view('superadminBE.index');
+})->name('index');
+
+Route::get('/users',function(){
+	return view('superadminBE.all_users');
+})->name('users');
+
+
+Route::get('/therapist',function(){
+	return view('superadminBE.all_therapist');
+})->name('therapists');
+
+
+
+
+
+
+Auth::routes();
+
