@@ -1,41 +1,59 @@
-.main-nav {
+.navdiv{
     background-color: #01ADBA;
-    color: white;
+    color:white;
+    /* height: 80px; */
+    /* padding-top: 10px;
+    padding-bottom: 10px; */
+}
+.navright{
+    padding-right: 120px;
+    /* padding-bottom: 30px; */
+}
+.nja_img{
+    height: 11px;
+    width: 21px;
 }
 
-body {
+.divborder{
+    border-left:  1px solid greenyellow ;
+    background-color:#000;
+}
+
+.navbarbrand{
+    background-color: #01ADBA;
+    color:white;
     font-family: Lato;
-    font-size: 14px;
-}
-
-.navbar-brand {
+    font-style: normal;
+    font-weight: bold;
     font-size: 20px;
+    line-height: 29px;
+}
+.line{
+    /* width:10px; */
+    background-color:#000;
+    /* position:absolute;
+    top:0;
+    bottom:0;
+    left:150px; */
     color: white;
+    border-left: 2px solid white;
+    height: 100%;
+}
+.acc{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: normal;
+    padding-bottom: 10px;
 }
 
-.main-nav {
-    color: white;
+.nja{
+    margin-top: 20px;
 }
 
-.nav a {
-    color: white;
-
-}
-
-.nav {
-    font-size: 12px;
-
-
-}
-
-.icon-bar {
-    border: 1px solid white;
-}
-
-.icon {
-    margin: 20px;
-    box-sizing: border-box;
-    border-left: 1px solid white;
-    border-right: 1px solid right;
-    display: inline-block;
+.fa3x{
+    margin-left: 20px;
+    vertical-align: -10px;
+    margin-top: 10px;
 }
