@@ -23,7 +23,7 @@ class Contact extends Component {
             <span className="blue-line" />
             <div className="row">
               <div className="col-md-4">
-                <h5>Adress</h5>
+                <h5>Address</h5>
                 <p>
                   1209 Abuja street, Karu <br />
                   930001
