@@ -105,10 +105,10 @@ class Footer extends Component {
                     </a>
                   </li>
                   <li>
-                    <a href="javascript:void();">
+                    <Link to="/faq">
                       <i class="fa fa-angle-double-right" />
                       Client FAQs
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a
