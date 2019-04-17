@@ -11,6 +11,7 @@ class App extends Component {
     return (
       <div>
         <Switch>
+          <Navbar />
           <Route exact path="/" component={Become} />
           {/*<Route exact path="/" component={H} /> */}
           {/*<Route exact path="/register" component={R} />
