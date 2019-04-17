@@ -9,7 +9,16 @@ class Navbar extends Component {
         <nav class="main-nav navbar-fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand">TherapyMart</a>
+              <a
+                style={{
+                  color: "white",
+                  fontSize: "35px",
+                  fontFamily: "'Abril Fatface', cursive"
+                }}
+                class="navbar-brand"
+              >
+                TherapyMart
+              </a>
               <button
                 type="button"
                 class="navbar-toggle"

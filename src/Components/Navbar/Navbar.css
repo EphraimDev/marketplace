@@ -1,36 +1,43 @@
-.navdiv{
+.main-nav {
     background-color: #01ADBA;
-    color:white;
+}
+
+.navdiv {
+    background-color: #01ADBA;
+    color: white;
     /* height: 80px; */
     /* padding-top: 10px;
     padding-bottom: 10px; */
 }
-.navright{
+
+.navright {
     padding-right: 120px;
     /* padding-bottom: 30px; */
 }
-.nja_img{
+
+.nja_img {
     height: 11px;
     width: 21px;
 }
 
-.divborder{
-    border-left:  1px solid greenyellow ;
-    background-color:#000;
+.divborder {
+    border-left: 1px solid greenyellow;
+    background-color: #000;
 }
 
-.navbarbrand{
+.navbarbrand {
     background-color: #01ADBA;
-    color:white;
+    color: white;
     font-family: Lato;
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
     line-height: 29px;
 }
-.line{
+
+.line {
     /* width:10px; */
-    background-color:#000;
+    background-color: #000;
     /* position:absolute;
     top:0;
     bottom:0;
@@ -39,7 +46,8 @@
     border-left: 2px solid white;
     height: 100%;
 }
-.acc{
+
+.acc {
     font-family: Raleway;
     font-style: normal;
     font-weight: normal;
@@ -48,11 +56,11 @@
     padding-bottom: 10px;
 }
 
-.nja{
+.nja {
     margin-top: 20px;
 }
 
-.fa3x{
+.fa3x {
     margin-left: 20px;
     vertical-align: -10px;
     margin-top: 10px;
