@@ -14,13 +14,14 @@ use Illuminate\Http\Request;
  * This route will be used mainly by the super admin
  *
  */
-Route::get('/users/{id}',"UserController@show");
+Route::get('/users/{id}', "UserController@show");
 
-Route::get('/users',"UserController@index");
+Route::get('/users', "UserController@index");
 
-Route::delete('/users/{id}',"UserController@destroy");
+Route::delete('/users/{id}', "UserController@destroy");
 
-Route::put('/users/{id}',"UserController@update");
+Route::put('/users/{id}', "UserController@update");
+
 
 
 /**
@@ -29,14 +30,14 @@ Route::put('/users/{id}',"UserController@update");
  */
 Route::post('/auth/register',"AuthController@register");
 
-Route::post('/auth/login',"AuthController@login");
 
-Route::post('/auth/logout',"AuthController@logout");
+Route::post('/auth/login', "AuthController@login");
 
-Route::get('/auth/user',"AuthController@details");
+Route::post('/auth/logout', "AuthController@logout");
+
+Route::get('/auth/user', "AuthController@details");
 
 Route::get('/auth/user', "AuthController@registerTherapist");
-
 /**
  * Therapist routes
  * Routes here are strictly for the therapist
@@ -48,7 +49,7 @@ Route::get('/therapists/{id}', "TherapistController@show");
 
 Route::get('/therapists/available', "TherapistController@avilableTherapists");
 
-Route::put('/therapists/{id}/status',"TherapistController@changeStatus");
+Route::put('/therapists/{id}/status', "TherapistController@changeStatus");
 
 Route::post('/therapists/search/{name}', "TherapistController@search");
 
@@ -56,10 +57,9 @@ Route::put('/therapists/{id}', "TherapistController@update");
 
 Route::delete('/therapists/{id}', "TherapistController@destroy");
 
-Route::post('/therapists/{id}/verify', "TherapistController@verify");
+Route::post('/therapists/{name}/verify', "TherapistController@verify");
 
 Route::post('/therapists/{id}/requestVerify', "TherapistController@requestVerify");
-
 /**
  * Ordinary user routes
  * The ordinary user is also known as the therapist's client
