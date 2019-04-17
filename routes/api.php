@@ -78,7 +78,7 @@ Route::post('/ordinary-users/{id}/pay', "OrdinaryUserController@pay");
  * Routes here are strictly for appointments
  *
  */
-Route::post('/appointments/ordinary-user/{userId}/book', "AppointmentController@book"); 
+Route::post('/appointments/ordinary-user/{userId}/{therapistId}/book', "AppointmentController@book"); 
 
 Route::get('/appointments/ordinary-user/{userId}', "AppointmentController@userAppointments"); 
 
