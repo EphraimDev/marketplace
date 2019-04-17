@@ -16,7 +16,7 @@ class AppointmentsTableSeeder extends Seeder {
     {
         DB::table('Appointments')->delete();
 
-        appointment::create(array('email' => ''));
+        appointments::create(array('id' => ''));
     }
 
 }
