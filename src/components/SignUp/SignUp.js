@@ -61,10 +61,10 @@ const SignUp = () => {
             <a href="#!" className="signup-link">
               Privacy Policy
             </a>
+            <button type="submit" disabled={!checked} className="signup-btn">
+              Sign Up
+            </button>
           </div>
-          <button type="submit" disabled={!checked} className="signup-btn">
-            Sign Up
-          </button>
           <div>
             Already have an account?{" "}
             <Link to="/login" className="signup-link">
