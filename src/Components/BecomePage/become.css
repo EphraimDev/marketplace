@@ -1,0 +1,111 @@
+.become_therapist {
+	padding-bottom: 50px;
+}
+
+.banner {
+	background-image: url("https://res.cloudinary.com/mrphemi/image/upload/v1555358464/massage-835468_1280.jpg");
+	height: 60vh;
+	width: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-bottom: 50px;
+	color: #fff;
+	display: grid;
+	justify-content: center;
+	align-items: center;
+}
+
+.title {
+	position: relative;
+}
+
+.title h1 {
+	margin: 0;
+	z-index: 2;
+	position: relative;
+}
+
+.title .box {
+	background: #01adba;
+	position: absolute;
+	top: -50%;
+	z-index: 1;
+	opacity: 0.5;
+	width: 52%;
+	margin-left: -135px;
+	padding: 60px 65px 60px 200px;
+}
+
+.info {
+	margin-top: 10px;
+}
+
+.button {
+	background: #01adba;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	padding: 10px;
+	display: block;
+	margin-bottom: 20px;
+}
+
+.button i,
+.button-alt i {
+	margin-right: 5px;
+}
+
+.data-form {
+	padding-left: 30px;
+	border-left: 1px solid #eee;
+}
+
+.form-cta {
+	background: #fff;
+	border: 1px solid #01adba;
+	border-radius: 5px;
+	color: #01adba;
+	padding: 10px;
+	width: 100px;
+}
+
+.submit {
+	background: #01adba;
+	border: none;
+	color: #fff;
+	margin-left: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+	.banner {
+		margin-bottom: 0;
+	}
+
+	.info {
+		margin-top: 20px;
+	}
+
+	.button {
+		display: inline-block;
+		margin-right: 12px;
+		margin-bottom: 0;
+	}
+
+	.data-form {
+		padding: 0;
+		border: none;
+		margin-top: 40px;
+	}
+}
+
+@media only screen and (max-width: 359px) {
+	.title h1 {
+		text-align: center;
+	}
+	.button {
+		display: block;
+		margin-right: 0;
+		margin-bottom: 20px;
+	}
+}
