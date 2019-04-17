@@ -10,7 +10,7 @@ class Footer extends Component {
           <div className="container">
             <div className="row text-center text-xs-center text-sm-left text-md-left">
               <div className="col-xs-12 col-sm-3 col-md-3">
-                <h5>Theraphymart</h5>
+                <h5>Therapymart</h5>
                 <ul className="list-unstyled quick-links">
                   <li>
                     <a href="javascript:void();">
