@@ -191,24 +191,11 @@ class Footer extends Component {
               </div>
               <hr />
             </div>
-            <div class="row align-items-left">
-              <p class="m-0 col-lg-8 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                <p class="list-unstyled list-inline social text-center">
                 Copyright &copy;{new Date().getFullYear()} All rights reserved |
                 TherapyApp
               </p>
-              <div class="row align-items-center">
-                <p class="m-0 col-lg-8 col-md-12">
-                  <a href="javascript:void();">
-                  <i class="fa fa-angle-double-right" />
-                  Find a Treatment Center
-                  </a>
-                  <a href="javascript:void();">
-                  <i class="fa fa-angle-double-right" />
-                  Issues Treated In therapy
-                  </a>
-                </p>
-              </div>
-              <hr />
             </div>
           </div>
         </section>
