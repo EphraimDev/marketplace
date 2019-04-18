@@ -1,67 +1,124 @@
-.main-nav {
+:root {
+    --header-padding: 1rem 2rem 1rem 2rem;
+    --hover-color: #008d98;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.red {
+}
+
+.main {
+    width: 100%;
+}
+
+.header {
+    display: flex;
     background-color: #01adba;
-}
-
-.navdiv {
-    background-color: #01adba;
-    color: white;
-    height: 80px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.navright {
-    padding-right: 120px;
-    padding-bottom: 30px;
-}
-
-.nja_img {
-    height: 11px;
-    width: 21px;
-}
-
-.divborder {
-    border-left: 1px solid greenyellow;
-    background-color: #000;
-}
-
-.navbarbrand {
-    background-color: #01adba;
-    color: white;
-    font-family: Lato;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 29px;
-}
-
-.line {
-    width: 10px;
-    background-color: #000;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 150px;
-    color: white;
-    border-left: 2px solid white;
-    height: 100%;
-}
-
-.acc {
-    font-family: Raleway;
-    font-style: normal;
-    font-weight: normal;
+    color: #fff;
     font-size: 14px;
-    line-height: normal;
-    padding-bottom: 10px;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.nja {
-    margin-top: 20px;
+.left {
+    display: flex;
+    flex-direction: row;
+    padding-right: 2rem;
+    flex-shrink: 0;
 }
 
-.fa3x {
-    margin-left: 20px;
-    vertical-align: -10px;
-    margin-top: 10px;
+.right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.logo {
+    font-size: 24px;
+    padding: var(--header-padding);
+    margin-right: 3rem;
+}
+
+.header-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header-links a {
+    color: #fff;
+    display: block;
+    padding: 0rem 1rem 0rem 1rem;
+    text-decoration: none;
+}
+
+.header-links a:hover {
+    text-decoration: none;
+    color: var(--hover-color);
+}
+
+.payment {
+    display: flex;
+    align-items: center;
+    border-right: 1.5px solid white;
+    border-left: 1.5px solid white;
+    padding: 0rem 1rem 0rem 1rem;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    padding: 0rem 2rem 0rem 2rem;
+}
+
+.account a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.account a:hover {
+    color: var(--hover-color);
+    text-decoration: none;
+}
+
+.fa-user {
+    padding-right: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .left {
+        flex-direction: column;
+    }
+
+    .header-links {
+        flex-direction: column;
+    }
+
+    .header-links a {
+        padding: 1rem;
+    }
+
+    .right {
+        flex-direction: row;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .logo {
+        margin-right: 0rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .payment {
+        border: none;
+    }
 }

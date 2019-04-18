@@ -2,6 +2,8 @@
 
 section {
     padding: 60px 0;
+    left: 0;
+    right: 0;
 }
 
 .line-break {
@@ -10,6 +12,7 @@ section {
     background-color: white;
     border: none;
     margin-top: 100px;
+    margin-bottom: 40px;
 }
 
 section .section-title {

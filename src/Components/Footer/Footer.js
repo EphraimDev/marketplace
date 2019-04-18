@@ -10,7 +10,7 @@ class Footer extends Component {
           <div className="container">
             <div className="row text-center text-xs-center text-sm-left text-md-left">
               <div className="col-xs-12 col-sm-3 col-md-3">
-                <h5>Theraphymart</h5>
+                <h5>Therapymart</h5>
                 <ul className="list-unstyled quick-links">
                   <li>
                     <a href="javascript:void();">
@@ -31,7 +31,7 @@ class Footer extends Component {
                     </a>
                   </li>
                   <li>
-                    <a href="javascript:void();">
+                    <a href="/contact">
                       <i class="fa fa-angle-double-right" />
                       Contact Us
                     </a>
@@ -93,7 +93,7 @@ class Footer extends Component {
                     </a>
                   </li>
                   <li>
-                    <a href="javascript:void();">
+                    <a href="#">
                       <i class="fa fa-angle-double-right" />
                       Issues Treated in Therapy
                     </a>
@@ -105,16 +105,13 @@ class Footer extends Component {
                     </a>
                   </li>
                   <li>
-                    <a href="javascript:void();">
+                    <a href="/faq">
                       <i class="fa fa-angle-double-right" />
                       Client FAQs
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="https://wwwe.sunlimetech.com"
-                      title="Design and developed by"
-                    >
+                    <a href="#" title="Design and developed by">
                       <i class="fa fa-angle-double-right" />
                       Membership Fee
                     </a>
@@ -129,7 +126,7 @@ class Footer extends Component {
                   <li>
                     <p style={{ color: "white" }}>
                       Subscribe to our newsletter and be the first to get latest
-                      updates about theraphy from us
+                      updates about therapy from us
                     </p>
                   </li>
                   <li>
@@ -159,58 +156,53 @@ class Footer extends Component {
               </div>
             </div>
             <hr className="line-break" />
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+            <div className="row">
+              <div class="col-xs-12 col-sm-4 col-md-4">
+                <p
+                  style={{ color: "white", fontFamily: "'EB Garamond', serif" }}
+                  class="list-unstyled list-inline text-left"
+                >
+                  Copyright &copy;{new Date().getFullYear()} All rights reserved
+                  | TherapyMart
+                </p>
+              </div>
+              <div
+                style={{ color: "white", fontFamily: "'EB Garamond', serif" }}
+                class="col-xs-12 col-sm-4 col-md-4"
+              >
+                <a style={{ marginLeft: "40px" }} href="javascript:void();">
+                  <i class="" />
+                  Privacy Policy
+                </a>
+                <a style={{ marginLeft: "20px" }} href="javascript:void();">
+                  <i class="" />
+                  Terms and Condition
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-4">
                 <ul class="list-unstyled list-inline social text-center">
                   <li class="list-inline-item">
                     <a href="javascript:void();">
-                      <i class="fa fa-facebook" />
+                      <i style={{ fontSize: "20px" }} class="fa fa-youtube" />
                     </a>
                   </li>
                   <li class="list-inline-item">
                     <a href="javascript:void();">
-                      <i class="fa fa-twitter" />
+                      <i style={{ fontSize: "20px" }} class="fa fa-instagram" />
                     </a>
                   </li>
                   <li class="list-inline-item">
                     <a href="javascript:void();">
-                      <i class="fa fa-instagram" />
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="javascript:void();">
-                      <i class="fa fa-google-plus" />
+                      <i style={{ fontSize: "20px" }} class="fa fa-facebook" />
                     </a>
                   </li>
                   <li class="list-inline-item">
                     <a href="javascript:void();" target="_blank">
-                      <i class="fa fa-envelope" />
+                      <i style={{ fontSize: "20px" }} class="fa fa-twitter" />
                     </a>
                   </li>
                 </ul>
               </div>
-              <hr />
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-                <p class="list-unstyled list-inline text-left">
-                Copyright &copy;{new Date().getFullYear()} All rights reserved |
-                TherapyMart
-              </p>
-              <div class="col-xs-12 col-sm-3 col-md-3"></div>
-                <ul class="list-unstyled quick-links text-center">
-                    <li class="list-inline-item">
-                      <a href="javascript:void();">
-                        <i class="fa fa-angle-double-right" />
-                        Privacy Policy
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="javascript:void();">
-                        <i class="fa fa-angle-double-right" />
-                        Terms and Condition
-                      </a>
-                    </li>
-                  </ul>
             </div>
           </div>
         </section>
