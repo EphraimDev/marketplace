@@ -23,7 +23,7 @@ signup-link */
   width: 100vw;
   color: #fff;
   padding: 0.5rem;
-  background: url(signup.jpg);
+  background: url(https://res.cloudinary.com/benjo/image/upload/v1555496697/jeshoots-com-462287-unsplash.jpg);
   background-size: cover;
 }
 .signup-container::before {
@@ -49,7 +49,7 @@ signup-link */
   margin-top: 0.2rem;
 }
 .signup-form {
-    z-index: 99;
+  z-index: 99;
   padding: 2rem;
   background: var(--background);
   border-radius: var(--border-radius);

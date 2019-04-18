@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "font-awesome/css/font-awesome.min.css";
 import thunk from "redux-thunk";
 
 import rootReducer from "./reducers";
@@ -15,12 +16,12 @@ import { BrowserRouter as Router } from "react-router-dom";
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-	<Provider store={store}>
-		<Router>
-			<App />
-		</Router>
-	</Provider>,
-	document.getElementById("root")
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -156,43 +156,53 @@ class Footer extends Component {
               </div>
             </div>
             <hr className="line-break" />
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+            <div className="row">
+              <div class="col-xs-12 col-sm-4 col-md-4">
+                <p
+                  style={{ color: "white", fontFamily: "'EB Garamond', serif" }}
+                  class="list-unstyled list-inline text-left"
+                >
+                  Copyright &copy;{new Date().getFullYear()} All rights reserved
+                  | TherapyMart
+                </p>
+              </div>
+              <div
+                style={{ color: "white", fontFamily: "'EB Garamond', serif" }}
+                class="col-xs-12 col-sm-4 col-md-4"
+              >
+                <a style={{ marginLeft: "40px" }} href="javascript:void();">
+                  <i class="" />
+                  Privacy Policy
+                </a>
+                <a style={{ marginLeft: "20px" }} href="javascript:void();">
+                  <i class="" />
+                  Terms and Condition
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-4">
                 <ul class="list-unstyled list-inline social text-center">
                   <li class="list-inline-item">
                     <a href="javascript:void();">
-                      <i class="fa fa-facebook" />
+                      <i style={{ fontSize: "20px" }} class="fa fa-youtube" />
                     </a>
                   </li>
                   <li class="list-inline-item">
                     <a href="javascript:void();">
-                      <i class="fa fa-twitter" />
+                      <i style={{ fontSize: "20px" }} class="fa fa-instagram" />
                     </a>
                   </li>
                   <li class="list-inline-item">
                     <a href="javascript:void();">
-                      <i class="fa fa-instagram" />
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="javascript:void();">
-                      <i class="fa fa-google-plus" />
+                      <i style={{ fontSize: "20px" }} class="fa fa-facebook" />
                     </a>
                   </li>
                   <li class="list-inline-item">
                     <a href="javascript:void();" target="_blank">
-                      <i class="fa fa-envelope" />
+                      <i style={{ fontSize: "20px" }} class="fa fa-twitter" />
                     </a>
                   </li>
                 </ul>
               </div>
-              <hr />
-            </div>
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-               
-              </div>
-              <hr />
             </div>
           </div>
         </section>
