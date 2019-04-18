@@ -36,7 +36,7 @@ $factory->define(App\Therapist::class, function (Faker $faker) {
        'fee_per_hour'=>rand(10000,20000),
        'years_of_experience'=>rand(2,10),
        'availability'=>true,
-       'user_id'=>App\User::all()->random()->id,
+       'user_id'=>App\User::where('role','therapist')->get()->random()->id,
        'name_of_practice'=>$faker->word,
       
      

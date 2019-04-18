@@ -33,7 +33,7 @@
                             <td class="v-align-middle">{{$user['email']}}</td>
                             <td class="v-align-middle semi-bold">
                             	<button class="btn btn-primary">view</button>
-                            	<form method="post" action="{{route('delete_user',['id'=>$user['id']])}}">
+                            	<form method="post" action="{{route('destroy_user',['id'=>$user['id']])}}">
 
 
                             	<button class="btn btn-danger delete_buttons" >delete</button>
@@ -47,9 +47,14 @@
                           No user currently registered!
                           @endforelse
 
-                          {{$users->links()}}
+                       
                         </tbody>
-                      </table></div>
+                      </table>
+                      <div class="col-md-12">
+                      	
+                      	   {{$users->links()}}
+                      </div>
+                  </div>
                     </div>
                   </div>
                 </div>

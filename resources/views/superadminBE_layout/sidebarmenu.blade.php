@@ -11,7 +11,7 @@
           </li>
           
           <li class="">
-            <a href="{{route('users')}}"><span class="title">Users</span>
+            <a href="#"><span class="title">Users</span>
             <span class="arrow"></span></a>
             <span class="icon-thumbnail"><i class="pg-menu_lv"></i></span>
             <ul class="sub-menu">
@@ -30,20 +30,32 @@
           </li>
 
            <li class="">
-            <a href=""><span class="title">Therapists</span>
+            <a href="#"><span class="title">Therapists</span>
             <span class="arrow"></span></a>
             <span class="icon-thumbnail"><i class="pg-menu_lv"></i></span>
             <ul class="sub-menu">
               <li>
-                <a href="{{route('therapists')}}"">view all</a>
+                <a href="">view all</a>
                 <span class="icon-thumbnail">L1</span>
               </li>
 
-              <li>
-                <a href="{{route('therapists')}}"">Add new</a>
+               <li>
+                <a href="">view verified</a>
                 <span class="icon-thumbnail">L1</span>
               </li>
 
+                 <li>
+                <a href="">unverified</a>
+                <span class="icon-thumbnail">L1</span>
+              </li>
+
+                <li>
+                <a href="">Add new</a>
+                <span class="icon-thumbnail">L1</span>
+              </li>
+
+
+             
 
 
 
