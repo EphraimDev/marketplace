@@ -16,9 +16,9 @@ class TherapistsTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('Therapists')->delete();
+    //    DB::table('Therapists')->delete();
 
-        therapist::create(array('email' => ''));
+       // therapist::create(array('email' => ''));
     }
 
 }

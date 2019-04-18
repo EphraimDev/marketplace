@@ -76,4 +76,29 @@ class UserController extends Controller
     	return back()->with(['suucess'=>'deleted']);
     }
 
+    public function show($id)
+    {	
+    	$user=User::findOrFail($id);
+    	return view('superadminBE.single_user',compact('user'));
+    }
+
+    public function editForm($id)
+    {
+    	$user=User::findOrFail($id);
+    	return view('superadminBE.edit_user_form',compact('user'));
+
+
+    }
+
+    public function update(Request $request,$id)
+    {
+    	//no validation checks yet
+
+    	$user=User::findOrFail($id);
+    	$user->update($request->all());
+
+    	return back()->with(['success'=>true]);
+
+    }
+
 }

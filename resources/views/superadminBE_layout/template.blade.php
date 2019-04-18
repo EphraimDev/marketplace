@@ -93,11 +93,7 @@
 
            </div>
         </div>
-        <div class=" pull-right">
-          <div class="header-inner">
-            <a href="#" class="btn-link icon-set menu-hambuger-plus m-l-20 sm-no-margin hidden-sm hidden-xs" data-toggle="quickview" data-toggle-element="#quickview"></a>
-          </div>
-        </div>
+       
         <div class=" pull-right">
           <!-- START User Info-->
           <div class="visible-lg visible-md m-t-10">
@@ -111,16 +107,14 @@
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
-                <li><a href="#"><i class="pg-settings_small"></i> Settings</a>
-                </li>
-                <li><a href="#"><i class="pg-outdent"></i> Feedback</a>
-                </li>
-                <li><a href="#"><i class="pg-signals"></i> Help</a>
-                </li>
+                
                 <li class="bg-master-lighter">
                   <a href="#" class="clearfix">
-                    <span class="pull-left">Logout</span>
+                    <form method="post" action="{{route('logout')}}">
+                      {{csrf_field()}}
+                    <button class="pull-left">Logout</button>
                     <span class="pull-right"><i class="pg-power"></i></span>
+                  </form>
                   </a>
                 </li>
               </ul>

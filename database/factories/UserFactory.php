@@ -17,7 +17,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(App\User::class, function (Faker $faker) {
     return [
         'first_name' => $faker->firstName,
         'last_name'=>$faker->lastName,
@@ -48,5 +48,6 @@ $factory->define(App\Therapist::class, function (Faker $faker) {
 
        'personal_statement'=>$faker->paragraph,
        'practice_website'=>$faker->url,
+       'user_id'=>App\User::where('role','therapist')->get()->random()->id
     ];
 });

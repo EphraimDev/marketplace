@@ -29,10 +29,10 @@
                           
                           @forelse($appointments as $appointment)
                         <tr role="row" class="odd">
-                            <td class="v-align-middle semi-bold sorting_1">{{App\User::where('id',$appointment->user_id)->first()->first_name}}  {{App\User::where('id',$appointment->user_id)->first()->first_name}}</td>
+                            <td class="v-align-middle semi-bold sorting_1">{{$appointment->user->first_name}}  {{$appointment->user->last_name}}</td>
                             <td class="v-align-middle">
                               
-                              {{App\User::where('id',$appointment->therapist_id)->first()->first_name}}  {{App\User::where('id',$appointment->therapist_id)->first()->last_name}}
+                              {{$appointment->therapist->first_name}}  {{$appointment->therapist->last_name}}
                             </td>
                             <td class="v-align-middle semi-bold">
                               {{$appointment->status}}

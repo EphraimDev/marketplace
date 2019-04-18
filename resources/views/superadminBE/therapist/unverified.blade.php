@@ -7,7 +7,7 @@
                 <!-- START PANEL -->
                 <div class="panel panel-transparent">
                   <div class="panel-heading">
-                    <div class="panel-title">All users (showing {{$users->count()}}  of {{$users->total()}})
+                    <div class="panel-title">All therapists (showing {{$therapists->count()}}  of {{$therapists->total()}})
 
                     	
                     </div>
@@ -22,20 +22,41 @@
                     <div class="table-responsive">
                       <div id="condensedTable_wrapper" class="dataTables_wrapper form-inline no-footer"><table class="table table-hover table-condensed dataTable no-footer" id="condensedTable" role="grid">
                         <thead>
-                          <tr role="row"><th style="width:30%" class="sorting_asc" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Title: activate to sort column descending">Name</th><th style="width: 118px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Key: activate to sort column ascending">Email</th><th style="width: 158px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Condensed: activate to sort column ascending">Action</th></tr>
+                          <tr role="row"><th style="width:30%" class="sorting_asc" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Title: activate to sort column descending">Name</th><th style="width: 118px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Key: activate to sort column ascending">Email</th>
+                          	<th style="width: 118px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Key: activate to sort column ascending">Status</th>
+                          	<th style="width: 158px;" class="sorting" tabindex="0" aria-controls="condensedTable" rowspan="1" colspan="1" aria-label="Condensed: activate to sort column ascending">Action</th></tr>
                         </thead>
                         <tbody>
                           
                           
                           
                           
-                          @forelse($users as $user)
+                          @forelse($therapists as $therapist)
                         <tr role="row" class="odd">
-                            <td class="v-align-middle semi-bold sorting_1">{{$user['first_name']}}  {{$user['last_name']}}</td>
-                            <td class="v-align-middle">{{$user['email']}}</td>
+                            <td class="v-align-middle semi-bold sorting_1">{{$therapist->user->first_name}}  {{$therapist->user->last_name}}</td>
+                            <td class="v-align-middle">{{$therapist->user->email}}</td>
+                            <td class="v-align-middle">
+                            
+
+                            <p style="color:brown">Unverified</p>
+                             <p><span class="badge">view document</span></p>
+                        
+                        </td>
                             <td class="v-align-middle semi-bold">
-                            	<a class="btn btn-primary" href="{{route('show_user',['id'=>$user['id']])}}">view</a>
-                            	<form method="post" action="{{route('destroy_user',['id'=>$user['id']])}}">
+                            	<a class="btn btn-primary" href="">view</a>
+
+                              
+                            	<form method="post" action="{{route('therapist.verify',['id'=>$therapist['id']])}}">
+
+
+                              <button class="btn btn-success delete_buttons" >verify</button>
+
+                              {{method_field('PUT')}}
+                                {{csrf_field()}}
+                            </form>
+
+
+                            	<form method="post" action="{{route('therapist.destroy',['id'=>$therapist['id']])}}">
 
 
                             	<button class="btn btn-danger delete_buttons" >delete</button>
@@ -46,7 +67,7 @@
                             </td>
                           </tr>
                           @empty
-                          No user currently registered!
+                          No therapist currently unverified!
                           @endforelse
 
                        
@@ -54,7 +75,7 @@
                       </table>
                       <div class="col-md-12">
                       	
-                      	   {{$users->links()}}
+                      	   {{$therapists->links()}}
                       </div>
                   </div>
                     </div>
@@ -72,7 +93,7 @@
     	$(document).ready(function(){
     		$('.delete_buttons').each(function(){
     			$(this).click(function(){
-    				if(confirm('do you really want to delete this user?'))
+    				if(confirm('do you really want to delete this therapist?'))
     				{
     					return true;
     				}
