@@ -30,7 +30,6 @@ Route::put('/users/{id}', "UserController@update");
  */
 Route::post('/auth/register',"AuthController@register");
 
-
 Route::post('/auth/login', "AuthController@login");
 
 Route::post('/auth/logout', "AuthController@logout");
@@ -38,6 +37,8 @@ Route::post('/auth/logout', "AuthController@logout");
 Route::get('/auth/user', "AuthController@details");
 
 Route::post('/auth/registerTherapist', "AuthController@registerTherapist");
+
+
 /**
  * Therapist routes
  * Routes here are strictly for the therapist
