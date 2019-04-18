@@ -7,7 +7,9 @@
                 <!-- START PANEL -->
                 <div class="panel panel-transparent">
                   <div class="panel-heading">
-                    <div class="panel-title">All users
+                    <div class="panel-title">All users (showing {{$users->count()}}  of {{$users->total()}})
+
+                    	
                     </div>
                     <div class="tools">
                       <a class="collapse" href="javascript:;"></a>

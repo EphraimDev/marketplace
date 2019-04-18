@@ -21,7 +21,7 @@
               </li>
 
              <li>
-                <a href="{{route('users')}}">Add new</a>
+                <a href="{{route('create_users')}}">Add new</a>
                 <span class="icon-thumbnail">L1</span>
               </li>
              

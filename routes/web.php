@@ -24,6 +24,9 @@ Route::delete('/admin/delete-user/{id}',"SuperAdmin\UserController@deleteUser")-
 
 Route::get('/admin/view-users',"SuperAdmin\UserController@allUsers")->name('users');
 
+Route::get('/admin/create-user',"SuperAdmin\UserController@showCreateForm")->name('create_users');
+Route::post('/admin/create-user',"SuperAdmin\UserController@storeUser")->name('store_users');
+
 
 
 
