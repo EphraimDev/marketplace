@@ -31,7 +31,7 @@ $factory->define(User::class, function (Faker $faker) {
 
 $factory->define(App\Therapist::class, function (Faker $faker) {
     return [
-       
+
        'rating'=>rand(0,5),
        'fee_per_hour'=>rand(10000,20000),
        'years_of_experience'=>rand(2,10),
@@ -42,18 +42,17 @@ $factory->define(App\Therapist::class, function (Faker $faker) {
        },
        'verified'=>$faker->boolean,
        'name_of_practice'=>$faker->word,
-      
-     
+
+
        'city'=>$faker->city,
        'state'=>$faker->state,
        'country'=>$faker->country,
        'title'=>$faker->title,
-    
-   
+
+
        'type_of_license'=>'LPC',
-     
+
        'personal_statement'=>$faker->paragraph,
        'practice_website'=>$faker->url,
     ];
 });
-
