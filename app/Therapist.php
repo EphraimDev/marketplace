@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Therapist extends Model
 {
-	/**
-	 * PLEASE DON'T DELETE THIS FILE. STILL UNDER REVIEW
-	 *
-	 */
     protected $guarded = ['id'];
 
 	//Table Relationships: Don't edit any relationship if you are not sure

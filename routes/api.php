@@ -48,19 +48,19 @@ Route::get('/therapists', "TherapistController@index");
 
 Route::get('/therapists/{id}', "TherapistController@show");
 
-Route::get('/therapists/available', "TherapistController@avilableTherapists");
+Route::get('/therapists/status/available', "TherapistController@avilableTherapists");
 
 Route::put('/therapists/{id}/status', "TherapistController@changeStatus");
 
 Route::post('/therapists/search/{name}', "TherapistController@search");
 
-Route::put('/therapists/{id}', "TherapistController@update");
+Route::middleware('auth:api')->put('/therapists/{id}', "TherapistController@update");
 
 Route::delete('/therapists/{id}', "TherapistController@destroy");
 
-Route::get('/therapists/{id}/verify', "TherapistController@verify");
+Route::get('/therapists/{therapistId}/verify/status', "TherapistController@verify");
 
-Route::post('/therapists/{id}/verify', "TherapistController@requestVerify");
+Route::middleware('auth:api')->post('/therapists/{id}/verify', "TherapistController@requestVerification");
 
 Route::get('/therapists/unverified/{id?}', 'TherapistController@unverifiedTherapists');
 
