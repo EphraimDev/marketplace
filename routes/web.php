@@ -13,6 +13,8 @@
 
 
 
+Route::group(['middleware'=>'auth'],function(){
+
 
 Route::get('/',"SuperAdmin\SuperAdminController@index")->name('index');
 
@@ -64,6 +66,8 @@ Route::get('/admin/appointments/{query?}',"SuperAdmin\AppointmentController@getA
 
 
 
+
+});
 
 Auth::routes();
 

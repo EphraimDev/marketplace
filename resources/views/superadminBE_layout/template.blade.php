@@ -110,8 +110,11 @@
                 
                 <li class="bg-master-lighter">
                   <a href="#" class="clearfix">
-                    <span class="pull-left">Logout</span>
+                    <form method="post" action="{{route('logout')}}">
+                      {{csrf_field()}}
+                    <button class="pull-left">Logout</button>
                     <span class="pull-right"><i class="pg-power"></i></span>
+                  </form>
                   </a>
                 </li>
               </ul>
