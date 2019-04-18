@@ -56,12 +56,15 @@ class OrdinaryUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
-        return $request->all();
         $user = User::findOrFail($id);
+        
+        if (!$user) {
+            return response()->json(['error' => 'User not found!'], 404);
+        }
+
         $user->update($request->all());
 
-        return response()->json(['suuccess' => true]);
+        return response()->json(['success' => true]);
     }
 
     /**
