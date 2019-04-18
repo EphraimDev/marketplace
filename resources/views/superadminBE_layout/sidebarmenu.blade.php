@@ -35,22 +35,22 @@
             <span class="icon-thumbnail"><i class="pg-menu_lv"></i></span>
             <ul class="sub-menu">
               <li>
-                <a href="">view all</a>
+                <a href="{{route('therapist.index')}}">view all</a>
                 <span class="icon-thumbnail">L1</span>
               </li>
 
                <li>
-                <a href="">view verified</a>
+                <a href="{{route('therapist.verified')}}">view verified</a>
                 <span class="icon-thumbnail">L1</span>
               </li>
 
                  <li>
-                <a href="">unverified</a>
+                <a href="{{route('therapist.unverified')}}">unverified</a>
                 <span class="icon-thumbnail">L1</span>
               </li>
 
                 <li>
-                <a href="">Add new</a>
+                <a href="{{route('therapist.create')}}">Add new</a>
                 <span class="icon-thumbnail">L1</span>
               </li>
 
