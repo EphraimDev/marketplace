@@ -1,0 +1,703 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Market Therapy App  api documentation. \n  By: TEAM DRAGONLEGEND \n Backend API Repository:https://github.com/hnginternship5/night-stories-backend \n Frontend Repository: https://github.com/AlfredBryan/hng-stories-frontend \n Backend URL: https://hng-admin.herokuapp.com ",
+    "version": "1.0.0",
+    "title": "Market Therapy APP",
+    "termsOfService": "https://dragon-legend-5.herokuapp.com",
+    "contact": {
+      "email": "interns@hng.tech"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "dragon-legend-5.herokuapp.com",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "auth",
+      "description": "Authentication"
+    },
+    {
+      "name": "user",
+      "description": "User"
+    },
+    {
+      "name": "therapist",
+      "description": "Therapist"
+    },
+    {
+      "name": "ordinary user",
+      "description": "Ordinary users end point"
+    },
+    {
+      "name": "appointment",
+      "description": "appointment end point"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Create a user",
+        "description": "This is an endpoint to create a user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Login a user",
+        "description": "This is an endpoint for user login",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user login information object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "user logout",
+        "description": "This is an endpoint for user logout",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully logout"
+          }
+        }
+      }
+    },
+    "/auth/user": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Get a login user detail",
+        "description": "Returns a single user",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get a user by ID",
+        "description": "Returns a single user",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of user to get",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get all users ",
+        "description": "Returns all users",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/therapists/{id}": {
+      "get": {
+        "tags": [
+          "therapist"
+        ],
+        "summary": "Get a therapist by ID",
+        "description": "Returns a single therapist",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of therapist to get",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Therapist"
+            }
+          },
+          "404": {
+            "description": "Therapist not found"
+          }
+        }
+      }
+    },
+    "/therapists/available": {
+      "get": {
+        "tags": [
+          "therapist"
+        ],
+        "summary": "Therapist availability",
+        "description": "check for therapists availability",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "An error occur"
+          }
+        }
+      }
+    },
+    "/therapists/{id}/status": {
+      "put": {
+        "tags": [
+          "therapist"
+        ],
+        "summary": "Edit therapist",
+        "description": "change the therapist status by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of therapist to edit",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user object for updating",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/therapists/search/{name}": {
+      "post": {
+        "tags": [
+          "therapist"
+        ],
+        "summary": "search for therapist by name",
+        "description": "Filter therapist by name",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name or field to search for",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully"
+          }
+        }
+      }
+    },
+    "/therapists/{name}/verify": {
+      "post": {
+        "tags": [
+          "therapist"
+        ],
+        "summary": "Verify new therapist",
+        "description": "This is an endpoint to verify new therapist",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "string",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "therapist object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserTherapist"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/ordinary-users": {
+      "get": {
+        "tags": [
+          "ordinary user"
+        ],
+        "summary": "Get all ordiary users",
+        "description": "Returns the list of ordinary user",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/ordinary-users/{id}": {
+      "get": {
+        "tags": [
+          "ordinary user"
+        ],
+        "summary": "Get an ordinary user by ID",
+        "description": "Returns a single user",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of user to return",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ordinary-user"
+        ],
+        "summary": "Edit user",
+        "description": "Edit an ordinary user by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of user to edit",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user object to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/ordinary/{id}/status": {
+      "put": {
+        "tags": [
+          "ordinary user"
+        ],
+        "summary": "Edit ordinary user",
+        "description": "change the ordinary user status by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of user to edit",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user object for updating",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/ordinary-user": {
+      "post": {
+        "tags": [
+          "ordinary user"
+        ],
+        "summary": "Create ordinary user",
+        "description": "This is an endpoint to create ordinary user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "oauth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://dragon-legend-5.herokuapp.com/api/v1/user/login",
+      "flow": "implicit"
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "UserLogin": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Therapist": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "type_of_therapist": {
+          "type": "string"
+        },
+        "type_of_license": {
+          "type": "string"
+        },
+        "years_of_experience": {
+          "type": "integer"
+        },
+        "year_licensed": {
+          "type": "integer"
+        },
+        "postgraduate_institute": {
+          "type": "string"
+        },
+        "name_of_practice": {
+          "type": "string"
+        },
+        "practice_website": {
+          "type": "string"
+        },
+        "office_phone": {
+          "type": "string"
+        },
+        "address_line_1": {
+          "type": "string"
+        },
+        "address_line_2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "personal_statement": {
+          "type": "string"
+        },
+        "fee_per_hour": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "string"
+        },
+        "availability": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "UserTherapist": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type_of_therapist": {
+          "type": "string"
+        },
+        "type_of_license": {
+          "type": "string"
+        },
+        "years_of_experience": {
+          "type": "integer"
+        },
+        "year_licensed": {
+          "type": "integer"
+        },
+        "postgraduate_institute": {
+          "type": "string"
+        },
+        "name_of_practice": {
+          "type": "string"
+        },
+        "practice_website": {
+          "type": "string"
+        },
+        "office_phone": {
+          "type": "string"
+        },
+        "address_line_1": {
+          "type": "string"
+        },
+        "address_line_2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "personal_statement": {
+          "type": "string"
+        },
+        "fee_per_hour": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "string"
+        },
+        "availability": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
