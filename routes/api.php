@@ -34,7 +34,7 @@ Route::post('/auth/login', "AuthController@login");
 
 Route::post('/auth/logout', "AuthController@logout");
 
-Route::get('/auth/user', "AuthController@details");
+Route::middleware('auth:api')->get('/auth/user', "AuthController@details");
 
 Route::post('/auth/register/therapist', "AuthController@registerTherapist");
 
