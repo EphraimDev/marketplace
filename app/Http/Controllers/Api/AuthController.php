@@ -52,7 +52,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);
+            return response()->json(['error'=>$validator->errors()], 422);
         }
 
 		DB::beginTransaction();
@@ -113,7 +113,7 @@ class AuthController extends Controller
         ]);
 
         if ($validate->fails()) {
-            return response()->json(['error' => $validate->errors()], 401);
+            return response()->json(['error' => $validate->errors()], 422);
         } else {
 			DB::beginTransaction();
 
