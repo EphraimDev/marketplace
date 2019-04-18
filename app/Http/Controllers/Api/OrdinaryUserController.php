@@ -27,7 +27,7 @@ class OrdinaryUserController extends Controller
      */
     public function index()
     {
-        // 
+        //
         $user = User::where('role', 'ordinary_user')->get();
 
         return  response()->json(["users" => $user]);
@@ -41,7 +41,7 @@ class OrdinaryUserController extends Controller
      */
     public function show($id)
     {
-        // 
+        //
 
         $user = User::findOrFail($id);
 
@@ -57,7 +57,7 @@ class OrdinaryUserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        
+
         if (!$user) {
             return response()->json(['error' => 'User not found!'], 404);
         }
@@ -90,7 +90,7 @@ class OrdinaryUserController extends Controller
      */
     public function updateStatus($id)
     {
-        // 
+        //
     }
 
     /**

@@ -37,7 +37,8 @@ public $successStatus = 200;
             return response()->json(['error'=>'Unauthorised'], 401);
         }
     }
-/**
+
+	/**
      * Register api
      *
      * @return \Illuminate\Http\Response
@@ -47,9 +48,9 @@ public $successStatus = 200;
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
-            'email' => 'required|email|unique:users',
+			'email' => 'required|email|unique:users',
+            'role' => 'required',
             'password' => 'required',
-
         ]);
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
@@ -60,12 +61,13 @@ public $successStatus = 200;
             'last_name'=>$request->get('last_name'),
             'email'=>$request->get('email'),
             'password'=>bcrypt($request->get('password')),
-            'role'=>$request->get('user_type'),
-            ]);
-        $success['token'] =  $user->createToken('MyApp')-> accessToken;
+            'role'=>$request->get('role'),
+        ]);
+
+        $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['first_name'] =  $user->first_name;
         $success['role'] = $user->role;
-        return response()->json(['success'=>$success], $this-> successStatus);
+        return response()->json(['success'=>$success], $this->successStatus);
     }
 
     /**
