@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 
 import "./Faq.css";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 class Faq extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <div class="faq-head">
           <div class="position">
             <div class="rectangle"> </div>
@@ -73,6 +76,7 @@ class Faq extends Component {
             </p>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

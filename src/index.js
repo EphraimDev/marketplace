@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore, applyMiddleware } from "redux";
+import { configureStore } from "redux-starter-kit";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
-import thunk from "redux-thunk";
 
 import rootReducer from "./reducers";
 import "./index.css";
@@ -13,7 +12,7 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
 
 // Create redux store
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store  = configureStore({reducer:rootReducer})
 
 ReactDOM.render(
   <Provider store={store}>
