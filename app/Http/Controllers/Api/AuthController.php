@@ -23,6 +23,7 @@ class AuthController extends Controller
             $user = Auth::user();
 
 			$response = [
+                'id' => $user->id,
 				'first_name' => $user->first_name,
 				'last_name' => $user->last_name,
 				'role' => $user->role,
@@ -30,9 +31,16 @@ class AuthController extends Controller
 				'token' => $user->createToken('MyApp')->accessToken
 			];
 
-			return response()->json(['data' => $response], 200);
+            return response()->json([
+                'status' => 'success',
+                'code' => 200,
+                'message' => 'OK',
+                'data' => $response
+            ], 200);
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json([
+                'error' => ['code' => 401, 'message' => 'Unauthorized']
+            ], 401);
         }
     }
 
@@ -52,7 +60,13 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 422);
+            return response()->json([
+                'error' => [
+                    'code' => 422,
+                    'message' => "Unprocessable Entity",
+                    'errors' => $validator->errors()
+                ]
+            ], 422);
         }
 
 		DB::beginTransaction();
@@ -68,6 +82,7 @@ class AuthController extends Controller
 		DB::commit();
 
 		$response = [
+            'id' => $user->id,
 			'first_name' => $user->first_name,
 			'last_name' => $user->last_name,
 			'role' => $user->role,
@@ -75,7 +90,12 @@ class AuthController extends Controller
 			'token' => $user->createToken('MyApp')->accessToken
 		];
 
-        return response()->json(['data' => $response], 200);
+        return response()->json([
+            'status' => 'success',
+            'code' => 201,
+            'message' => 'Created',
+            'data' => $response
+        ], 201);
     }
 
     /**
@@ -113,7 +133,13 @@ class AuthController extends Controller
         ]);
 
         if ($validate->fails()) {
-            return response()->json(['error' => $validate->errors()], 422);
+            return response()->json([
+                'error' => [
+                    'code' => 422,
+                    'message' => "Unprocessable Entity",
+                    'errors' => $validate->errors()
+                ]
+            ], 422);
         } else {
 			DB::beginTransaction();
 
@@ -132,6 +158,7 @@ class AuthController extends Controller
 			DB::commit();
 
 			$response = [
+                'id' => $user->id,
 				'first_name' => $user->first_name,
 				'last_name' => $user->last_name,
 				'role' => $user->role,
@@ -140,7 +167,12 @@ class AuthController extends Controller
 				'token' => $user->createToken('MyApp')->accessToken
 			];
 
-            return response()->json(['data' => $response], 200);
+            return response()->json([
+                'status' => 'success',
+                'code' => 201,
+                'message' => 'Created',
+                'data' => $response
+            ], 201);
         }
     }
 
@@ -151,9 +183,14 @@ class AuthController extends Controller
      */
     public function details()
     {
-        $user = Auth::user();
+        $user = User::where('id', Auth::user()->id)->with('therapist')->first();
 
-        return response()->json(['data' => $user], 200);
+        return response()->json([
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'OK',
+            'data' => $user
+        ], 200);
     }
 
 	/**

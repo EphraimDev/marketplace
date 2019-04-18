@@ -38,7 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = ['therapist'];
+    // protected $with = ['therapist'];
 
 
     //Table Relationships: Don't edit any relationship if you are not sure

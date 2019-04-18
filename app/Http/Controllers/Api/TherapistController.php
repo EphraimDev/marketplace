@@ -21,12 +21,12 @@ class TherapistController extends Controller
      */
     public function index()
     {
-    	$therapists = User::where('role', 'therapist')->get();
+    	$therapists = Therapist::with(['user:id,first_name,last_name,email,role'])->get();
 
     	return response()->json([
             'status' => 'success',
-            'statusCode' => 200,
-            'message' => 'Successful',
+            'code' => 200,
+            'message' => 'OK',
             'data' => $therapists
         ], 200);
     }
@@ -34,21 +34,25 @@ class TherapistController extends Controller
     /**
      * Get just one therapist
      *
-     * @param int  $id
+     * @param int  $therapistId
      * @return array
      */
-    public function show($id)
+    public function show($therapistId)
     {
-        $therapist = User::where('id', $id)->where('role', 'therapist')->first();
+        $therapist = Therapist::where('id', $therapistId)
+                                ->with(['user:id,first_name,last_name,email,role'])
+                                ->first();
 
         if (!$therapist) {
-            return response()->json(['error' => 'Therapist not found'], 404);
+            return response()->json([
+                'error' => ['code' => 404, 'message' => 'Therapist not found']
+            ], 404);
         }
 
         return response()->json([
             'status' => 'success',
-            'statusCode' => 200,
-            'message' => 'Successful',
+            'code' => 200,
+            'message' => 'OK',
             'data' => $therapist
         ], 200);
     }
@@ -61,15 +65,13 @@ class TherapistController extends Controller
     public function avilableTherapists()
     {
         $therapists = Therapist::where('availability', true)
-                                ->with([
-                                    'user:id,first_name,last_name,email,role',
-                                    'user.therapist:id'
-                                ])->get();
+                                ->with(['user:id,first_name,last_name,email,role'])
+                                ->get();
 
         return response()->json([
             'status' => 'success',
-            'statusCode' => 200,
-            'message' => 'Successful',
+            'code' => 200,
+            'message' => 'OK',
             'data' => $therapists
         ], 200);
     }
@@ -77,42 +79,46 @@ class TherapistController extends Controller
     /**
      * Search for therapists by name
      *
+     * @param string  $name
      * @return array
      */
     public function search($name)
     {
     	$therapists = User::where([['first_name','like',"%{$name}%"], ['role','=','therapist']])
                             ->orWhere([['last_name','like',"%{$name}%"], ['role','=','therapist']])
+                            ->with('therapist')
                             ->get();
 
         return response()->json([
             'status' => 'success',
-            'statusCode' => 200,
-            'message' => 'Successful',
+            'code' => 200,
+            'message' => 'OK',
             'data' => $therapists
         ], 200);
     }
 
     /**
-     * This endpoint is used by the admin to verify if a therapist is verified
+     * This endpoint is used by the admin to check if a therapist is verified
      *
      * @param int  $therapistId
      * @return boolean  Illuminate\Http\Response
      */
-    public function verify($therapistId)
+    public function verifyStatus($therapistId)
     {
         $therapist = Therapist::where('id', $therapistId)->first();
 
         if (!$therapist) {
-            return response()->json(['error' => 'Therapist not found'], 404);
+            return response()->json([
+                'error' => ['code' => 404, 'message' => 'Therapist not found']
+            ], 404);
         }
 
         $verificationStatus = $therapist->verified == 0 ? false : true;
 
         return response()->json([
             'status' => 'success',
-            'statusCode' => 200,
-            'message' => 'Successful',
+            'code' => 200,
+            'message' => 'OK',
             'data' => ['verified' => $verificationStatus]
         ], 200);
     }
@@ -131,7 +137,9 @@ class TherapistController extends Controller
         // Check if this action is performed by the logged in therapist
         $therapist = Auth::user()->therapist;
         if ($therapist->id != $id) {
-            return response()->json(['error' => "Can not update another therapist's account"], 403);
+            return response()->json([
+                'error' => ['code' => 403, 'message' => "Forbidden to request verfication for another therapist"]
+            ], 403);
         }
 
         $message = [
@@ -147,7 +155,13 @@ class TherapistController extends Controller
         ], $message);
 
         if ($validate->fails()) {
-            return response()->json([$validate->errors()], 200);
+            return response()->json([
+                'error' => [
+                    'code' => 422,
+                    'message' => "Unprocessable Entity",
+                    'errors' => $validate->errors()
+                ]
+            ], 422);
         } else {
             $identityExt = $request->file('identity_card')->getClientOriginalExtension();
             $identityName = 'identity-card-'.time().'.'.$identityExt;
@@ -163,34 +177,58 @@ class TherapistController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'statusCode' => 200,
-                'message' => 'Successful',
+                'code' => 200,
+                'message' => 'OK',
                 'data' => [$therapist->verification]
             ], 200);
         }
     }
 
-    public function unverifiedTherapists(Request $request)
+    public function unverifiedTherapists()
     {
-        $user = collect();
-        $therapists = Therapist::where('verified',false)->get()->each(function($therapist) use ($user){
-        $user->push($therapist);
-        $therapist->verification;
-        });
-        return response()->json($user, 200, []);
+        $therapists = Therapist::where('verified', false)
+                                ->with([
+                                    'user:id,first_name,last_name,email,role',
+                                    'verifications'
+                                ])->get();
+
+        return response()->json([
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'OK',
+            'data' => $therapists
+        ], 200);
+    }
+
+    public function verifiedTherapists()
+    {
+        $therapists = Therapist::where('verified', true)
+                                ->with([
+                                    'user:id,first_name,last_name,email,role',
+                                    'verifications'
+                                ])->get();
+
+        return response()->json([
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'OK',
+            'data' => $therapists
+        ], 200);
     }
 
     /**
      * Update a therapist's data
      *
-     * @param int  $id
+     * @param int  $therapistId
      * @return array
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $therapistId)
     {
         // Check if this action is performed by the logged in therapist
-        if (Auth::user()->id != $id) {
-            return response()->json(['error' => "Can not update another therapist's account"], 403);
+        if (Auth::user()->id != $therapistId) {
+            return response()->json([
+                'error' => ['code' => 403, 'message' => "Forbidden to update another therapist's details"]
+            ], 403);
         }
 
         // Validate input
@@ -217,7 +255,13 @@ class TherapistController extends Controller
         ]);
 
         if ($validate->fails()) {
-            return response()->json(['error' => $validate->errors()], 422);
+            return response()->json([
+                'error' => [
+                    'code' => 422,
+                    'message' => "Unprocessable Entity",
+                    'errors' => $validate->errors()
+                ]
+            ], 422);
         } else {
             DB::beginTransaction();
 
@@ -238,8 +282,8 @@ class TherapistController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'statusCode' => 200,
-                'message' => 'Successful'
+                'code' => 200,
+                'message' => 'OK'
             ], 200);
         }
     }
@@ -247,34 +291,39 @@ class TherapistController extends Controller
     /**
 	 * toggles the availability of the user
 	 *
-	 * @param string  $id
+	 * @param string  $therapistId
 	 * @return array
      */
-    public function changeStatus($user)
+    public function changeAvailability($therapistId)
     {
-    	if ($this->getCurrentStatus($user) == 1) {
-    		Therapist::where('user_id',$user)->update(['availability' => 0]);
-    		return response()->json(['curr_state'=>'off']);
-    	} else {
-    		Therapist::where('user_id',$user)->update(['availability' => 1]);
-    		return response()->json(['curr_state'=>'on']);
-    	}
+        // Check if this action is performed by the logged in therapist
+        $therapist = Auth::user()->therapist;
+        if ($therapist->id != $therapistId) {
+            return response()->json([
+                'error' => ['code' => 403, 'message' => "Forbidden to update another therapist's details"]
+            ], 403);
+        }
 
+        $availability = $therapist->availability == 1 ? false : true;
+
+        DB::beginTransaction();
+        $therapist->update(['availability' => $availability]);
+        DB::commit();
+
+        return response()->json([
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'OK'
+        ], 200);
     }
 
     /**
-     * Custom controller function to fetch a therapist's status
+     * Delete therapist
      *
      * @param int  $id
      * @return mixed
      */
-    public function getCurrentStatus($id)
-    {
-        $user = User::findOrFail($id);
-        return $user->therapist->availability;
-    }
-
-    public function destroy($id)
+    /*public function destroy($id)
     {
         $therapist=Therapist::findOrFail($id);
         $user_record=$therapist->user_id;
@@ -282,6 +331,6 @@ class TherapistController extends Controller
         User::findOrFail($user_record)->delete();
 
         return response()->json(['status'=>true]);
-    }
-
+    }*/
+    
 }
