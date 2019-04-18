@@ -33,7 +33,7 @@ class CreateTherapistsTable extends Migration
             $table->string('fee_per_hour')->nullable();
             $table->string('rating');
             $table->boolean('availability')->default(false);
-            $table->boolean('verified')->defaul(false);
+            $table->boolean('verified')->default(false);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
