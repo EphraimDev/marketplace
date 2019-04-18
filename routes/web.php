@@ -16,14 +16,38 @@
 
 Route::get('/',"SuperAdmin\SuperAdminController@index")->name('index');
 
-Route::get('/admin/view-users',"SuperAdmin\SuperAdminController@allUsers")->name('users');
-
-Route::delete('/admin/delete-user/{id}',"SuperAdmin\SuperAdminController@deleteUser")->name('delete_user');
-
-Route::get('/admin/view-therapist',"SuperAdmin\SuperAdminController@allTherapists")->name('therapists');
 
 
-Route::get('/admin/appointments/{query?}',"SuperAdmin\SuperAdminController@getAppointments")->name('appointments');
+//users routes
+
+Route::delete('/admin/delete-user/{id}',"SuperAdmin\UserController@deleteUser")->name('destroy_user');
+
+Route::get('/admin/view-users',"SuperAdmin\UserController@allUsers")->name('users');
+
+Route::get('/admin/create-user',"SuperAdmin\UserController@showCreateForm")->name('create_users');
+Route::post('/admin/create-user',"SuperAdmin\UserController@storeUser")->name('store_users');
+
+
+
+
+
+
+
+
+
+
+//therapist routes
+
+
+
+
+
+
+
+
+
+//appointment routes
+Route::get('/admin/appointments/{query?}',"SuperAdmin\AppointmentController@getAppointments")->name('appointments');
 
 
 

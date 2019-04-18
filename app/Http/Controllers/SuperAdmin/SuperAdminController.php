@@ -27,48 +27,11 @@ class SuperAdminController extends Controller
 
 
 	}
-    public function allUsers()
-    {
-    	$users=User::where('role','ordinary_user')->paginate();
-
-    	return view('superadminBE.all_users',compact('users'));
-    }
 
 
-     public function allTherapists()
-    {
-    	$therapists=Therapist::all();
-
-    	return view('superadminBE.all_therapist',compact('therapists'));
-    }
-
-    public function deleteUser($id)
-    {
-    	//id comes from the user table
-
-    	$user=User::findOrFail($id);
-    	$user->delete();
-
-    	return back()->with(['suucess'=>'deleted']);
-    }
-
-    public function getAppointments($query=null)
-    {	
-    	if($query != null)
-    	{
 
 
-    	$appointments=Appointment::where('status',$query)->get();
-
-    	}
-
-    	else{
-    		$appointments=Appointment::all();
-    	}
-
-    	return view('superadminBE.appointment',compact('appointments','query'));
-    }
-
+   
 
 
 

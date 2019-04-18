@@ -7,7 +7,9 @@
                 <!-- START PANEL -->
                 <div class="panel panel-transparent">
                   <div class="panel-heading">
-                    <div class="panel-title">All users
+                    <div class="panel-title">All users (showing {{$users->count()}}  of {{$users->total()}})
+
+                    	
                     </div>
                     <div class="tools">
                       <a class="collapse" href="javascript:;"></a>
@@ -33,7 +35,7 @@
                             <td class="v-align-middle">{{$user['email']}}</td>
                             <td class="v-align-middle semi-bold">
                             	<button class="btn btn-primary">view</button>
-                            	<form method="post" action="{{route('delete_user',['id'=>$user['id']])}}">
+                            	<form method="post" action="{{route('destroy_user',['id'=>$user['id']])}}">
 
 
                             	<button class="btn btn-danger delete_buttons" >delete</button>
@@ -47,9 +49,14 @@
                           No user currently registered!
                           @endforelse
 
-                          {{$users->links()}}
+                       
                         </tbody>
-                      </table></div>
+                      </table>
+                      <div class="col-md-12">
+                      	
+                      	   {{$users->links()}}
+                      </div>
+                  </div>
                     </div>
                   </div>
                 </div>
