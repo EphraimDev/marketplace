@@ -46,23 +46,26 @@ Route::post('/auth/register/therapist', "AuthController@registerTherapist");
  */
 Route::get('/therapists', "TherapistController@index");
 
-Route::get('/therapists/{id}', "TherapistController@show");
+Route::get('/therapists/{therapistId}', "TherapistController@show");
 
-Route::get('/therapists/status/available', "TherapistController@avilableTherapists");
+Route::get('/therapists/availability/available', "TherapistController@avilableTherapists");
 
-Route::put('/therapists/{id}/status', "TherapistController@changeStatus");
+Route::middleware('auth:api')->put('/therapists/{therapistId}/availability/change', "TherapistController@changeAvailability");
 
 Route::post('/therapists/search/{name}', "TherapistController@search");
 
-Route::middleware('auth:api')->put('/therapists/{id}', "TherapistController@update");
+Route::middleware('auth:api')->put('/therapists/{therapistId}', "TherapistController@update");
 
-Route::delete('/therapists/{id}', "TherapistController@destroy");
+// This looks like a super admin's feature
+// Route::delete('/therapists/{id}', "TherapistController@destroy");
 
-Route::get('/therapists/{therapistId}/verify/status', "TherapistController@verify");
+Route::get('/therapists/{therapistId}/verification/status', "TherapistController@verifyStatus");
 
-Route::middleware('auth:api')->post('/therapists/{id}/verify', "TherapistController@requestVerification");
+Route::middleware('auth:api')->post('/therapists/{therapistId}/verification/verify', "TherapistController@requestVerification");
 
-Route::get('/therapists/unverified/{id?}', 'TherapistController@unverifiedTherapists');
+Route::get('/therapists/verification/unverified', 'TherapistController@unverifiedTherapists');
+
+Route::get('/therapists/verification/verified', 'TherapistController@verifiedTherapists');
 
 
 

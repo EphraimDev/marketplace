@@ -11,6 +11,6 @@ class Verifications extends Model
 
     public function therapist()
     {
-        return $this->belongsTo('App\Therapist');
+        return $this->belongsTo('App\Therapist')->withDefault();
     }
 }

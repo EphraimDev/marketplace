@@ -14,8 +14,8 @@ class Therapist extends Model
     	return $this->belongsTo('App\User', 'user_id', 'id')->withDefault();
     }
 
-    public function verification()
+    public function verifications()
     {
-        return $this->hasMany('App\verifications');
+        return $this->hasMany('App\Verifications');
     }
 }
