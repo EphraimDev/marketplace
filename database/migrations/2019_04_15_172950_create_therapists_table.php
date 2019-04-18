@@ -31,7 +31,8 @@ class CreateTherapistsTable extends Migration
             $table->string('country')->nullable();
             $table->text('personal_statement')->nullable();
             $table->string('fee_per_hour')->nullable();
-            $table->string('rating');
+            $table->string('rating')->nullable();
+            $table->string('personal_pronouns')->nullable();
             $table->boolean('availability')->default(false);
             $table->boolean('verified')->default(false);
             $table->unsignedBigInteger('user_id');

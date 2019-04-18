@@ -36,7 +36,8 @@ Route::post('/auth/logout', "AuthController@logout");
 
 Route::get('/auth/user', "AuthController@details");
 
-Route::get('/auth/user', "AuthController@registerTherapist");
+Route::post('/auth/registerTherapist', "AuthController@registerTherapist");
+
 
 /**
  * Therapist routes
@@ -57,9 +58,14 @@ Route::put('/therapists/{id}', "TherapistController@update");
 
 Route::delete('/therapists/{id}', "TherapistController@destroy");
 
-Route::post('/therapists/{name}/verify', "TherapistController@verify");
+Route::get('/therapists/{id}/verify', "TherapistController@verify");
 
 Route::post('/therapists/{id}/requestVerify', "TherapistController@requestVerify");
+
+Route::get('/therapists/getUnverified/{id?}', 'TherapistController@unverifiedTherapists');
+
+
+
 
 /**
  * Ordinary user routes
