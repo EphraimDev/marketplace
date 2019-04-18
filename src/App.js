@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import Become from "./Components/BecomePage/Become";
 import Contact from "./Components/Contact/Contact";
 import Faq from "./Components/Faq/Faq";
-import Landing from "./Components/Landing/Home";
 import Home from "./Components/Landing/Home";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
