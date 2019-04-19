@@ -39,7 +39,7 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        if(Auth::user()->role == "super_admin")
+        if(Auth::user()->role == "super-admin")
         {
             return route('index');
         }
