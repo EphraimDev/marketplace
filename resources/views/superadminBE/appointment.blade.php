@@ -29,7 +29,7 @@
                           
                           @forelse($appointments as $appointment)
                         <tr role="row" class="odd">
-                            <td class="v-align-middle semi-bold sorting_1">{{$appointment->user->first_name}}  {{$appointment->user->last_name}}</td>
+                            <td class="v-align-middle semi-bold sorting_1">{{$appointment->client->first_name}}  {{$appointment->client->last_name}}</td>
                             <td class="v-align-middle">
                               
                               {{$appointment->therapist->first_name}}  {{$appointment->therapist->last_name}}

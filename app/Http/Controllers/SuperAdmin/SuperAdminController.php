@@ -13,13 +13,13 @@ class SuperAdminController extends Controller
     //
 	public function index()
 	{
-		$allUsers=User::where('role','ordinary_user')->get();
+		$allUsers=User::where('role','ordinary-user')->get();
 
 		$allTherapists=User::where('role','therapist')->get();
 
 		$allAppointment=Appointment::all();
 
-		$recentlyAddedUsers=User::where('role','ordinary_user')->limit(5)->orderBY('id',"ASC")->get();
+		$recentlyAddedUsers=User::where('role','ordinary-user')->limit(5)->orderBY('id',"ASC")->get();
 
 		$recentlyConcludedAppointments=Appointment::where('status','accepted')->get();
 
