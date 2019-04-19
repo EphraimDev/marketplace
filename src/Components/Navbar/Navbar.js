@@ -1,67 +1,65 @@
 import React, { Component } from "react";
-
+import { NavLink, Link } from "react-router-dom";
+import Nja from "../../images/img.jpg";
 import "./Navbar.css";
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+    this.state = { collapse: false };
+  }
+
+  toggle() {
+    this.setState(state => ({ collapse: !state.collapse }));
+  }
+
   render() {
     return (
       <div>
-        <nav class="main-nav navbar-fixed-top">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand">TherapyMart</a>
-              <button
-                type="button"
-                class="navbar-toggle"
-                data-toggle="collapse"
-                data-target=".navbar-collapse"
-              >
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar" />
-                <span class="icon-bar" />
-                <span class="icon-bar" />
-              </button>
+        <div class="main">
+          <div class="header">
+            <div class="left">
+              <div class="logo red">TherapyMart </div>
+              <div class="header-links">
+                <div>
+                  <Link to="/">Home</Link>
+                </div>
+                <div>
+                  <Link to="/therapists">Therapists</Link>
+                </div>
+                <div>
+                  <Link to="/donate">Donate</Link>
+                </div>
+                <div>
+                  <Link to="/blog">Blog</Link>
+                </div>
+                <div>
+                  <Link href="/about_us">About Us</Link>
+                </div>
+                <div>
+                  <Link to="/become_a_therapist">Become a Therapist</Link>
+                </div>
+              </div>
             </div>
-            <div class="collapse navbar-collapse">
-              <ul class="nav navbar-nav ">
-                <li class="active">
-                  <a href="">Home</a>
-                </li>
-                <li>
-                  <a href="">Band</a>
-                </li>
-                <li>
-                  <a href="">Therapist</a>
-                </li>
-                <li>
-                  <a href="">Donate</a>
-                </li>
-                <li>
-                  <a href="">Blog</a>
-                </li>
-                <li>
-                  <a href="">About Us</a>
-                </li>
-                <li>
-                  <a href="">Become a Therapist</a>
-                </li>
-              </ul>
-              <div class="dropdown-menu">
-                <button
-                  class="btn btn-default dropdown-toggle"
-                  type="button"
-                  data-toggle="dropdown"
-                >
-                  Dropdown Example
-                  <span class="caret" />
-                </button>
+            <div class="right">
+              <div class="payment">
+                <img style={{ height: "20px" }} src={Nja} alt="" />{" "}
+                <span style={{ padding: "10px" }}> &#8358;</span>{" "}
+                <i style={{ fontSize: "20px" }} class="fa fa-caret-down" />
+              </div>
+              <div class="account">
+                <i style={{ fontSize: "35px" }} class="fa fa-user-circle" />
+                <Link style={{ padding: "10px" }} to="/login">
+                  Account{" "}
+                </Link>
+                <i style={{ fontSize: "20px" }} class="fa fa-caret-down" />
               </div>
             </div>
           </div>
-        </nav>
+        </div>
       </div>
     );
   }
 }
-
 export default Navbar;

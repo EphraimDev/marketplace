@@ -5,7 +5,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Lato', sans-serif;
-    box-sizing: border-box;
 }
 
 .faq-head {
@@ -32,8 +31,7 @@ body {
     width: 373px;
     height: 150px;
     left: calc(50% - 373px/2 - 187.5px);
-    top: 140px;
-
+    top: 120px;
     background: rgba(1, 173, 186, 0.5);
 }
 
@@ -75,4 +73,18 @@ body {
 .ques-faq p {
     font-size: 18px;
     line-height: 26px;
+}
+
+@media (max-width: 500px) {
+    .rectangle {
+        width: 373px;
+        top: 500px;
+    }
+}
+
+@media (max-width: 400px) {
+    .rectangle {
+        width: 373px;
+        top: 500px;
+    }
 }
