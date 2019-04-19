@@ -50,7 +50,7 @@ class Navbar extends Component {
               </div>
               <div class="account">
                 <i style={{ fontSize: "35px" }} class="fa fa-user-circle" />
-                <Link style={{ padding: "10px" }} to="/login">
+                <Link style={{ padding: "10px" }} to="/profile">
                   Account{" "}
                 </Link>
                 <i style={{ fontSize: "20px" }} class="fa fa-caret-down" />
