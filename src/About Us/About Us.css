@@ -2,7 +2,7 @@ body{
     margin: 0;
     padding: 0;
     background-color:transparent;
-    font-family: sans-serif;
+    font-family: lato;
 
 }
 h1{
@@ -17,8 +17,17 @@ h1{
 }
 
 p{
-    color:rgb(102, 100, 100);
+    color: #495057;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: normal;
+
 }
+
+
+
 .About_us{
 
     color:rgb(102, 100, 100);
