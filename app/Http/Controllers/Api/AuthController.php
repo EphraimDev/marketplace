@@ -20,7 +20,10 @@ class AuthController extends Controller
      */
     public function login(Request $request){
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+
             $user = Auth::user();
+
+            $therapist = $user->therapist ? $user->therapist : '';
 
 			$response = [
                 'id' => $user->id,
@@ -28,7 +31,8 @@ class AuthController extends Controller
 				'last_name' => $user->last_name,
 				'role' => $user->role,
 				'email' => $user->email,
-				'token' => $user->createToken('MyApp')->accessToken
+				'token' => $user->createToken('MyApp')->accessToken,
+                'therapist' => $therapist
 			];
 
             return response()->json([
@@ -55,7 +59,6 @@ class AuthController extends Controller
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
 			'email' => 'required|email|unique:users',
-            'role' => 'required',
             'password' => 'required',
         ]);
 
@@ -76,7 +79,7 @@ class AuthController extends Controller
             'last_name'=>$request->get('last_name'),
             'email'=>$request->get('email'),
             'password'=>bcrypt($request->get('password')),
-            'role'=>$request->get('role'),
+            'role' => 'ordinary-user',
         ]);
 
 		DB::commit();
