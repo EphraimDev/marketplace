@@ -1,0 +1,61 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color:transparent;
+    font-family: sans-serif;
+
+}
+h1{
+    color:black;
+    text-align: center;
+}
+.first{
+    height: 450px;
+    width: 46%;
+    float: left;
+    padding-right: 10%;
+}
+
+p{
+    color:rgb(102, 100, 100);
+}
+.About_us{
+
+    color:rgb(102, 100, 100);
+    text-align: justify;
+    line-height: 22px;
+    padding-right: 10%;
+    padding-top:1%;
+    
+
+}
+h1{
+    text-align: left;
+}
+
+.How-it-works{
+    position: absolute;
+    
+}
+.grid-container {
+    display: grid;
+    
+  }
+
+  .second{
+      position: ;
+      float: none;
+      height: 450px;
+    width: 650px;
+    float: left;
+    
+  }
+
+  .image{
+      float:right;
+  }
+
+  .bottom{
+      padding-top:15%;
+  }
+
