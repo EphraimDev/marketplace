@@ -61,7 +61,7 @@ class UserController extends Controller
 
 		]);
 
-		return back()->with(['suucess'=>"user suucessfully created"]);
+		return back()->with(['success'=>"user suucessfully created"]);
 	}
 
 
@@ -73,7 +73,7 @@ class UserController extends Controller
     	$user=User::findOrFail($id);
     	$user->delete();
 
-    	return back()->with(['suucess'=>'deleted']);
+    	return back()->with(['success'=>'deleted']);
     }
 
     public function show($id)
