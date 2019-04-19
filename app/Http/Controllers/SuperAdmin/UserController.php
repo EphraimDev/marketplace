@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function allUsers()
     {
-    	$users=User::where('role','ordinary_user')->paginate();
+    	$users=User::where('role','ordinary-user')->paginate();
 
     	return view('superadminBE.all_users',compact('users'));
     }
@@ -57,7 +57,7 @@ class UserController extends Controller
 			"last_name"=>$request->last_name,
 			"email"=>$request->email,
 			"password"=>$request->password,
-			"role"=>"ordinary_user"
+			"role"=>"ordinary-user"
 
 		]);
 
