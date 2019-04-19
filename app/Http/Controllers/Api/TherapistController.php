@@ -225,7 +225,7 @@ class TherapistController extends Controller
     public function update(Request $request, $therapistId)
     {
         // Check if this action is performed by the logged in therapist
-        if (Auth::user()->id != $therapistId) {
+        if (Auth::user()->therapist->id != $therapistId) {
             return response()->json([
                 'error' => ['code' => 403, 'message' => "Forbidden to update another therapist's details"]
             ], 403);
@@ -268,7 +268,7 @@ class TherapistController extends Controller
             // Update user table
             $user = $request->only(['first_name','last_name','email','password', 'role']);
 
-            $userResponse = Auth::user()->update([
+            Auth::user()->update([
                 "first_name" => $user['first_name'],
                 "last_name" => $user['last_name'],
                 "password" => bcrypt($user['password'])
@@ -317,20 +317,4 @@ class TherapistController extends Controller
         ], 200);
     }
 
-    /**
-     * Delete therapist
-     *
-     * @param int  $id
-     * @return mixed
-     */
-    /*public function destroy($id)
-    {
-        $therapist=Therapist::findOrFail($id);
-        $user_record=$therapist->user_id;
-        $therapist->delete();
-        User::findOrFail($user_record)->delete();
-
-        return response()->json(['status'=>true]);
-    }*/
-    
 }
