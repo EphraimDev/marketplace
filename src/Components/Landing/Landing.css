@@ -40,12 +40,11 @@
 
 .landing-search-container {
     height: 100px;
-    padding: 0;
     background-color: #ffffff;
-    margin: 0;
     top: -40px;
     z-index: 1;
     box-shadow: 0px 5px 30px rgba(189, 189, 189, 0.41);
+    left: calc(50% - 200px/2 - 250.5px);
 }
 
 .landing-input-holder {
@@ -103,7 +102,9 @@
 
 .landing-therapist-container {
     width: 100%;
-    margin-top: 30px
+    margin-top: 30px;
+    height: 300px;
+    margin-bottom: 30px
 }
 
 .landing-therapist-container .container {
@@ -146,6 +147,87 @@
 
 .landing-card p {
     text-align: left
+}
+
+.landing-countries-container {
+    width: 100%;
+    margin-top: 200px;
+    height: 600px;
+}
+
+.landing-country{
+    width: 200px;
+    border: none;
+    margin-right: 0;
+}
+
+.landing-state {
+	color: #01ADBA;
+	font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px
+}
+
+.landing-state-list{
+    height: 90px;
+}
+
+.landing-issues-container{
+    height: 400px;
+    margin-top: 40px
+}
+
+.landing-issues-container .card-title{
+    color: #01ADBA;
+    text-align: center
+}
+
+.landing-steps-container{
+    height: 250px;
+}
+
+.landing-steps-container .container{
+    text-align: center;
+}
+
+.landing-blog-container h4{
+    font-size: 20px;
+}
+
+.landing-blog-container p{
+    color: #333333;
+    font-size: 16px;
+    mix-blend-mode: normal;
+    opacity: 0.6;
+}
+
+.landing-blog-container link2{
+    color: #01ADBA;
+    font-size: 14px
+}
+
+.landing-blog-container blog-owner{
+    color: #333333;
+    mix-blend-mode: normal;
+    opacity: 0.8;
+    font-size: 16px
+}
+
+.landing-blog-select{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.landing-button{
+    color: #FFFFFF;
+    border-radius: 5px;
+    background-color: #01ADBA
+}
+
+.landing-button:hover{
+    color: #01ADBA;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #01ADBA
 }
 
 
