@@ -56,9 +56,6 @@ Route::post('/therapists/search/{name}', "TherapistController@search");
 
 Route::middleware('auth:api')->put('/therapists/{therapistId}', "TherapistController@update");
 
-// This looks like a super admin's feature
-// Route::delete('/therapists/{id}', "TherapistController@destroy");
-
 Route::get('/therapists/{therapistId}/verification/status', "TherapistController@verifyStatus");
 
 Route::middleware('auth:api')->post('/therapists/{therapistId}/verification/verify', "TherapistController@requestVerification");
@@ -77,13 +74,9 @@ Route::get('/therapists/verification/verified', 'TherapistController@verifiedThe
  */
 Route::get('/ordinary-users', "OrdinaryUserController@index");
 
-Route::get('/ordinary-users/{id}', "OrdinaryUserController@show");
+Route::get('/ordinary-users/{userId}', "OrdinaryUserController@show");
 
-Route::delete('/ordinary-users/{id}', "OrdinaryUserController@destroy");
-
-Route::put('/ordinary-users/{id}', "OrdinaryUserController@update");
-
-Route::put('/ordinary-users/{id}/status', "OrdinaryUserController@updateStatus");
+Route::middleware('auth:api')->put('/ordinary-users/{userId}', "OrdinaryUserController@update");
 
 Route::post('/ordinary-users/{id}/pay', "OrdinaryUserController@pay");
 

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Log;
-use GuzzleHttp\Client;
+use DB;
 use App\User;
+use Validator;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OrdinaryUserController extends Controller
 {
@@ -27,70 +30,86 @@ class OrdinaryUserController extends Controller
      */
     public function index()
     {
-        //
-        $user = User::where('role', 'ordinary_user')->get();
+        $users = User::where('role', 'ordinary-user')->get();
 
-        return  response()->json(["users" => $user]);
+        return response()->json([
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'OK',
+            'data' => $users
+        ], 200);
     }
 
     /**
      * Fetch a single ordinary user
      *
-     * @param  int  $id
+     * @param  int  $userId
      * @return array
      */
-    public function show($id)
+    public function show($userId)
     {
-        //
+        $user = User::where('id', $userId)->where('role', 'ordinary-user')->first();
 
-        $user = User::findOrFail($id);
+        if (!$user) {
+            return response()->json([
+                'error' => ['code' => 404, 'message' => 'User not found']
+            ], 404);
+        }
 
-        return  response()->json(["users" => $user]);
+        return response()->json([
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'OK',
+            'data' => $user
+        ], 200);
     }
 
     /**
      * Update an ordinary user
      *
-     * @param  int  $id
+     * @param  int  $userId
      * @return array
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $userId)
     {
-        $user = User::findOrFail($id);
-
-        if (!$user) {
-            return response()->json(['error' => 'User not found!'], 404);
+        // Check if this action is performed by the logged in user
+        if (Auth::user()->id != $userId) {
+            return response()->json([
+                'error' => ['code' => 403, 'message' => "Forbidden to update another user's details"]
+            ], 403);
         }
 
-        $user->update($request->all());
+        $validate = Validator::make($request->all(), [
+            'first_name' => 'required|min:2',
+            'last_name' => 'required|min:2',
+            'password' => 'required',
+        ]);
 
-        return response()->json(['success' => true]);
-    }
+        if ($validate->fails()) {
+            return response()->json([
+                'error' => [
+                    'code' => 422,
+                    'message' => "Unprocessable Entity",
+                    'errors' => $validate->errors()
+                ]
+            ], 422);
+        } else {
+            DB::beginTransaction();
 
-    /**
-     * Delete an ordinary user
-     *
-     * @param  int  $id
-     * @return array
-     */
-    public function destroy($id)
-    {
+            $userResponse = Auth::user()->update([
+                "first_name" => $request['first_name'],
+                "last_name" => $request['last_name'],
+                "password" => bcrypt($request['password'])
+            ]);
 
-        $user = User::findOrFail($id);
-        $user->delete();
+            DB::commit();
 
-        return response()->json(['suuccess' => true]);
-    }
-
-    /**
-     * Update an ordinary user's status
-     *
-     * @param  int  $id
-     * @return array
-     */
-    public function updateStatus($id)
-    {
-        //
+            return response()->json([
+                'status' => 'success',
+                'code' => 200,
+                'message' => 'OK'
+            ], 200);
+        }
     }
 
     /**
