@@ -85,24 +85,24 @@ Route::post('/ordinary-users/{id}/pay', "OrdinaryUserController@pay");
  * Routes here are strictly for appointments
  *
  */
-Route::post('/appointments/ordinary-user/{userId}/therapist/{therapistId}/book', "AppointmentController@book");
+ Route::group(['middleware' => 'auth:api'], function() {
 
-Route::get('/appointments/ordinary-user/{userId}', "AppointmentController@userAppointments");
+    Route::post('/appointments/ordinary-user/{userId}/therapist/{therapistId}/book', "AppointmentController@book");
 
-Route::put('/appointments/{appointmentId}/ordinary-user/{userId}/start', "AppointmentController@startSession");
+    Route::get('/appointments/ordinary-user/{userId}', "AppointmentController@userAppointments");
 
-Route::put('/appointments/{appointmentId}/ordinary-user/{userId}/end', "AppointmentController@endSession");
+    Route::get('/appointments/{appointmentId}/ordinary-user/{userId}', "AppointmentController@userSingleAppointment");
 
-Route::get('/appointments/therapist/{therapistId}', "AppointmentController@therapistAppointments");
+    Route::put('/appointments/{appointmentId}/ordinary-user/{userId}/start', "AppointmentController@startSession");
 
-Route::get('/appointments/{appointmentId}/therapist/{therapistId}', "AppointmentController@singleAppointment");
+    Route::put('/appointments/{appointmentId}/ordinary-user/{userId}/end', "AppointmentController@endSession");
 
-Route::put('/appointments/{appointmentId}/therapist/{therapistId}/reject', "AppointmentController@rejectAppointment");
+    Route::get('/appointments/therapist/{therapistId}', "AppointmentController@therapistAppointments");
 
-Route::put('/appointments/{appointmentId}/therapist/{therapistId}/accept', "AppointmentController@acceptAppointment");
+    Route::get('/appointments/{appointmentId}/therapist/{therapistId}', "AppointmentController@therapistSingleAppointment");
 
+    Route::put('/appointments/{appointmentId}/therapist/{therapistId}/reject', "AppointmentController@rejectAppointment");
 
-// Please delete don't the code below
-/*Route::middleware('auth:api')->get('/user', function (Request $request) {
+    Route::put('/appointments/{appointmentId}/therapist/{therapistId}/accept', "AppointmentController@acceptAppointment");
 
-});*/
+});
