@@ -13,6 +13,7 @@ const initialState = {
   last_name: "",
   email: "",
   password: "",
+  designation: "",
   role: "",
   userId: "",
   user: "",
