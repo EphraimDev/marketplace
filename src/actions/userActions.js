@@ -9,7 +9,7 @@ import {
 } from "./types";
 import axios from "axios";
 
-const apiUrl = "https://api-marketplace.herokuapp.com/api/v1/auth/register";
+const apiUrl = "https://api-marketplace.herokuapp.com/api/v1/auth";
 
 export const addUserBegin = () => ({
   type: USER_SIGNUP_BEGIN
@@ -38,7 +38,7 @@ export const userLoginBegin = () => ({
 export const userLoginSuccess = data => ({
   type: USER_LOGIN_SUCCESS,
   payload: {
-    username: data.username,
+    email: data.email,
     password: data.password,
     userId: data.user._id
   }
@@ -75,9 +75,8 @@ export function userLogin({ username, password }) {
     axios
       .post(`${apiUrl}/login`, { username, password })
       .then(response => {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.data.token);
         dispatch(userLoginSuccess(response.data));
-        console.log(response.data.token);
       })
       .catch(error => {
         dispatch(userLoginFailure(error));
@@ -89,11 +88,19 @@ export function signUp({ first_name, last_name, email, password, role }) {
   return dispatch => {
     dispatch(addUserBegin());
     axios
-      .post(`${apiUrl}/login`, { first_name, last_name, email, password, role })
+      .post(`${apiUrl}/register`, {
+        first_name,
+        last_name,
+        email,
+        password,
+        role
+      })
       .then(response => {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.data.token);
         dispatch(addUserSuccess(response.data));
-        console.log(response.data.token);
+        if (response.status === 200) {
+          this.props.history.replace("/");
+        }
       })
       .catch(error => {
         dispatch(addUserFailure(error));
