@@ -26,7 +26,7 @@ class Navbar extends Component {
                   <Link to="/">Home</Link>
                 </div>
                 <div>
-                  <Link to="/therapists">Therapists</Link>
+                  <Link to="/therapist_list">Therapists</Link>
                 </div>
                 <div>
                   <Link to="/donate">Donate</Link>
@@ -50,7 +50,7 @@ class Navbar extends Component {
               </div>
               <div class="account">
                 <i style={{ fontSize: "35px" }} class="fa fa-user-circle" />
-                <Link style={{ padding: "10px" }} to="/profile">
+                <Link style={{ padding: "10px" }} to="/login">
                   Account{" "}
                 </Link>
                 <i style={{ fontSize: "20px" }} class="fa fa-caret-down" />
