@@ -6,6 +6,7 @@ import Faq from "./Components/Faq/Faq";
 import Home from "./Components/Landing/Home";
 import Login from "./Components/User/Login/Login";
 import SignUp from "./Components/User/SignUp/SignUp";
+//import Profile from "./Components/Profile/Profile";
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={SignUp} />
           <Route exact path="/faq" component={Faq} />
+          {/* <Route exact path="/profile" component={Profile} /> */}
         </Switch>
       </div>
     );

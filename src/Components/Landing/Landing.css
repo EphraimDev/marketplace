@@ -17,7 +17,7 @@
 .landing-header-text {
     position: absolute;
     left: calc(50% - 100px/2 - 90.5px);
-    top: 300px;
+    top: 250px;
     color: #ffffff;
     font-weight: bolder
 }
@@ -27,7 +27,7 @@
     width: 373px;
     height: 150px;
     left: calc(50% - 373px/2 - 254.5px);
-    top: 350px;
+    top: 300px;
 
     background: rgba(1, 173, 186, 0.5);
 }
