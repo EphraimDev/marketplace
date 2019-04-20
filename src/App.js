@@ -7,6 +7,7 @@ import TherapistListPage from './Components/TherapistList/TherapistListPage';
 import Home from "./Components/Landing/Home";
 import Login from "./Components/User/Login/Login";
 import SignUp from "./Components/User/SignUp/SignUp";
+import PageNav from "./Components/PageNavigation";
 //import Profile from "./Components/Profile/Profile";
 
 class App extends Component {
@@ -22,6 +23,8 @@ class App extends Component {
           <Route exact path="/register" component={SignUp} />
           <Route exact path="/faq" component={Faq} />
           {/* <Route exact path="/profile" component={Profile} /> */}
+          <Route exact path="/therapists" component = {TherapistListPage} />
+          <Route exact path="/nav" component = {PageNav} />
         </Switch>
       </div>
     );

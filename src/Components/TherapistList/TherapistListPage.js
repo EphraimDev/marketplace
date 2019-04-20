@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import TherapistList from './TherapistList';
 import './therapist.css';
 import  image from'./img1.jpg'
+import Navbar from '../Navbar/Navbar';
+import PageNav from '../PageNavigation';
+import Therapist from './therapists';
 
 
  class TherapistListPage extends Component {
@@ -65,10 +68,11 @@ import  image from'./img1.jpg'
 
  		]
 		return (
-			<div class="containerx">
-
-			
-		<section>
+			<div>
+				<Navbar />
+				<PageNav link={"Nigeria (811 Therapists)"} />
+			<div class="container">
+		<section className="therapist-section">
 		<form onSubmit={this.onSubmit}>		
     <div className="search-field">	
      {/*} <div className="inputWithIcon"> 
@@ -86,8 +90,8 @@ import  image from'./img1.jpg'
     </div>
     </form>
 </section>
-<section className="list-page">
-  <div className="search-match"> 219 Theraphist match your seach</div>
+<section className="list-page therapist-section">
+  <div className="search-match"> 811 Therapists match your search</div>
   <div className="search-row">
    <div className="search-filter">
      <p>  Filter </p>
@@ -99,8 +103,8 @@ import  image from'./img1.jpg'
 </select>
    </div> 
   </div>
-  <TherapistList therapists={therapists} />
-
+  
+	<Therapist />
   </section>
  	{/* <!-- pagination starts here --> */}
   <div class="pagination">
@@ -114,6 +118,7 @@ import  image from'./img1.jpg'
     </ul>
     <p class="arrow"><i class="fas fa-long-arrow-alt-right"></i></p>
   </div>
+</div>
 </div>
 		);
 	}
