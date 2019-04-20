@@ -57,7 +57,7 @@ class UserProfile extends Component {
                             </div>
                             <div className="profile_name">
                                 <label>Email Address</label>
-                                <input className="profile_inputs mail" name="email" type="text" placeholder="Last Name"  />
+                                <input className="profile_inputs mail" name="email" type="text" placeholder="paumo@gmail.com"  />
                             </div>  
                             <div className="profile_name">
                                 <label>Phone Number</label>
