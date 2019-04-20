@@ -1,5 +1,23 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## steps to contribute to the project
+
+1. Fork the repo to your account
+2. Clone to desktop
+3. Checkout client
+ ```bash
+git checkout client
+```
+4. run npm i to install dependencies
+```bash
+npm i
+```
+5. Make changes
+6. Push to your repo
+7. Make a PR to the project repo, select compare across forks
+8. In the dropdown section, select the client branch and make head repository your own repo
+9. Create PR
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,0 +1,125 @@
+:root {
+    --header-padding: 1rem 2rem 1rem 2rem;
+    --hover-color: #008D98;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.red {
+}
+
+.main {
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    background-color: #01ADBA;
+    color: #FFF;
+    font-size: 14px;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+    padding-right: 2rem;
+    flex-shrink: 0;
+}
+
+.right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.logo {
+    font-size: 24px;
+    padding: var(--header-padding);
+    margin-right: 3rem;
+}
+
+.header-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header-links a {
+    color: #FFF;
+    display: block;
+    padding: 0rem 1rem 0rem 1rem;
+    text-decoration: none;
+}
+
+.header-links a:hover {
+    text-decoration: none;
+    color: var(--hover-color);
+}
+
+.payment {
+    display: flex;
+    align-items: center;
+    border-right: 1.5px solid white;
+    border-left: 1.5px solid white;
+    padding: 0rem 1rem 0rem 1rem;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    padding: 0rem 2rem 0rem 2rem;
+}
+
+.account a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.account a:hover {
+    color: var(--hover-color);
+    text-decoration: none;
+}
+
+.fa-user {
+    padding-right: 0.5rem;
+}
+
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .left {
+        flex-direction: column;
+    }
+
+    .header-links {
+        flex-direction: column;
+    }
+
+    .header-links a {
+        padding: 1rem;
+    }
+
+    .right {
+        flex-direction: row;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .logo {
+        margin-right: 0rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .payment {
+        border: none;
+    }
+}

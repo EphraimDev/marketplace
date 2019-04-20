@@ -1,25 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
+import Become from "./Components/BecomePage/Become";
+import Contact from "./Components/Contact/Contact";
+import Faq from "./Components/Faq/Faq";
+import TherapistListPage from "./Components/TherapistList/TherapistListPage";
+import Home from "./Components/Landing/Home";
+import Login from "./Components/User/Login/Login";
+import SignUp from "./Components/User/SignUp/SignUp";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/become_a_therapist" component={Become} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={SignUp} />
+          <Route exact path="/faq" component={Faq} />
+          <Route exact path="/therapist_list" component={TherapistListPage} />
+        </Switch>
       </div>
     );
   }

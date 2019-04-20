@@ -1,0 +1,115 @@
+/* Contact page header */
+
+.contact-header {
+  background-image: url("https://res.cloudinary.com/mrphemi/image/upload/v1555435595/tablet-1075790_1280.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 60vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.contact-header_title {
+  position: relative;
+}
+
+.contact-header_title h1,
+.contact-header_title p {
+  margin: 0;
+  z-index: 2;
+  position: relative;
+  font-weight: bold;
+}
+
+.contact-header_title span {
+  background: #01adba;
+  display: block;
+  position: absolute;
+  top: 30%;
+  z-index: 1;
+  opacity: 0.5;
+  width: 52%;
+  margin-left: -140px;
+  padding: 60px 65px 40px 200px;
+}
+
+.blue-line {
+  background-color: #01adba;
+  display: block;
+  height: 5px;
+  width: 50px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+/* Contact page info */
+
+.contact-info {
+  padding: 50px 0;
+}
+
+.contact-info h5 {
+  color: #01adba;
+  font-weight: bold;
+}
+
+.contact-info h4,
+.contact-form h4 {
+  font-weight: bold;
+}
+
+.contact-form {
+  padding-bottom: 40px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  border-color: #01adba;
+}
+
+/* Contact page form */
+
+.contact-form input {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.contact-form .button {
+  background: #fff;
+  display: inline-block;
+  border: 1px solid #01adba;
+  border-radius: 5px;
+  color: #01adba;
+  padding: 10px;
+  min-width: 100px;
+  margin-right: 15px;
+}
+
+.contact-form .button-alt {
+  background: #01adba;
+  border: none;
+  color: #fff;
+  margin-left: 20px;
+}
+
+.contact-form .buttons {
+  margin-left: auto;
+}
+
+/* Media queries */
+@media only screen and (max-width: 767px) {
+  .contact-header_title p {
+    padding: 0 10px;
+  }
+  .contact-info {
+    text-align: center;
+  }
+  .contact-form .button {
+    margin-right: 0;
+  }
+  .contact-form .buttons {
+    margin: auto;
+  }
+}
