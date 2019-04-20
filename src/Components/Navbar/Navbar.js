@@ -26,7 +26,7 @@ class Navbar extends Component {
                   <Link to="/">Home</Link>
                 </div>
                 <div>
-                  <Link to="/therapists">Therapists</Link>
+                  <Link to="/therapist_list">Therapists</Link>
                 </div>
                 <div>
                   <Link to="#">Donate</Link>
