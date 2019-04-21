@@ -126,11 +126,11 @@ class OrdinaryUserController extends Controller
             return response(["success" => false, "msg" => "User not found."]);
         }
 
-        $rate = 500; //The fixed charge
+        $rate = 1000; //The fixed charge
 
         $fee = $rate * 100; //Paystack deals in kobo
 
-        $reference = 12344988; //Reference number from backend
+        $reference = 12344987; //Reference number from backend
 
         $verificationStatus = $this->verifyTransaction($fee, $reference);
         return response(["success" => $verificationStatus]);
