@@ -79,11 +79,10 @@ export function userLogin({ email, password },self) {
       .post(`${apiUrl}/login`, { email, password })
       .then(response => {
         localStorage.setItem("token", response.data.data.token);
-        console.log(response)
         dispatch(userLoginSuccess(response.data.data));
-        const user = JSON.stringify(response.data.data)
-        localStorage.setItem("user", user);
         localStorage.setItem("token", response.data.data.token);
+        localStorage.setItem("userId", response.data.data.id);
+        console.log(response.data.data)
         if (response.status === 200) {
           self.props.history.push('/')
         }

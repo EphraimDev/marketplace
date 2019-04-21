@@ -7,10 +7,10 @@ import './UserProfilePage.css';
 import Footer from '../Footer/Footer';
 import Loader from '../Loader/Loader';
 
-
 const token = localStorage.getItem("token");
-const user = JSON.parse(localStorage.getItem("user"))
+const userId = localStorage.getItem("userId");
 const baseUrl = 'https://api-marketplace.herokuapp.com';
+axios.defaults.headers.common = {'Authorization': `Bearer ${token}`,'Content-Type':'application/json'}
 
 class UserProfile extends Component {
     userId = this.props.userId
@@ -28,6 +28,7 @@ class UserProfile extends Component {
         ctry: "",
         loader: true,
         user:{},
+        appointments:[],
     }
     changeAppointment = e => {
         e.preventDefault();
@@ -49,7 +50,7 @@ class UserProfile extends Component {
         formData.append('image', image);
         axios({
             method: "PUT",
-            url: `${baseUrl}/api/v1/ordinary-users/${this.userId}`,
+            url: `/api/v1/ordinary-users/${this.userId}`,
             data: formData,
             headers: {
               Authorization: token
@@ -79,24 +80,38 @@ class UserProfile extends Component {
 
     componentWillMount() {
         axios
-            .get(`${baseUrl}/api/v1/appointments/ordinary-user/${this.userId}`)
+            .get(`${baseUrl}/api/v1/appointments/ordinary-user/${userId}`)  //fetch appointments
             .then(res => {
                 console.log(res)
-                this.setState({loader:false})
+                this.setState({loader:false,appointments:res.data.data.user_appointments})
             }).catch(e => {
                 this.setState({loader:false})
-
+                console.log(e)
             })
-        axios
-            .get(`${baseUrl}/api/v1/ordinary-users/${this.userId}`)
-            .then(res => {
-                console.log(res)
-               
-            }).catch(e => {
-
-            })
-      }
+        
+        this.getUser();
+        
+        console.log(userId)
+    }
     
+  getUser = () => {
+    axios({
+        method: "GET",
+        url:`${baseUrl}/api/v1/auth/user`,
+        headers: {
+            'Authorization': "Bearer " + token,
+            'Content-Type': 'application/json'
+        }
+      })
+      .then(res => {
+        console.log(res);
+        this.setState({ user: res.data.data });
+      })
+      .catch( e => {
+          console.log(e)
+      })
+  };
+  
     render() {
         return (
             <div>
@@ -117,8 +132,8 @@ class UserProfile extends Component {
                                     </form>
                                 </div>
                                 <div className="profile_details">
-                                    <p className="user_name">{user.first_name + user.last_name}</p>
-                                    <p className="user_email">{console.log(user)}</p>
+                                    <p className="user_name">{this.state.user.first_name +" " + this.state.user.last_name}</p>
+                                    <p className="user_email">{this.state.user.email}</p>
                                     <p className="edit_profile">Edit your profile to input phone number</p>
                                 </div>
                             </div>
@@ -141,7 +156,7 @@ class UserProfile extends Component {
                             </div>
                             <div className="profile_name">
                                 <label>Email Address</label>
-                                <input className="profile_inputs mail" name="email" type="text" placeholder="paumo@gmail.com" value={this.state.email} onChange={this.handleChange} />
+                                <input className="profile_inputs mail" name="email" type="text" placeholder={this.state.user.email} value={this.state.email} onChange={this.handleChange} />
                             </div>  
                             <div className="profile_name">
                                 <label>Phone Number</label>
@@ -157,6 +172,13 @@ class UserProfile extends Component {
                         <div className="tabs">
                             <p className="tab_menu">Your Appointments</p>
                             <hr style={{width:"85%",height:'5px'}}/>
+                            {this.state.appointments.length < 1 ? <div><p>You haven't scheduled any appointments yet</p>
+                                        <p>You can schedule one here</p> </div> : this.state.appointments.map(appointment => {
+                                            return (
+                                    <p>{appointment}</p>
+                                )
+                            })
+                        }
                         </div>
                     }
                 </div>}
