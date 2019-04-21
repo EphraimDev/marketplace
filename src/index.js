@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { configureStore } from "redux-starter-kit";
 import { Provider } from "react-redux";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 
 import rootReducer from "./reducers";
@@ -13,6 +13,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 // Create redux store
 const store  = configureStore({reducer:rootReducer})
+
+console.log(store.getState())
+store.subscribe(() => console.log('store', store.getState()))
 
 ReactDOM.render(
   <Provider store={store}>
