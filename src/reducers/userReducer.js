@@ -57,6 +57,9 @@ export default function users(state = initialState, action) {
         ...state,
         email: action.payload.email,
         password: action.payload.password,
+        first_name: action.payload.first_name,
+        last_name: action.payload.last_name,
+        role: action.payload.role,
         userId: action.payload.userId,
         loading: false,
         error: null

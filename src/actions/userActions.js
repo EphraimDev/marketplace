@@ -9,6 +9,7 @@ import {
 } from "./types";
 import axios from "axios";
 
+
 const apiUrl = "https://api-marketplace.herokuapp.com/api/v1/auth";
 
 export const addUserBegin = () => ({
@@ -39,8 +40,10 @@ export const userLoginSuccess = data => ({
   type: USER_LOGIN_SUCCESS,
   payload: {
     email: data.email,
-    password: data.password,
-    userId: data.user._id
+    first_name: data.first_name,
+    last_name: data.last_name,
+    role: data.role,
+    userId: data.id
   }
 });
 
@@ -69,14 +72,21 @@ export function fetchUser(id) {
   };
 }
 
-export function userLogin({ username, password }) {
+export function userLogin({ email, password },self) {
   return dispatch => {
     dispatch(userLoginBegin());
     axios
-      .post(`${apiUrl}/login`, { username, password })
+      .post(`${apiUrl}/login`, { email, password })
       .then(response => {
         localStorage.setItem("token", response.data.data.token);
-        dispatch(userLoginSuccess(response.data));
+        console.log(response)
+        dispatch(userLoginSuccess(response.data.data));
+        const user = JSON.stringify(response.data.data)
+        localStorage.setItem("user", user);
+        localStorage.setItem("token", response.data.data.token);
+        if (response.status === 200) {
+          self.props.history.push('/')
+        }
       })
       .catch(error => {
         dispatch(userLoginFailure(error));
@@ -97,6 +107,7 @@ export function signUp({ first_name, last_name, email, password, role }) {
       })
       .then(response => {
         localStorage.setItem("token", response.data.data.token);
+        localStorage.setItem("user", response.data.data);
         dispatch(addUserSuccess(response.data));
         if (response.status === 200) {
           this.props.history.replace("/");

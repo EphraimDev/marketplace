@@ -4,6 +4,7 @@
 
 .main_page{
     width: 100%;
+    margin-bottom: 150px;
 
 }
 .jumbo{
@@ -29,7 +30,7 @@
     flex-direction: row;
     align-items: center;
     padding-left: 10%;
-    /* padding-bottom: -10px; */
+    padding-top: 10px;
 }
 .active_link{
     color: rgb(16, 187, 199);
@@ -61,7 +62,6 @@
 .bread_right{
     margin-left: 30px;
     color: rgb(243, 240, 240);
-    /* font-weight: lighter; */
     font-size: 30px;
 }
 
@@ -80,12 +80,26 @@
     width: 120px;
     height: 120px;
     font-size: 14px;
-    padding: 20px;
+    padding: 25px;
+    vertical-align: middle;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     margin-right: 20px;
 }
 
+.photo_label{
+    width: 100%;
+    font-weight: lighter;
+    margin-top: -20px;
+}
+
+.photo{
+    width: 40%;
+    opacity: 0;
+    margin-top: -40px;
+    position: absolute;
+}
 .profile_details{
     padding: 30px;
 }
@@ -119,6 +133,9 @@
 
 .tab_menu{
     margin-top: 30px;
+    font-weight: bolder;
+    margin-bottom: -15px;
+    font-size: 20px;
 }
 
 label{
@@ -150,9 +167,6 @@ label{
     border-right: 1px solid grey;
 }
 
-.name_label{
-    /* margin-right: 85px; */
-}
 .ctry{
     width: 130px; 
 }
