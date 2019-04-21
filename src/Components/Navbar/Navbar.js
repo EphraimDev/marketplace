@@ -26,10 +26,10 @@ class Navbar extends Component {
                   <Link to="/">Home</Link>
                 </div>
                 <div>
-                  <Link to="/therapist_list">Therapists</Link>
+                  <Link to="/therapists">Therapists</Link>
                 </div>
                 <div>
-                  <Link to="/donate">Donate</Link>
+                  <Link to="#">Donate</Link>
                 </div>
                 <div>
                   <Link to="/blog">Blog</Link>

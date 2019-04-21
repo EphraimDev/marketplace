@@ -1,0 +1,33 @@
+.page-nav-div{
+    height: 20px;
+}
+.page-nav-div div{
+    float: left;
+    text-decoration: none
+}
+.page-nav-right{
+    text-align: right;
+}
+
+.page-nav-left{
+    text-align: left;
+    color: #01ADBA;
+}
+
+.page-nav-center{
+    text-align: center;
+    mix-blend-mode: normal;
+    opacity: 0.6;
+}
+
+.page-nav-div div a {
+    text-decoration: none;
+}
+
+.page-nav-right a {
+    color: #333333
+}
+
+.page-nav-left a{
+    color: #01ADBA;
+}

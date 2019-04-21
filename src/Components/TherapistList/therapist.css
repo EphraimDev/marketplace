@@ -27,7 +27,10 @@ p {
   overflow: hidden;
 }
 
-
+.therapist-section{
+  padding-top: 20px;
+  padding-bottom: 40px
+}
 
 /*saerch field*/
 .search-field{
