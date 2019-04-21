@@ -24,7 +24,7 @@ class Login extends Component {
   handleSubmit = e => {
     let { email, password } = this.state;
     e.preventDefault();
-    this.props.dispatch(userLogin({ email, password }));
+    this.props.dispatch(userLogin({ email, password }, this));
   };
 
   render() {
