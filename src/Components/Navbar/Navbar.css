@@ -1,6 +1,6 @@
 :root {
     --header-padding: 1rem 2rem 1rem 2rem;
-    --hover-color: #008D98;
+    --hover-color: #008d98;
 }
 
 * {
@@ -16,8 +16,8 @@
 
 .header {
     display: flex;
-    background-color: #01ADBA;
-    color: #FFF;
+    background-color: #01adba;
+    color: #fff;
     font-size: 14px;
     flex-direction: row;
     justify-content: space-around;
@@ -49,7 +49,7 @@
 }
 
 .header-links a {
-    color: #FFF;
+    color: #fff;
     display: block;
     padding: 0rem 1rem 0rem 1rem;
     text-decoration: none;
@@ -75,7 +75,7 @@
 }
 
 .account a {
-    color: #FFF;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -87,7 +87,6 @@
 .fa-user {
     padding-right: 0.5rem;
 }
-
 
 @media screen and (max-width: 768px) {
     .header {
