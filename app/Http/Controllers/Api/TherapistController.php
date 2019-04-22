@@ -72,8 +72,8 @@ class TherapistController extends Controller
      */
     public function search($name)
     {
-    	$therapists = User::where([['first_name','like',"%{$name}%"], ['role','=','therapist']])
-                            ->orWhere([['last_name','like',"%{$name}%"], ['role','=','therapist']])
+    	$therapists = User::where([['first_name','like',"{$name}%"], ['role','=','therapist']])
+                            ->orWhere([['last_name','like',"{$name}%"], ['role','=','therapist']])
                             ->with('therapist.verifications')
                             ->get();
 
