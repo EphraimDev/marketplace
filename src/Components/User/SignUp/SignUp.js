@@ -28,7 +28,7 @@ class SignUp extends Component {
     e.preventDefault();
     const { first_name, last_name, email, password, role } = this.state;
     this.props.dispatch(
-      signUp({ first_name, last_name, email, password, role })
+      signUp({ first_name, last_name, email, password, role },this)
     );
   };
 

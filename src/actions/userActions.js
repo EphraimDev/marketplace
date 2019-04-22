@@ -81,10 +81,9 @@ export function userLogin({ email, password },self) {
         localStorage.setItem("token", response.data.data.token);
         dispatch(userLoginSuccess(response.data.data));
         localStorage.setItem("token", response.data.data.token);
-        localStorage.setItem("userId", response.data.data.id);
         console.log(response.data.data)
         if (response.status === 200) {
-          self.props.history.push('/')
+          self.props.history.replace('/')
         }
       })
       .catch(error => {
@@ -93,7 +92,7 @@ export function userLogin({ email, password },self) {
   };
 }
 
-export function signUp({ first_name, last_name, email, password, role }) {
+export function signUp({ first_name, last_name, email, password, role },self) {
   return dispatch => {
     dispatch(addUserBegin());
     axios
@@ -106,10 +105,9 @@ export function signUp({ first_name, last_name, email, password, role }) {
       })
       .then(response => {
         localStorage.setItem("token", response.data.data.token);
-        localStorage.setItem("user", response.data.data);
         dispatch(addUserSuccess(response.data));
         if (response.status === 200) {
-          this.props.history.replace("/");
+          self.props.history.replace("/");
         }
       })
       .catch(error => {
