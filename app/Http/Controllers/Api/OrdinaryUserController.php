@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class OrdinaryUserController extends Controller
 {
     private $paystack = 'https://api.paystack.co';
-    
+
     //Paystack private key set in the .env file
     private $paystack_skey;
 
@@ -29,7 +29,7 @@ class OrdinaryUserController extends Controller
     /**
      * Fetch all ordinary users
      *
-     * @return array
+     * @return Illuminate\Http\Response
      */
     public function index()
     {
@@ -47,7 +47,7 @@ class OrdinaryUserController extends Controller
      * Fetch a single ordinary user
      *
      * @param  int  $userId
-     * @return array
+     * @return Illuminate\Http\Response
      */
     public function show($userId)
     {
@@ -70,8 +70,9 @@ class OrdinaryUserController extends Controller
     /**
      * Update an ordinary user
      *
+     * @param \Illuminate\Http\Request  $request
      * @param int  $userId
-     * @return array
+     * @return Illuminate\Http\Response
      */
     public function update(Request $request, $userId)
     {
@@ -133,8 +134,8 @@ class OrdinaryUserController extends Controller
     /**
      * An ordinary user can pay via Paystack
      *
-     * @param  int  $id
-     * @return array
+     * @param int  $id
+     * @return Illuminate\Http\Response
      */
     public function pay($id)
     {
@@ -154,6 +155,12 @@ class OrdinaryUserController extends Controller
         return response(["success" => $verificationStatus]);
     }
 
+    /**
+     * Verify user's transaction
+     *
+     * @param string  $fee
+     * @param string  $reference
+     */
     private function verifyTransaction($fee, $reference)
     {
         try {

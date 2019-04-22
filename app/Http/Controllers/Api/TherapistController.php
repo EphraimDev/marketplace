@@ -90,7 +90,7 @@ class TherapistController extends Controller
      * This endpoint is used by the admin to check if a therapist is verified
      *
      * @param int  $therapistId
-     * @return boolean  Illuminate\Http\Response
+     * @return Illuminate\Http\Response
      */
     public function verifyStatus($therapistId)
     {
@@ -119,7 +119,7 @@ class TherapistController extends Controller
      *
      * @param Illuminate\Http\Request  $request
      * @param int id
-     * @return boolean
+     * @return Illuminate\Http\Response
      */
     public function requestVerification(Request $request, $id)
     {
@@ -206,7 +206,7 @@ class TherapistController extends Controller
      *
      * @param \App\Http\Requests\Request  $request
      * @param int  $therapistId
-     * @return array
+     * @return Illuminate\Http\Response
      */
     public function update(Request $request, $therapistId)
     {
