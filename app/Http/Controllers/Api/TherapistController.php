@@ -117,7 +117,7 @@ class TherapistController extends Controller
      *  to request for verification, after they might have successfully
      * created an account.
      *
-     * @param Illuminate\Http\Request
+     * @param Illuminate\Http\Request  $request
      * @param int id
      * @return boolean
      */
@@ -173,6 +173,11 @@ class TherapistController extends Controller
         }
     }
 
+    /**
+     * Fetch all unverified therapists
+     * 
+     * @return array
+     */
     public function unverifiedTherapists()
     {
         $therapists = Therapist::where('verified', false)
@@ -182,6 +187,11 @@ class TherapistController extends Controller
         return new TherapistResourceCollection($therapists); 
     }
 
+/**
+     * Fetch all verified therapists
+     * 
+     * @return array
+     */
     public function verifiedTherapists()
     {
         $therapists = Therapist::where('verified', true)
@@ -194,7 +204,7 @@ class TherapistController extends Controller
     /**
      * Update a therapist's data
      *
-     * @param \App\Http\Requests\UpdateTherapistRequest  $request
+     * @param \App\Http\Requests\Request  $request
      * @param int  $therapistId
      * @return array
      */
@@ -253,10 +263,10 @@ class TherapistController extends Controller
         DB::beginTransaction();
 
         Auth::user()->update([
-            "title" => $request->title ?? $authUser->title,
-            "first_name" => $request->first_name ?? $authUser->first_namel,
-            "last_name" => $request->last_name ?? $authUser->last_name,
-            "phone" => $request->phone ?? $authUser->phone,
+            "title" => $request->title ?? null,
+            "first_name" => $request->first_name,
+            "last_name" => $request->last_name,
+            "phone" => $request->phone ?? null,
             "image_url" => $image['secure_url'] ?? $authUser->image_url,
             "image_name" => $image['public_id'] ?? $authUser->image_name
         ]);

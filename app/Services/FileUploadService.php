@@ -6,6 +6,12 @@ use JD\Cloudder\Facades\Cloudder;
 
 class FileUploadService 
 {
+    /** 
+     * Upload file to Cloudinary
+     *
+     * @param Illuminate\Http\UploadedFile  $file
+     * @return array
+     */
 	public function uploadFile($file)
     {
         // Get file extension
@@ -27,7 +33,7 @@ class FileUploadService
      * Delete file from Cloudinary
      *
      * @param string  $fileName
-     * @return
+     * @return boolean
      */
     public function deleteFile($fileName)
     {
