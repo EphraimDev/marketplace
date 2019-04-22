@@ -52,29 +52,10 @@
                 <li>
                 <a href="{{route('therapist.create')}}">Add new</a>
                 <span class="icon-thumbnail">L1</span>
-              </li>
-
-
-             
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-             
+              </li>             
             </ul>
           </li>
- <li class="">
+          <li class="">
             <a ><span class="title">Appointments</span>
             <span class="arrow"></span></a>
             <span class="icon-thumbnail"><i class="pg-menu_lv"></i></span>
@@ -109,11 +90,15 @@
                 <a href="{{route('appointments',['query'=>'ended'])}}">ended</a>
                 <span class="icon-thumbnail">L1</span>
               </li>
-
-
-              
-
-        </ul>
+            </ul>
+          </li>
+          <li class=" ">
+            <a href="{{route('payment')}}" class="detailed">
+              <span class="title">Payments</span>
+            </a>
+            <span class="icon-thumbnail"><i class="fas fa-credit-card-blank"></i></span>
+          </li>
+      </ul>
         <div class="clearfix"></div>
       </div>
       <!-- END SIDEBAR MENU -->
