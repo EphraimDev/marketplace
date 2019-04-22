@@ -7,10 +7,13 @@ use App\User;
 use Validator;
 use App\Therapist;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\TherapistResource;
+use App\Http\Requests\UpdateTherapistRequest;
+use App\Http\Resources\TherapistResourceCollection;
+use App\Http\Resources\SearchTherapistResourceCollection;
 
 class TherapistController extends Controller
 {
@@ -21,14 +24,9 @@ class TherapistController extends Controller
      */
     public function index()
     {
-    	$therapists = Therapist::with(['user:id,first_name,last_name,email,role'])->get();
+    	$therapists = Therapist::with(['user'])->get();
 
-    	return response()->json([
-            'status' => 'success',
-            'code' => 200,
-            'message' => 'OK',
-            'data' => $therapists
-        ], 200);
+        return new TherapistResourceCollection($therapists); 
     }
 
     /**
@@ -40,7 +38,7 @@ class TherapistController extends Controller
     public function show($therapistId)
     {
         $therapist = Therapist::where('id', $therapistId)
-                                ->with(['user:id,first_name,last_name,email,role'])
+                                ->with(['user'])
                                 ->first();
 
         if (!$therapist) {
@@ -49,12 +47,7 @@ class TherapistController extends Controller
             ], 404);
         }
 
-        return response()->json([
-            'status' => 'success',
-            'code' => 200,
-            'message' => 'OK',
-            'data' => $therapist
-        ], 200);
+        return new TherapistResource($therapist); 
     }
 
     /**
@@ -65,15 +58,10 @@ class TherapistController extends Controller
     public function avilableTherapists()
     {
         $therapists = Therapist::where('availability', true)
-                                ->with(['user:id,first_name,last_name,email,role'])
+                                ->with(['user','verifications'])
                                 ->get();
 
-        return response()->json([
-            'status' => 'success',
-            'code' => 200,
-            'message' => 'OK',
-            'data' => $therapists
-        ], 200);
+        return new TherapistResourceCollection($therapists); 
     }
 
     /**
@@ -86,15 +74,10 @@ class TherapistController extends Controller
     {
     	$therapists = User::where([['first_name','like',"%{$name}%"], ['role','=','therapist']])
                             ->orWhere([['last_name','like',"%{$name}%"], ['role','=','therapist']])
-                            ->with('therapist')
+                            ->with('therapist.verifications')
                             ->get();
 
-        return response()->json([
-            'status' => 'success',
-            'code' => 200,
-            'message' => 'OK',
-            'data' => $therapists
-        ], 200);
+        return new SearchTherapistResourceCollection($therapists); 
     }
 
     /**
@@ -187,42 +170,29 @@ class TherapistController extends Controller
     public function unverifiedTherapists()
     {
         $therapists = Therapist::where('verified', false)
-                                ->with([
-                                    'user:id,first_name,last_name,email,role',
-                                    'verifications'
-                                ])->get();
+                                ->with(['user','verifications'])
+                                ->get();
 
-        return response()->json([
-            'status' => 'success',
-            'code' => 200,
-            'message' => 'OK',
-            'data' => $therapists
-        ], 200);
+        return new TherapistResourceCollection($therapists); 
     }
 
     public function verifiedTherapists()
     {
         $therapists = Therapist::where('verified', true)
-                                ->with([
-                                    'user:id,first_name,last_name,email,role',
-                                    'verifications'
-                                ])->get();
+                                ->with(['user','verifications'])
+                                ->get();
 
-        return response()->json([
-            'status' => 'success',
-            'code' => 200,
-            'message' => 'OK',
-            'data' => $therapists
-        ], 200);
+        return new TherapistResourceCollection($therapists); 
     }
 
     /**
      * Update a therapist's data
      *
+     * @param \App\Http\Requests\UpdateTherapistRequest  $request
      * @param int  $therapistId
      * @return array
      */
-    public function update(Request $request, $therapistId)
+    public function update(UpdateTherapistRequest $request, $therapistId)
     {
         // Check if this action is performed by the logged in therapist
         if (Auth::user()->therapist->id != $therapistId) {
@@ -231,67 +201,35 @@ class TherapistController extends Controller
             ], 403);
         }
 
-        // Validate input
-        $validate = Validator::make($request->all(),[
-            'first_name' => 'required|min:2',
-            'last_name' => 'required|min:2',
-            'password' => 'required',
-            'fee_per_hour' => 'required|digits_between:0,1000000',
-            'years_of_experience' => 'numeric',
-            'availability' => ['required',Rule::in([true,false])],
-            'name_of_practice' => 'required|string',
-            'office_phone' => 'required|min:10',
-            'address_line_1' => 'required|string|min:3',
-            'city' => 'required|string|min:3',
-            'state' => 'required|string|min:3',
-            'country' => 'required|string|min:3',
-            'personal_pronouns' => 'required|string|min:3',
-            'type_of_therapist' => 'required',
-            'type_of_license' => 'required',
-			'year_licensed' => 'required',
-            'years_of_experience' => 'required',
-            'personal_statement' => 'required|string|min:10',
-            'practice_website' => 'required|url',
+        DB::beginTransaction();
+
+        // Update user table
+        $user = $request->only(['title', 'first_name', 'last_name', 'phone', 'email', 'password', 'role', 'image']);
+
+        Auth::user()->update([
+            "title" => $user['title'] ?? null,
+            "first_name" => $user['first_name'],
+            "last_name" => $user['last_name'],
+            "phone" => $user['phone'] ?? null,
+            "password" => bcrypt($user['password'])
         ]);
 
-        if ($validate->fails()) {
-            return response()->json([
-                'error' => [
-                    'code' => 422,
-                    'message' => "Unprocessable Entity",
-                    'errors' => $validate->errors()
-                ]
-            ], 422);
-        } else {
-            DB::beginTransaction();
+        // Update therapist table
+        $therapistData = $request->except(['title', 'first_name', 'last_name', 'phone', 'email', 'password', 'role', 'image']);
+        Auth::user()->therapist->update($therapistData);
 
-            // Update user table
-            $user = $request->only(['title', 'first_name', 'last_name', 'phone', 'email', 'password', 'role', 'image']);
+        DB::commit();
 
-            Auth::user()->update([
-                "title" => $user['title'] ?? null,
-                "first_name" => $user['first_name'],
-                "last_name" => $user['last_name'],
-                "phone" => $user['phone'] ?? null,
-                "password" => bcrypt($user['password'])
-            ]);
-
-            // Update therapist table
-            $therapistData = $request->except(['title', 'first_name', 'last_name', 'phone', 'email', 'password', 'role', 'image']);
-            Auth::user()->therapist->update($therapistData);
-
-            DB::commit();
-
-            return response()->json([
-                'status' => 'success',
-                'code' => 200,
-                'message' => 'OK'
-            ], 200);
-        }
+        return response()->json([
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'OK'
+        ], 200);
+        
     }
 
     /**
-	 * toggles the availability of the user
+	 * Toggles the availability of the user
 	 *
 	 * @param string  $therapistId
 	 * @return array
