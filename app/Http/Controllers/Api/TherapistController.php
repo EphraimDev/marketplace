@@ -36,7 +36,7 @@ class TherapistController extends Controller
      * @return array
      */
     public function show($therapistId)
-    {
+    {   
         $therapist = Therapist::where('id', $therapistId)
                                 ->with(['user'])
                                 ->first();

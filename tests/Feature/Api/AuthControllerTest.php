@@ -21,11 +21,11 @@ class AuthControllerTest extends TestCase
         $response = $this->json(
             'POST','api/v1/auth/login',
             ['email' => 'sample@email.com',
-            'password' => 'secret']
+            'password' => 'secret'] 
         );
         //Assert it was successful and a token was received
         $response->assertStatus(200);
-        $this->assertArrayHasKey('success',$response->json());
+        $this->assertArrayHasKey('status',$response->json());
     } 
 
     public function test_that_an_unauthorised_user_can_not_login()
@@ -50,9 +50,9 @@ class AuthControllerTest extends TestCase
         //Send post request
         $response = $this->json('POST','/api/v1/auth/register',$userArray);
         //Assert it was successful
-        $response->assertStatus(200);
+        $response->assertStatus(201);
         //Assert we received a token
-        $this->assertArrayHasKey('success',$response->json());
+        $this->assertArrayHasKey('status',$response->json());
     }
 
     // public function test_that_an_authorised_user_can_view_user_detail()

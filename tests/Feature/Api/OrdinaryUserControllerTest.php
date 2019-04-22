@@ -15,7 +15,7 @@ class OrdinaryUserControllerTest extends TestCase
         //Authenticate and create country
        // $token = $this->authenticate();
 
-        $ordinaryUser = factory('App\User')->create(['role'=>'ordinary_user']);
+        $ordinaryUser = factory('App\User')->create(['role'=>'ordinary-user']);
         $userTherapist = factory('App\User')->create(['role'=>'therapist']);
 
         //call route and assert response
@@ -27,15 +27,15 @@ class OrdinaryUserControllerTest extends TestCase
         $response->assertStatus(200);
 
         //Assert the count is 1 and the name of the first country correlates
-        $this->assertEquals(1,count($response->json()['users']));
+        $this->assertEquals(1,count($response->json()['data']));
 
         $this->assertEquals(
             $ordinaryUser->first_name,
-            $response->json()['users'][0]['first_name']
+            $response->json()['data'][0]['first_name']
         );
         $this->assertNotEquals(
             $userTherapist->first_name,
-            $response->json()['users'][0]['first_name']
+            $response->json()['data'][0]['first_name']
         );
     }
 
@@ -44,7 +44,7 @@ class OrdinaryUserControllerTest extends TestCase
         //Authenticate and create country
        // $token = $this->authenticate();
 
-       $ordinaryUser = factory('App\User')->create(['role'=>'ordinary_user']);
+       $ordinaryUser = factory('App\User')->create(['role'=>'ordinary-user']);
 
        //call route and assert response
        $response = $this->json(
@@ -56,7 +56,7 @@ class OrdinaryUserControllerTest extends TestCase
 
        $this->assertEquals(
             $ordinaryUser->first_name,
-            $response->json()['users']['first_name']
+            $response->json()['data']['first_name']
         );
     }
 
@@ -65,8 +65,8 @@ class OrdinaryUserControllerTest extends TestCase
     //     //Authenticate and create country
     //    // $token = $this->authenticate();
 
-    //    $ordinaryUser = factory('App\User')->create(['role'=>'ordinary_user']);
-    //    $makeOrdinaryUser = factory('App\User')->make(['role'=>'ordinary_user']);
+    //    $ordinaryUser = factory('App\User')->create(['role'=>'ordinary-user']);
+    //    $makeOrdinaryUser = factory('App\User')->make(['role'=>'ordinary-user']);
 
     //    //call route and assert response
     //    $response = $this->json(
@@ -75,24 +75,24 @@ class OrdinaryUserControllerTest extends TestCase
     //         $makeOrdinaryUser->toArray()
     //    );
 
-    //    $this->assertArrayHasKey('suuccess',$response->json());
+    //    $this->assertArrayHasKey('status',$response->json());
 
     // }
 
-    public function test_that_an_authorised_user_can_delete_an_ordinary_user()
-    {
-        //Authenticate and create country
-       // $token = $this->authenticate();
+    // public function test_that_an_authorised_user_can_delete_an_ordinary_user()
+    // {
+    //     //Authenticate and create country
+    //    // $token = $this->authenticate();
 
-       $ordinaryUser = factory('App\User')->create(['role'=>'ordinary_user']);
+    //    $ordinaryUser = factory('App\User')->create(['role'=>'ordinary-user']);
 
-       $response = $this->json(
-           'DELETE',
-           'api/v1/ordinary-users/'.$ordinaryUser->id
-       );
+    //    $response = $this->json(
+    //        'DELETE',
+    //        'api/v1/ordinary-users/'.$ordinaryUser->id
+    //    );
        
-       $this->assertNull($ordinaryUser->fresh());
+    //    $this->assertNull($ordinaryUser->fresh());
 
-       $this->assertArrayHasKey('suuccess',$response->json());
-    }
+    //    $this->assertArrayHasKey('status',$response->json());
+    // }
 }
