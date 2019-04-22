@@ -24,7 +24,7 @@ class TherapistController extends Controller
      */
     public function index()
     {
-    	$therapists = Therapist::with(['user'])->get();
+    	$therapists = Therapist::with(['user', 'verifications'])->get();
 
         return new TherapistResourceCollection($therapists); 
     }
@@ -38,7 +38,7 @@ class TherapistController extends Controller
     public function show($therapistId)
     {   
         $therapist = Therapist::where('id', $therapistId)
-                                ->with(['user'])
+                                ->with(['user','verifications'])
                                 ->first();
 
         if (!$therapist) {
