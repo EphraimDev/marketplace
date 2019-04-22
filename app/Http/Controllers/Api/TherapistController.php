@@ -266,16 +266,18 @@ class TherapistController extends Controller
             DB::beginTransaction();
 
             // Update user table
-            $user = $request->only(['first_name','last_name','email','password', 'role']);
+            $user = $request->only(['title', 'first_name', 'last_name', 'phone', 'email', 'password', 'role', 'image']);
 
             Auth::user()->update([
+                "title" => $user['title'] ?? null,
                 "first_name" => $user['first_name'],
                 "last_name" => $user['last_name'],
+                "phone" => $user['phone'] ?? null,
                 "password" => bcrypt($user['password'])
             ]);
 
             // Update therapist table
-            $therapistData = $request->except(['first_name','last_name','email','password', 'role']);
+            $therapistData = $request->except(['title', 'first_name', 'last_name', 'phone', 'email', 'password', 'role', 'image']);
             Auth::user()->therapist->update($therapistData);
 
             DB::commit();

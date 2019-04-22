@@ -15,7 +15,6 @@ class CreateTherapistsTable extends Migration
     {
         Schema::create('therapists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->nullable();
             $table->string('type_of_therapist')->nullable();
             $table->string('type_of_license')->nullable();
             $table->integer('years_of_experience');

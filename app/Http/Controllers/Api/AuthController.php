@@ -154,7 +154,7 @@ class AuthController extends Controller
                 'role' => 'therapist',
             ]);
 
-            $data = $request->except(['first_name','last_name','email','password', 'role']);
+            $data = $request->except(['title', 'first_name','last_name','email','password', 'role']);
             $data['user_id'] = $user->id;
             $therapist = Therapist::create($data);
 
@@ -162,6 +162,7 @@ class AuthController extends Controller
 
 			$response = [
                 'id' => $user->id,
+                'title' => $user->title,
 				'first_name' => $user->first_name,
 				'last_name' => $user->last_name,
 				'role' => $user->role,
