@@ -7,6 +7,7 @@ use App\User;
 use Validator;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use App\Services\FileUploadService;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -14,19 +15,21 @@ use Illuminate\Support\Facades\Auth;
 class OrdinaryUserController extends Controller
 {
     private $paystack = 'https://api.paystack.co';
+
     //Paystack private key set in the .env file
     private $paystack_skey;
 
-    public function __construct()
+    public function __construct(FileUploadService $fileUploadService)
     {
         //Paystack private key set in the .env file
         $this->paystack_skey = Config('app.Paystack_skey');
+        $this->fileUploadService = $fileUploadService;
     }
 
     /**
      * Fetch all ordinary users
      *
-     * @return array
+     * @return Illuminate\Http\Response
      */
     public function index()
     {
@@ -44,7 +47,7 @@ class OrdinaryUserController extends Controller
      * Fetch a single ordinary user
      *
      * @param  int  $userId
-     * @return array
+     * @return Illuminate\Http\Response
      */
     public function show($userId)
     {
@@ -67,22 +70,25 @@ class OrdinaryUserController extends Controller
     /**
      * Update an ordinary user
      *
-     * @param  int  $userId
-     * @return array
+     * @param \Illuminate\Http\Request  $request
+     * @param int  $userId
+     * @return Illuminate\Http\Response
      */
     public function update(Request $request, $userId)
     {
+        $authUser = Auth::user();
+
         // Check if this action is performed by the logged in user
-        if (Auth::user()->id != $userId) {
+        if ($authUser->id != $userId) {
             return response()->json([
                 'error' => ['code' => 403, 'message' => "Forbidden to update another user's details"]
             ], 403);
         }
 
         $validate = Validator::make($request->all(), [
+            'photo'=>'nullable|mimes:jpeg,jpg,png|max:800', //Max 800KB
             'first_name' => 'required|min:2',
-            'last_name' => 'required|min:2',
-            'password' => 'required',
+            'last_name' => 'required|min:2'
         ]);
 
         if ($validate->fails()) {
@@ -93,30 +99,43 @@ class OrdinaryUserController extends Controller
                     'errors' => $validate->errors()
                 ]
             ], 422);
-        } else {
-            DB::beginTransaction();
+        } 
 
-            $userResponse = Auth::user()->update([
-                "first_name" => $request['first_name'],
-                "last_name" => $request['last_name'],
-                "password" => bcrypt($request['password'])
-            ]);
+        // Upload image if it exists
+        if($request->hasFile('photo')) {
+            $image = $this->fileUploadService->uploadFile($request->file('photo'));
 
-            DB::commit();
-
-            return response()->json([
-                'status' => 'success',
-                'code' => 200,
-                'message' => 'OK'
-            ], 200);
+            if(!is_null($authUser->image_name)) {
+                $this->fileUploadService->deleteFile($authUser->image_name);
+            }
         }
+        
+        DB::beginTransaction();
+
+        $userResponse = $authUser->update([
+            "title" => $request->title ?? null,
+            "first_name" => $request->first_name,
+            "last_name" => $request->last_name,
+            "phone" => $request->phone ?? null,
+            "image_url" => $image['secure_url'] ?? $authUser->image_url,
+            "image_name" => $image['public_id'] ?? $authUser->image_name
+        ]);
+
+        DB::commit();
+
+        return response()->json([
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'OK'
+        ], 200);
+        
     }
 
     /**
      * An ordinary user can pay via Paystack
      *
-     * @param  int  $id
-     * @return array
+     * @param int  $id
+     * @return Illuminate\Http\Response
      */
     public function pay($id)
     {
@@ -136,6 +155,12 @@ class OrdinaryUserController extends Controller
         return response(["success" => $verificationStatus]);
     }
 
+    /**
+     * Verify user's transaction
+     *
+     * @param string  $fee
+     * @param string  $reference
+     */
     private function verifyTransaction($fee, $reference)
     {
         try {

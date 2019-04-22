@@ -38,6 +38,8 @@ Route::middleware('auth:api')->get('/auth/user', "AuthController@details");
 
 Route::post('/auth/register/therapist', "AuthController@registerTherapist");
 
+Route::middleware('auth:api')->put('/auth/change-password', "AuthController@changePassword");
+
 
 /**
  * Therapist routes
@@ -76,7 +78,7 @@ Route::get('/ordinary-users', "OrdinaryUserController@index");
 
 Route::get('/ordinary-users/{userId}', "OrdinaryUserController@show");
 
-Route::middleware('auth:api')->put('/ordinary-users/{userId}', "OrdinaryUserController@update");
+Route::middleware('auth:api')->post('/ordinary-users/{userId}', "OrdinaryUserController@update");
 
 Route::post('/ordinary-users/{id}/pay', "OrdinaryUserController@pay");
 

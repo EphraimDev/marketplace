@@ -9,6 +9,7 @@ use App\Therapist;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
@@ -59,7 +60,7 @@ class AuthController extends Controller
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
 			'email' => 'required|email|unique:users',
-            'password' => 'required',
+            'password' => 'required|min:6',
         ]);
 
         if ($validator->fails()) {
@@ -106,7 +107,7 @@ class AuthController extends Controller
      * This endpoint firstly creates a user account and
      * associates that user account with a therapist account
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
 
@@ -116,7 +117,7 @@ class AuthController extends Controller
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
             'email' => 'required|email|unique:users',
-            'password' => 'required',
+            'password' => 'required|min:6',
             'fee_per_hour' => 'required|digits_between:0,1000000',
             'years_of_experience' => 'numeric',
             'availability' => ['required',Rule::in([true,false])],
@@ -209,5 +210,52 @@ class AuthController extends Controller
 	        ->update(['revoked' => true]);
 
         return response()->json(['status' => true]);
+    }
+
+    /**
+     * Change user's password
+     *
+     * @param \App\Http\Requests\Request  $request
+     * @return Illuminate\Http\Response
+     */
+    public function changePassword(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'old_password' => 'required|string|min:6',
+            'new_password' => 'required|string|min:6',
+            'confirm_password' => 'required|string|min:6|same:new_password'
+        ]);
+
+        if ($validate->fails()) {
+            return response()->json([
+                'error' => [
+                    'code' => 422,
+                    'message' => "Unprocessable Entity",
+                    'errors' => $validate->errors()
+                ]
+            ], 422);
+        }
+        
+        $user = User::find(Auth::user()->id);
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return response()->json([
+                'error' => [
+                    'code' => 401,
+                    'message' => "Unauthorized",
+                    'error' => "Old password is wrong!"
+                ]
+            ], 401);
+        } 
+    
+        $user->password = bcrypt($request->new_password);
+        $user->update();    
+
+        return response()->json([
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'OK',
+            'data' => true
+        ], 200);
     }
 }
