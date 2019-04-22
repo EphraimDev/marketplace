@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import axios from 'axios';
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
 
 import './UserProfilePage.css';
 import Footer from '../Footer/Footer';
@@ -11,6 +14,7 @@ const token = localStorage.getItem("token");
 const userId = localStorage.getItem("userId");
 const baseUrl = 'https://api-marketplace.herokuapp.com';
 axios.defaults.headers.common = {'Authorization': `Bearer ${token}`,'Content-Type':'application/json'}
+let container;
 
 class UserProfile extends Component {
     userId = this.props.userId
@@ -57,25 +61,79 @@ class UserProfile extends Component {
             }
         })
     };
-
+    handleProfileClick = e => {
+        e.preventDefault();
+        if (!this.state.profile) {
+            this.setState({ profile: true, homeClass: 'home', profileClass: "your_profile" }, () => {   
+                this.profile.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest"
+                })
+            })
+    }
+    }
     handleSubmit = e => {
         e.preventDefault();
         const { title, firstname, lastname, email, number } = this.state;
+        if (title === ""){
+           this.setState({ title : this.state.user.title || 'Mr'})
+        }
+        if (firstname === ""){
+            this.setState({ firstname :  this.state.user.first_name})
+        }
+        if (lastname === ""){
+            this.setState({ lastname :  this.state.user.last_name})
+        }
+        if (email === ""){
+            this.setState({ email :  this.state.user.email})
+        }
+        if (number === "" && !this.state.user.phone && !isNaN(number)){
+            toastr.options = {
+                positionClass : 'toast-top',
+                hideDuration: 300,
+                timeOut: 5000
+              }
+              toastr.clear()
+              toastr.error("Please check that you have inputed a cuorrect phone number")
+        }
         const formData = new FormData();
         formData.set('title', title);
-        formData.set('firstname', firstname);
-        formData.set('lastname', lastname);
+        formData.set('first_name', firstname);
+        formData.set('last_name', lastname);
         formData.set('email', email);
-        formData.set('number', number);
-
+        formData.set('phone', number);
+        console.log(formData)
         axios({
             method: "PUT",
-            url: `${baseUrl}/api/v1/ordinary-users/${this.userId}`,
+            url: `${baseUrl}/api/v1/ordinary-users/${userId}`,
             data: formData,
             headers: {
-              Authorization: token
+              'Authorization': "Bearer " + token
             }
         })
+        .then(res => {
+            console.log(res);
+            this.setState({ user: res.data.data },()=>{
+                toastr.options = {
+                    positionClass : 'toast-top',
+                    hideDuration: 300,
+                    timeOut: 5000
+                  }
+                  toastr.clear()
+                  toastr.info("Profile updated successfully")
+                });
+                
+            })
+            .catch( e => {
+              console.log(e)
+              toastr.options = {
+                positionClass : 'toast-top',
+                hideDuration: 300,
+                timeOut: 5000
+              }
+              toastr.clear()
+              toastr.error("There was an error updating your profile")
+          })
     } 
 
     componentWillMount() {
@@ -115,7 +173,8 @@ class UserProfile extends Component {
     render() {
         return (
             <div>
-                <Navbar />{
+                <Navbar />
+                {
                     this.state.loader ? <Loader /> :
                 <div className="main_page">
                     <div className="jumbo">
@@ -134,7 +193,10 @@ class UserProfile extends Component {
                                 <div className="profile_details">
                                     <p className="user_name">{this.state.user.first_name +" " + this.state.user.last_name}</p>
                                     <p className="user_email">{this.state.user.email}</p>
-                                    <p className="edit_profile">Edit your profile to input phone number</p>
+                                    { !this.state.user.phone ?
+                                    <p className="edit_profile" onClick={this.handleProfileClick}>Edit your profile to input phone number</p> :
+                                    <p className="user_email">{this.state.user.phone}</p>
+                                    }
                                 </div>
                             </div>
                         <div className="breadcrumb2">
@@ -144,7 +206,7 @@ class UserProfile extends Component {
                     </div>
 
                     {this.state.profile ?
-                        <div className="tabs">
+                        <div className="tabs" ref={this.profile}>
                         <p className="tab_menu">Edit Profile</p>
                             <hr style={{ width: "85%", borderBottom:"1px outset rgba(194, 190, 190,0.8)" }} />
                         <form>
@@ -160,12 +222,12 @@ class UserProfile extends Component {
                             </div>  
                             <div className="profile_name">
                                 <label>Phone Number</label>
-                                <input className="profile_inputs name" name="ctry" type="text" placeholder="(+234) Nigeria"  />
+                                <input className="profile_inputs name" name="ctry" type="text" placeholder="(+234) Nigeria" vlaue="(+234) Nigeria" disabled />
                                 <input className="profile_inputs name" name="number" type="text" value={this.state.number} onChange={this.handleChange} />
                             </div>
                             <div className="profile_name" style={{marginTop:"30px"}}>
-                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white"}} type="submit" value="Change Password"  />
-                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white"}} type="submit" value="Save Changes" />
+                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white"}} type="submit" value="Change Password" onClick={this.handleChangePasword} />
+                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white",cursor:"pointer"}} type="submit" value="Save Changes" onClick={this.handleSubmit} />
                             </div>
                         </form>
                     </div> :
@@ -173,7 +235,7 @@ class UserProfile extends Component {
                             <p className="tab_menu">Your Appointments</p>
                             <hr style={{width:"85%",height:'5px'}}/>
                             {this.state.appointments.length < 1 ? <div><p>You haven't scheduled any appointments yet</p>
-                                        <p>You can schedule one here</p> </div> : this.state.appointments.map(appointment => {
+                                        <p>You can schedule one <Link to="/therapists"> here. </Link></p> </div> : this.state.appointments.map(appointment => {
                                             return (
                                     <p>{appointment}</p>
                                 )
