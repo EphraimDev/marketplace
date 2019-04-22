@@ -54,7 +54,7 @@ Route::middleware('auth:api')->put('/therapists/{therapistId}/availability/chang
 
 Route::post('/therapists/search/{name}', "TherapistController@search");
 
-Route::middleware('auth:api')->put('/therapists/{therapistId}', "TherapistController@update");
+Route::middleware('auth:api')->post('/therapists/{therapistId}', "TherapistController@update");
 
 Route::get('/therapists/{therapistId}/verification/status', "TherapistController@verifyStatus");
 

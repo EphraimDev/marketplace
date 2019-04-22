@@ -7,16 +7,22 @@ use App\User;
 use Validator;
 use App\Therapist;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Services\FileUploadService;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\TherapistResource;
-use App\Http\Requests\UpdateTherapistRequest;
 use App\Http\Resources\TherapistResourceCollection;
 use App\Http\Resources\SearchTherapistResourceCollection;
 
 class TherapistController extends Controller
 {
+    public function __construct(FileUploadService $fileUploadService)
+    {
+        $this->fileUploadService = $fileUploadService;
+    }
+
     /**
      * Get all the therapists
      *
@@ -192,30 +198,71 @@ class TherapistController extends Controller
      * @param int  $therapistId
      * @return array
      */
-    public function update(UpdateTherapistRequest $request, $therapistId)
+    public function update(Request $request, $therapistId)
     {
+        $authUser = Auth::user();
+
         // Check if this action is performed by the logged in therapist
-        if (Auth::user()->therapist->id != $therapistId) {
+        if ($authUser->therapist->id != $therapistId) {
             return response()->json([
                 'error' => ['code' => 403, 'message' => "Forbidden to update another therapist's details"]
             ], 403);
         }
 
+        $validator = Validator::make($request->all(), [
+            'photo'=>'nullable|mimes:jpeg,jpg,png|max:800', //Max 800KB
+            'first_name' => 'required|min:2',
+            'last_name' => 'required|min:2',
+            'fee_per_hour' => 'required|digits_between:0,1000000',
+            'years_of_experience' => 'numeric',
+            'availability' => ['required',Rule::in([true,false])],
+            'name_of_practice' => 'required|string',
+            'office_phone' => 'required|min:10',
+            'address_line_1' => 'required|string|min:3',
+            'city' => 'required|string|min:3',
+            'state' => 'required|string|min:3',
+            'country' => 'required|string|min:3',
+            'personal_pronouns' => 'required|string|min:3',
+            'type_of_therapist' => 'required',
+            'type_of_license' => 'required',
+            'year_licensed' => 'required',
+            'years_of_experience' => 'required',
+            'personal_statement' => 'required|string|min:10',
+            'practice_website' => 'required|url',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => [
+                    'code' => 422,
+                    'message' => "Unprocessable Entity",
+                    'errors' => $validator->errors()
+                ]
+            ], 422);
+        } 
+
+        // Upload image if it exists
+        if($request->hasFile('photo')) {
+            $image = $this->fileUploadService->uploadFile($request->file('photo'));
+
+            if(!is_null($authUser->image_name)) {
+                $this->fileUploadService->deleteFile($authUser->image_name);
+            }
+        }
+
         DB::beginTransaction();
 
-        // Update user table
-        $user = $request->only(['title', 'first_name', 'last_name', 'phone', 'email', 'password', 'role', 'image']);
-
         Auth::user()->update([
-            "title" => $user['title'] ?? null,
-            "first_name" => $user['first_name'],
-            "last_name" => $user['last_name'],
-            "phone" => $user['phone'] ?? null,
-            "password" => bcrypt($user['password'])
+            "title" => $request->title ?? $authUser->title,
+            "first_name" => $request->first_name ?? $authUser->first_namel,
+            "last_name" => $request->last_name ?? $authUser->last_name,
+            "phone" => $request->phone ?? $authUser->phone,
+            "image_url" => $image['secure_url'] ?? $authUser->image_url,
+            "image_name" => $image['public_id'] ?? $authUser->image_name
         ]);
 
         // Update therapist table
-        $therapistData = $request->except(['title', 'first_name', 'last_name', 'phone', 'email', 'password', 'role', 'image']);
+        $therapistData = $request->except(['title', 'first_name', 'last_name', 'phone', 'role', 'photo']);
         Auth::user()->therapist->update($therapistData);
 
         DB::commit();
