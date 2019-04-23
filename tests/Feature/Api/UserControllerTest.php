@@ -49,4 +49,9 @@ class UserControllerTest extends TestCase
             $response->json()['data']['email']
         );
     }
+
+    public function test_test(){
+        $test = factory('App\Verifications')->create();
+        dd($test);
+    }
 }

@@ -1,24 +1,31 @@
 <?php
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder {
-
-    public function run()
-    {
-        $this->call('TherapistsTableSeeder');
-
-        $this->command->info('Therapists table seeded!');
-    }
-
-}
-
 class TherapistsTableSeeder extends Seeder {
 
-    public function run()
-    {
-    //    DB::table('Therapists')->delete();
+    protected $noTherapist = 15;
 
-       // therapist::create(array('email' => ''));
+    public function run()
+    {   
+        $this->clearFiles();
+
+        $therapists = factory(App\Therapist::class, $this->noTherapist)->create();
+        
+        $therapists->each(function($therapist){
+            factory(App\Verifications::class)->create(
+                ['therapist_id'=>$therapist->id]
+            );
+
+            factory('App\Verifications')->states('licenseImage')->create(
+                ['therapist_id'=>$therapist->id]
+            );
+        });
     }
 
+    protected function clearFiles()
+    {
+        $files = Storage::files('verification');
+
+        Storage::delete($files);
+    }
 }
