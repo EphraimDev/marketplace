@@ -57,6 +57,10 @@
     font-weight: bold;
     height: 100%;
     cursor: pointer;
+    color: black;
+}
+.home a{
+    color: black;
 }
 
 .bread_right{
@@ -171,6 +175,17 @@ label{
     width: 130px; 
 }
 
+.update{
+    background-color: white;
+    border-radius: 5px;
+    flex-direction: column;
+}
+
+.update_tabs{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20%;
+}
 
 @media screen and (max-width: 768px) {
     .profile_name{
