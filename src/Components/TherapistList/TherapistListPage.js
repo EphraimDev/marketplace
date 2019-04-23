@@ -12,7 +12,6 @@ import { removeItem, addToCart } from "../../actions/cartActions";
 class TherapistListPage extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = {
       textField: "",
       opts: "",
