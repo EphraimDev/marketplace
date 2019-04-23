@@ -5,6 +5,7 @@
 use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use Illuminate\Http\UploadedFile;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,23 +32,73 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->define(App\Therapist::class, function (Faker $faker) {
     return [
-
        'rating'=>rand(0,5),
        'fee_per_hour'=>rand(10000,20000),
        'years_of_experience'=>rand(2,10),
- 
-
-
        'city'=>$faker->city,
        'state'=>$faker->state,
        'country'=>$faker->country,
-       'title'=>$faker->title,
-
-
        'type_of_license'=>'LPC',
-
+       'type_of_therapist'=>$faker->bs,
        'personal_statement'=>$faker->paragraph,
        'practice_website'=>$faker->url,
-       'user_id'=>App\User::where('role','therapist')->get()->random()->id
+       'user_id'=>function(){
+           return factory('App\User')->create(
+               ['role'=>'therapist']
+           )->id;
+       }
+    ];
+});
+
+$factory->define(App\Appointment::class, function (Faker $faker) {
+    $firstTime = $faker->time;
+    $secondTime = $faker->time;
+    return [
+        'user_id'=>function(){
+            return factory('App\User')->create(
+                ['role'=>'ordinary-user']
+            )->id;
+        },
+        'therapist_id'=>function(){
+            return factory('App\Therapist')->create()->id;
+        },
+        'reason_for_visit'=>$faker->bs,
+        'previous_therapy'=>$faker->boolean,
+        'status'=>'pending',
+        'payment_mode'=>'paystack',
+        'appointment_date'=>$faker->date,
+        'appointment_start_time'=>$firstTime > $secondTime?$secondTime:$firstTime,
+        'appointment_end_time'=>$firstTime > $secondTime?$firstTime:$secondTime,
+    ];
+});
+
+$factory->define(App\Verifications::class, function (Faker $faker) {
+    $file = UploadedFile::fake()->image('avatar.jpg');
+
+    $identityCard = Storage::putFileAs(
+        'verification', $file,'identity_card-'.$file->hashName()
+    );
+
+    $identityCard = Storage::url($identityCard);
+
+    return[
+        'therapist_id'=>function(){
+            return factory('App\Therapist')->create()->id;
+        },
+        'document_link'=>$identityCard
+    ];
+});
+
+$factory->state(App\Verifications::class, 'licenseImage', function ($faker) {
+    $file = UploadedFile::fake()->image('avatar.jpg');
+
+    $licenseImage = Storage::putFileAs(
+        'verification', $file,'license_image-'.$file->hashName()
+    );
+    
+    $licenseImage = Storage::url($licenseImage);
+
+    return [
+        'document_link' => $licenseImage
     ];
 });
