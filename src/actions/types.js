@@ -23,3 +23,8 @@ export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_FAILURE = "USER_LOGIN_FAILURE";
 
 export const LOGGED_IN = "LOGGED_IN";
+
+export const FETCH_THERAPISTS = "FETCH_THERAPISTS";
+
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_ITEM = "REMOVE_ITEM";
