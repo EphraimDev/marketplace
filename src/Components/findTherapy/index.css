@@ -1,0 +1,260 @@
+*,
+*::before,
+*::after{
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif; 
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+h3, h4 {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.jumbotron {
+    background: url("bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat:no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh
+}
+
+.jumbotron > * {
+    color: white
+}
+
+.jumbotron > p {
+    margin-top: 0
+}
+
+.lg-container {
+    width: 85%;
+    margin: auto;
+}
+
+#search-form {
+    display: flex;
+    padding: 2em;
+    margin: auto;
+    width: 85%;
+    position: relative;
+    z-index: 1;
+    background-color: white;
+    top: -50px;
+    box-shadow: 0 2px 5px grey;
+}
+
+input, select {
+    margin-right: 5px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 4px;
+    border: 1px solid grey;
+    width: 40%
+}
+
+select:invalid { 
+    color: gray; 
+}
+
+.btn {
+    background-color: #64ccd0;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid #64ccd0;
+    padding: 12px 7px; 
+}
+
+hr {
+    width: 30px;
+    height: 3px;
+    color: black;
+}
+
+section > h2, section > p {
+    text-align: center
+}
+
+section {
+    margin-bottom: 4rem;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+hr {
+    height: 3px;
+    width: 30px;
+    background-color: #64ccd0;
+    border: 1px solid #64ccd0;
+}
+
+.card{
+    width: 22%;
+    transition: all 0.3s;
+    box-shadow: 0 2px 2px lightgrey;
+}
+
+.card:hover {
+    box-shadow: 5px 5px 6px 2px lightgrey;
+}
+
+.img-box {
+    width: 100%;
+}
+
+.reviews {
+    margin: 0;
+    color: lightgray;
+}
+
+.location, .type {
+    margin: 5px 0;
+}
+
+.info {
+    margin-left: 10px;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.country {
+    color: #64ccd0;
+}
+
+.us {
+    width: 12rem
+}
+
+.issue {
+    width: 17%;
+    border: 2px solid #64ccd0;
+    border-radius: 6px;
+    padding: 15px 15px;
+    text-align: center;
+}
+
+.issue > h4 {
+    margin-top: 0;
+    font-size: 15px;
+}
+
+.issue > p {
+    margin: 0;
+}
+
+.info > a {
+    text-decoration: none;
+    color: #64ccd0;
+}
+
+.blog-line {
+    width: 100%;
+    border: none;
+    height: 0.5px;
+    background-color: lightgray
+}
+
+.icon {
+    width: 40px;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #64ccd08f;
+    background-color: #64ccd08f;
+    position: relative;
+    top: -20px;
+    left: 25px;
+}
+
+.step > h3 {
+    text-align: center;
+    font-weight: bold
+}
+
+.step > p {
+    margin: 0
+}
+
+.paragraph {
+    font-size: 14px;
+    color: lightgrey;
+}
+
+.blog {
+    width: 30%;
+}
+
+.blog-btn {
+    display: block;
+    margin: 20px auto
+}
+
+@media screen and (max-width: 750px) {
+    .card, .blog {
+        width: 46%;
+        margin-bottom: 20px;
+    }
+
+    .issue {
+        width: 30%;
+        margin-bottom: 10px;
+    }
+   
+}
+
+@media screen and (max-width: 550px) {
+    #search-form {
+        flex-direction: column;
+        top: -100px;
+        width: 95%;
+    }
+
+    input, select {
+        width: 100%;
+        margin-bottom: 10px
+    }
+
+    .lg-container {
+        width: 95%;
+    }
+
+    .row {
+        justify-content: center
+    }
+
+    .card, .blog {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .issue {
+        margin-right: 20px;
+    }
+
+    .step {
+        width: 40%;
+        margin-bottom: 10px;
+    }
+}

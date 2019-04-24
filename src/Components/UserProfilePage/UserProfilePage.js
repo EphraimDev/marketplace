@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
 import axios from 'axios';
 import toastr from 'toastr'
 import 'toastr/build/toastr.min.css'
