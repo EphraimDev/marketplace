@@ -69,7 +69,7 @@ class TherapistListPage extends Component {
 			<div>
 				<Navbar />
 				<PageNav link={"Nigeria (811 Therapists)"} />
-			<div class="container">
+			<div className="container">
 		<section className="therapist-section">
 		<form onSubmit={this.onSubmit}>		
     <div className="search-field">	
@@ -105,16 +105,16 @@ class TherapistListPage extends Component {
 	<Therapist />
   </section>
  	{/* <!-- pagination starts here --> */}
-  <div class="pagination">
-    <p class="result">Showing Result 1-10 of 80</p>
-    <p class="arrow"><i class="fas fa-long-arrow-alt-left"></i></p>
-    <ul class="pages">
-      <li class="active"> <a href="" > 1</a></li>
-      <li class="page"><a href=""> 2</a></li>
-      <li class="page"><a href=""> 3</a></li>
-      <li class="page"><a href=""> 4</a></li>
+  <div className="pagination">
+    <p className="result">Showing Result 1-10 of 80</p>
+    <p className="arrow"><i className="fas fa-long-arrow-alt-left"></i></p>
+    <ul className="pages">
+      <li className="active"> <a href="" > 1</a></li>
+      <li className="page"><a href=""> 2</a></li>
+      <li className="page"><a href=""> 3</a></li>
+      <li className="page"><a href=""> 4</a></li>
     </ul>
-    <p class="arrow"><i class="fas fa-long-arrow-alt-right"></i></p>
+    <p className="arrow"><i className="fas fa-long-arrow-alt-right"></i></p>
   </div>
 </div>
 </div>
@@ -166,7 +166,7 @@ class TherapistListPage extends Component {
     return (
       <div>
         <Navbar />
-        <div class="containerx">
+        <div className="containerx">
           <section>
             <form onSubmit={this.onSubmit}>
               <div className="search-field">
@@ -219,28 +219,28 @@ class TherapistListPage extends Component {
             <TherapistList therapists={therapists} />
           </section>
           {/* <!-- pagination starts here --> */}
-          <div class="pagination">
-            <p class="result">Showing Result 1-10 of 80</p>
-            <p class="arrow">
-              <i class="fas fa-long-arrow-alt-left" />
+          <div className="pagination">
+            <p className="result">Showing Result 1-10 of 80</p>
+            <p className="arrow">
+              <i className="fas fa-long-arrow-alt-left" />
             </p>
-            <ul class="pages">
-              <li class="active">
+            <ul className="pages">
+              <li className="active">
                 {" "}
                 <a href=""> 1</a>
               </li>
-              <li class="page">
+              <li className="page">
                 <a href=""> 2</a>
               </li>
-              <li class="page">
+              <li className="page">
                 <a href=""> 3</a>
               </li>
-              <li class="page">
+              <li className="page">
                 <a href=""> 4</a>
               </li>
             </ul>
-            <p class="arrow">
-              <i class="fas fa-long-arrow-alt-right" />
+            <p className="arrow">
+              <i className="fas fa-long-arrow-alt-right" />
             </p>
           </div>
         </div>
