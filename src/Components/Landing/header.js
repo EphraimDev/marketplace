@@ -51,7 +51,7 @@ class Header extends React.Component {
                         <div className="col-sm-2 landing-input-submit">
                             <Input
                                 type={"submit"}
-                                class={"landing-header-input landing-submit"}
+                                class={"btn landing-header-input landing-submit"}
                                 name={"landing-header-submit"}
                                 value="Search"
                             />

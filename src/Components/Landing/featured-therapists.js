@@ -13,7 +13,7 @@ class FeaturedTherapists extends React.Component {
 
                 <div className="container">
                     <div className="card-deck">
-                        <div className="card mb-4">
+                        <div className="card mb-4 col-lg-3 col-sm-6">
                             <div className="view overlay">
                                 <img className="card-img-top" src="https://res.cloudinary.com/ephaig/image/upload/v1555447743/Bitmap.png" alt="Card image cap" />
                                 <a href="#!">
@@ -31,7 +31,7 @@ class FeaturedTherapists extends React.Component {
 
                         </div>
 
-                        <div className="card mb-4">
+                        <div className="card mb-4 col-sm-3">
 
                             <div className="view overlay">
                                 <img className="card-img-top" src="https://res.cloudinary.com/ephaig/image/upload/v1555447782/Bitmap_1.png" alt="Card image cap" />
@@ -49,7 +49,7 @@ class FeaturedTherapists extends React.Component {
                             </div>
 
                         </div>
-                        <div className="card mb-4">
+                        <div className="card mb-4 col-sm-3">
 
                             <div className="view overlay">
                                 <img className="card-img-top" src="https://res.cloudinary.com/ephaig/image/upload/v1555447783/Bitmap_3.png" alt="Card image cap" />
@@ -68,7 +68,7 @@ class FeaturedTherapists extends React.Component {
                             </div>
 
                         </div>
-                        <div className="card mb-4">
+                        <div className="card mb-4 col-sm-3">
 
                             <div className="view overlay">
                                 <img className="card-img-top" src="https://res.cloudinary.com/ephaig/image/upload/v1555447783/Bitmap_2.png" alt="Card image cap" />

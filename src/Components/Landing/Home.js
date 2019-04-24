@@ -1,7 +1,7 @@
 import React from "react";
 
 import Header from "./header";
-import Therapists from "./featured-therapists";
+import Therapists from "./therapists";
 import Countries from "./countries";
 import Issues from "./popular-issues";
 import Steps from "./steps";

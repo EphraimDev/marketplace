@@ -12,7 +12,7 @@ class Blog extends React.Component {
                 />
                 <div className="container">
                     <div className="card-deck">
-                        <div className="card mb-4">
+                        <div className="card mb-4 landing-blog-card">
                             <div className="view overlay">
                                 <img className="card-img-top" src="https://res.cloudinary.com/ephaig/image/upload/v1555607350/car.png" alt="Card image cap" />
                                 <a href="#" className="link1">
@@ -31,7 +31,7 @@ class Blog extends React.Component {
 
                         </div>
 
-                        <div className="card mb-4 landing-blog-select">
+                        <div className="card mb-4 landing-blog-card">
 
                             <div className="view overlay">
                                 <img className="card-img-top" src="https://res.cloudinary.com/ephaig/image/upload/v1555447811/image_copy.png" alt="Card image cap" />
@@ -53,7 +53,7 @@ class Blog extends React.Component {
 
                         </div>
 
-                        <div className="card mb-4">
+                        <div className="card mb-4 landing-blog-card">
 
                             <div className="view overlay">
                                 <img className="card-img-top" src="https://res.cloudinary.com/ephaig/image/upload/v1555447812/image_copy_2.png" alt="Card image cap" />
@@ -74,7 +74,7 @@ class Blog extends React.Component {
                             </div>
 
                         </div>
-                        <div className="card mb-4">
+                        <div className="card mb-4 landing-blog-card">
 
                             <div className="view overlay">
                                 <img className="card-img-top" src="https://res.cloudinary.com/ephaig/image/upload/v1555447811/image_copy_3.png" alt="Card image cap" />

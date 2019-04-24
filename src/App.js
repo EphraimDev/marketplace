@@ -13,6 +13,7 @@ import SingleTherapistPage from "./Components/SingleTherapistPage/Single";
 import User from './Components/UserProfilePage/UserProfilePage';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 
+
 class App extends Component {
   render() {
     return (
@@ -33,7 +34,6 @@ class App extends Component {
           <Route exact path="/therapists" component={TherapistListPage} />
           <Route exact path="/user" component={User} />
           <ProtectedRoute exact path="/user" component={User} />
-          {/* <Route exact path="/profile" component={Profile} /> */}
         </Switch>
       </div>
     );

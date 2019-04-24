@@ -1,65 +1,65 @@
-import React, { Component } from "react";
-import { NavLink, Link } from "react-router-dom";
-import Nja from "../../images/img.jpg";
-import "./Navbar.css";
+import React from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink
+} from 'reactstrap';
 
-class Navbar extends Component {
+import './Navbar.css';
+
+export default class Example extends React.Component {
   constructor(props) {
     super(props);
+
     this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false };
+    this.state = {
+      isOpen: false
+    };
   }
-
   toggle() {
-    this.setState(state => ({ collapse: !state.collapse }));
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
   }
-
   render() {
     return (
       <div>
-        <div class="main">
-          <div class="header">
-            <div class="left">
-              <div class="logo red">TherapyMart </div>
-              <div class="header-links">
-                <div>
-                  <Link to="/">Home</Link>
-                </div>
-                <div>
-                  <Link to="/therapists">Therapists</Link>
-                </div>
-                <div>
-                  <Link to="#">Donate</Link>
-                </div>
-                <div>
-                  <Link to="/blog">Blog</Link>
-                </div>
-                <div>
-                  <Link href="/about_us">About Us</Link>
-                </div>
-                <div>
-                  <Link to="/become_a_therapist">Become a Therapist</Link>
-                </div>
-              </div>
-            </div>
-            <div class="right">
-              <div class="payment">
-                <img style={{ height: "20px" }} src={Nja} alt="" />{" "}
-                <span style={{ padding: "10px" }}> &#8358;</span>{" "}
-                <i style={{ fontSize: "20px" }} class="fa fa-caret-down" />
-              </div>
-              <div class="account">
-                <i style={{ fontSize: "35px" }} class="fa fa-user-circle" />
-                <Link style={{ padding: "10px" }} to="/login">
-                  Account{" "}
-                </Link>
-                <i style={{ fontSize: "20px" }} class="fa fa-caret-down" />
-              </div>
-            </div>
-          </div>
-        </div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">TherapyMart</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <NavLink href="/">Home</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/therapists">Therapists</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/blog">Blog</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/about_us">About Us</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/become_a_therapist">Become A Therapist</NavLink>
+              </NavItem>
+            </Nav>
+            <Nav className="ml-auto navbar-right" navbar>
+            <NavItem>
+                <NavLink href="/register">Register</NavLink>
+              </NavItem>
+            <NavItem>
+                <NavLink href="/Login">Login</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
       </div>
     );
   }
 }
-export default Navbar;
