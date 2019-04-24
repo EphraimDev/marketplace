@@ -7,7 +7,7 @@ class ProtectedRoute extends Component {
     render() {
         const Component = this.props.component;
     return (<Route {...this.rest} render={() => (
-        token
+        token !== null
           ? <Component {...this.props} />
             : <Redirect to='/login' />
       )} />)
