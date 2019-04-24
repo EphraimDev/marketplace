@@ -32,7 +32,6 @@ class App extends Component {
           />
           {/* <Route exact path="/profile" component={Profile} /> */}
           <Route exact path="/therapists" component={TherapistListPage} />
-          <Route exact path="/user" component={User} />
           <ProtectedRoute exact path="/user" component={User} />
         </Switch>
       </div>

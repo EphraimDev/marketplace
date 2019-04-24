@@ -34,6 +34,8 @@ class UserProfile extends Component {
         newpassword:"",
         oldpassword:"",
         repeatpassword: "",
+        fetchError: false,
+        saving:false,
         passwordError:false,
         show: false,
         load: false,
@@ -85,12 +87,15 @@ class UserProfile extends Component {
         }
         if (firstname === ""){
         formData.set('first_name', this.state.user.first_name)
+        console.log('first_name', 'true')
         }
         if (lastname === ""){
             formData.set('last_name',  this.state.user.last_name)
+            console.log('last_name', 'true')
         }
         if (email === ""){
             formData.set('email', this.state.user.email)
+            console.log('email', 'true')
         }
         if (number === "" && !this.state.user.phone && !isNaN(number)){
             toastr.options = {
@@ -103,12 +108,16 @@ class UserProfile extends Component {
         }
         if(number === "" && this.state.user.phone){
             formData.set('number', this.state.user.phone)
+            console.log('number', 'true')
+            console.log('number', this.state.user.phone)
         }else{
-        formData.set('title', title);
-        formData.set('first_name', firstname);
-        formData.set('last_name', lastname);
-        formData.set('email', email);
-        formData.set('phone', number);}
+            formData.set('title', title);
+            formData.set('first_name', firstname);
+            formData.set('last_name', lastname);
+            formData.set('email', email);
+            formData.set('phone', number);
+            }
+            this.setState({saving:true})
         axios({
             method: "POST",
             url: `${baseUrl}/api/v1/ordinary-users/${userId}`,
@@ -118,6 +127,7 @@ class UserProfile extends Component {
             }
         })
         .then(res => {
+            this.setState({saving:false})
             console.log(res);
             this.getUser()
             toastr.options = {
@@ -147,17 +157,17 @@ class UserProfile extends Component {
           })
     } 
 
-    componentWillMount() {
+    componentDidMount() {
         axios
             .get(`${baseUrl}/api/v1/appointments/ordinary-user/${userId}`)  //fetch appointments
             .then(res => {
                 console.log(res)
                 this.setState({loader:false,appointments:res.data.data.user_appointments})
             }).catch(e => {
-                this.setState({loader:false})
+                this.setState({loader:false, fetchError:true})
                 console.log(e)
             })
-        
+        console.log(token)
         this.getUser();
     }
     
@@ -172,12 +182,13 @@ class UserProfile extends Component {
       })
       .then(res => {
         console.log(res);
-        this.setState({ user: res.data.data });
-      })
+        this.setState({ user: res.data.data,loader:false, fetchError:false })
+    })
       .catch( e => {
           console.log(e)
+          this.setState({loader:false, fetchError:true})
       })
-    }
+}
 
     updatePasswordHandler = (e) => {
         e.preventDefault();
@@ -256,7 +267,7 @@ class UserProfile extends Component {
             <div>
                 <Navbar />
                 {
-                    this.state.loader ? <Loader /> :
+                    this.state.loader ? <Loader /> : <div>{this.state.fetchError ? <div className="jumbo" style={{textAlign:"center",paddingTop:"100px"}}> Oops!! There was an error please <em style={{color:'#01ADBA',cursor:"pointer"}} onClick={()=>this.setState({loader:true},()=>this.getUser())}>refresh</em> the page</div>:
                 <div className="main_page">
                     <div className="jumbo">
                         <div className="breadcrumb">
@@ -299,7 +310,7 @@ class UserProfile extends Component {
                             </div>
                             <div className="profile_name">
                                 <label>Email Address</label>
-                                <input className="profile_inputs mail" name="email" type="text" placeholder={this.state.user.email} value={this.state.email} onChange={this.handleChange} />
+                                <input className="profile_inputs mail" name="email" disabled type="text" placeholder={this.state.user.email} />
                             </div>  
                             <div className="profile_name">
                                 <label>Phone Number</label>
@@ -307,8 +318,10 @@ class UserProfile extends Component {
                                 <input className="profile_inputs name" name="number" type="text" placeholder="08012345678" value={this.state.number} onChange={this.handleChange} />
                             </div>
                             <div className="profile_name" style={{marginTop:"30px"}}>
-                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white",cursor:"pointer"}} type="submit" value="Change Password" onClick={this.updatePasswordHandler} />
-                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white",cursor:"pointer"}} type="submit" value="Save Changes"/>
+                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white",cursor:"pointer"}} type="submit" value="Change Password" onClick={this.updatePasswordHandler} />{
+                               this.state.saving ? <button className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white",cursor:"pointer"}} type="submit" >Saving Changes 
+                                <i class="fa fa-spinner fa-spin"></i></button> :
+                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white",cursor:"pointer"}} type="submit" value="Save Changes"/>}
                             </div>
                         </form>
                     </div> :
@@ -324,7 +337,7 @@ class UserProfile extends Component {
                         }
                         </div>
                     }
-                        </div>}
+                        </div>}</div>}
                 
                 <UpdatePassword
                 shows={this.state.show}
