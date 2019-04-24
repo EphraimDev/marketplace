@@ -9,15 +9,14 @@ import 'toastr/build/toastr.min.css'
 import './UserProfilePage.css';
 import Footer from '../Footer/Footer';
 import Loader from '../Loader/Loader';
+import UpdatePassword from './UpdatePassword';
 
 const token = localStorage.getItem("token");
 const userId = localStorage.getItem("userId");
 const baseUrl = 'https://api-marketplace.herokuapp.com';
 axios.defaults.headers.common = {'Authorization': `Bearer ${token}`,'Content-Type':'application/json'}
-let container;
 
 class UserProfile extends Component {
-    userId = this.props.userId
     
     state={
         profile: true,
@@ -33,6 +32,12 @@ class UserProfile extends Component {
         loader: true,
         user:{},
         appointments:[],
+        newpassword:"",
+        oldpassword:"",
+        repeatpassword: "",
+        passwordError:false,
+        show: false,
+        load: false,
     }
     changeAppointment = e => {
         e.preventDefault();
@@ -74,18 +79,19 @@ class UserProfile extends Component {
     }
     handleSubmit = e => {
         e.preventDefault();
+        const formData = new FormData();
         const { title, firstname, lastname, email, number } = this.state;
         if (title === ""){
-           this.setState({ title : this.state.user.title || 'Mr'})
+        formData.set('title', this.state.user.title || 'Mr');
         }
         if (firstname === ""){
-            this.setState({ firstname :  this.state.user.first_name})
+        formData.set('first_name', this.state.user.first_name)
         }
         if (lastname === ""){
-            this.setState({ lastname :  this.state.user.last_name})
+            formData.set('last_name',  this.state.user.last_name)
         }
         if (email === ""){
-            this.setState({ email :  this.state.user.email})
+            formData.set('email', this.state.user.email)
         }
         if (number === "" && !this.state.user.phone && !isNaN(number)){
             toastr.options = {
@@ -94,35 +100,41 @@ class UserProfile extends Component {
                 timeOut: 5000
               }
               toastr.clear()
-              toastr.error("Please check that you have inputed a cuorrect phone number")
+              toastr.error("Please check that you have inputed a correct phone number")
         }
-        const formData = new FormData();
+        if(number === "" && this.state.user.phone){
+            formData.set('number', this.state.user.phone)
+        }else{
         formData.set('title', title);
         formData.set('first_name', firstname);
         formData.set('last_name', lastname);
         formData.set('email', email);
-        formData.set('phone', number);
-        console.log(formData)
+        formData.set('phone', number);}
         axios({
-            method: "PUT",
+            method: "POST",
             url: `${baseUrl}/api/v1/ordinary-users/${userId}`,
             data: formData,
             headers: {
-              'Authorization': "Bearer " + token
+              'Authorization': "Bearer " + token,
             }
         })
         .then(res => {
             console.log(res);
-            this.setState({ user: res.data.data },()=>{
-                toastr.options = {
-                    positionClass : 'toast-top',
-                    hideDuration: 300,
-                    timeOut: 5000
-                  }
-                  toastr.clear()
-                  toastr.info("Profile updated successfully")
-                });
-                
+            this.getUser()
+            toastr.options = {
+                positionClass : 'toast-top',
+                hideDuration: 300,
+                timeOut: 5000
+                }
+                toastr.clear()
+                toastr.success("Profile updated successfully")
+                this.setState({
+                    title:"",
+                    firstname:"",
+                    lastname:"",
+                    email:"",
+                    number:"",
+                })
             })
             .catch( e => {
               console.log(e)
@@ -148,14 +160,12 @@ class UserProfile extends Component {
             })
         
         this.getUser();
-        
-        console.log(userId)
     }
     
-  getUser = () => {
+    getUser = () => {
     axios({
         method: "GET",
-        url:`${baseUrl}/api/v1/auth/user`,
+        url: `${baseUrl}/api/v1/auth/user`,
         headers: {
             'Authorization': "Bearer " + token,
             'Content-Type': 'application/json'
@@ -168,8 +178,80 @@ class UserProfile extends Component {
       .catch( e => {
           console.log(e)
       })
-  };
-  
+    }
+
+    updatePasswordHandler = (e) => {
+        e.preventDefault();
+        this.state.show ? this.setState({show:false}) : this.setState({show:true})
+    }
+
+    updatePasswordChange = (e) => {
+        e.preventDefault();
+        this.setState({[e.target.name] : e.target.value})
+    }
+
+    submitPassword = (e) =>{
+        e.preventDefault();
+        if (this.state.newpassword !== this.state.repeatpassword) {
+            this.setState({passwordError: true})
+        } else {
+            const formData = new FormData();
+            formData.set('old_password', this.state.oldpassword);
+            formData.set('new_password', this.state.newpassword);
+            formData.set('confirm_password', this.state.repeatpassword);
+            this.setState({passwordError: false, load:true})
+            
+            formData.entries()
+            for (var pair of formData.entries()) {
+                console.log(pair[0]+ ', ' + pair[1]); 
+            }
+            fetch(`${baseUrl}/api/v1/auth/change-password`,{
+                method: "PUT",
+                body: formData,
+                headers: {
+                    Authorization: "Bearer " + token,
+                    'Content-Type' : "application/json"
+                }
+              })
+                .then(res => {
+                    // console.log(this.state.newpassword +" " + this.state.oldpassword +" "  + this.state.repeatpassword)
+                    if (res.status.code === 200) {
+                      this.setState({show:false, load: false},()=>{
+                        toastr.options = {
+                            positionClass : 'toast-top',
+                            hideDuration: 300,
+                            timeOut: 5000
+                          }
+                          toastr.clear()
+                          toastr.info("Your password has been changed")
+                        })
+                  }else{
+                      console.log(res)
+                      res.json().then(res=>console.log(res.error.errors))
+                      throw Error
+                  }
+              }).catch(e=>{
+                  console.log(e)
+                this.setState({load: false},()=>{
+                    toastr.options = {
+                        positionClass : 'toast-top',
+                        hideDuration: 300,
+                        timeOut: 5000
+                      }
+                      toastr.clear()
+                      toastr.error("An error occurred, please try again")
+                    })
+                    alert(`An error occurred, please try again`)
+                    this.setState({
+                        newpassword:"",
+                        oldpassword:"",
+                        repeatpassword :"",
+                    })
+              })
+            
+        }
+    }
+
     render() {
         return (
             <div>
@@ -179,7 +261,7 @@ class UserProfile extends Component {
                 <div className="main_page">
                     <div className="jumbo">
                         <div className="breadcrumb">
-                            <p className="home">Home </p>
+                            <p className="home"><Link to="/"> Home </Link></p>
                             <p className="bread_right"><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i></p>
                             <p className="active_link">Edit profile</p>
                         </div>
@@ -209,7 +291,7 @@ class UserProfile extends Component {
                         <div className="tabs" ref={this.profile}>
                         <p className="tab_menu">Edit Profile</p>
                             <hr style={{ width: "85%", borderBottom:"1px outset rgba(194, 190, 190,0.8)" }} />
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <div className="profile_name">
                                 <label className="name_label">Name</label>
                                 <input className="profile_inputs mr" name="title" type="text" placeholder="Mr" value={this.state.title} onChange={this.handleChange} />
@@ -223,11 +305,11 @@ class UserProfile extends Component {
                             <div className="profile_name">
                                 <label>Phone Number</label>
                                 <input className="profile_inputs name" name="ctry" type="text" placeholder="(+234) Nigeria" vlaue="(+234) Nigeria" disabled />
-                                <input className="profile_inputs name" name="number" type="text" value={this.state.number} onChange={this.handleChange} />
+                                <input className="profile_inputs name" name="number" type="text" placeholder="08012345678" value={this.state.number} onChange={this.handleChange} />
                             </div>
                             <div className="profile_name" style={{marginTop:"30px"}}>
-                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white"}} type="submit" value="Change Password" onClick={this.handleChangePasword} />
-                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white",cursor:"pointer"}} type="submit" value="Save Changes" onClick={this.handleSubmit} />
+                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white",cursor:"pointer"}} type="submit" value="Change Password" onClick={this.updatePasswordHandler} />
+                                <input className="profile_inputs name" style={{backgroundColor: "#01ADBA",color:"white",cursor:"pointer"}} type="submit" value="Save Changes"/>
                             </div>
                         </form>
                     </div> :
@@ -243,16 +325,24 @@ class UserProfile extends Component {
                         }
                         </div>
                     }
-                </div>}
+                        </div>}
+                
+                <UpdatePassword
+                shows={this.state.show}
+                oldpassword={this.state.oldpassword}
+                newpassword={this.state.newpassword}
+                repeatpassword={this.state.repeatpassword}
+                clicked={this.updatePasswordHandler}
+                onChangeHandler={this.updatePasswordChange}
+                submit={this.submitPassword}
+                error={this.state.passwordError}
+                load={this.state.load}
+                />
                 <Footer />
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({
-    userId: state.users.userId,
-    // user: state.users
-});
 
-export default connect(mapStateToProps)(UserProfile);
+export default UserProfile;
