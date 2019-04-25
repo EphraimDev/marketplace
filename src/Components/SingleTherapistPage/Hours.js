@@ -3,9 +3,9 @@ import React from "react";
 const Hours = props => {
 	return (
 		<div className="hours">
-			<div className="card mt-5">
-				<div className="heading px-2 py-2 d-flex justify-content-between">
-					<p className="my-0">Operating Hours</p>
+			<div className="card mt-5 grey-bg">
+				<div className="heading px-2 py-2 d-flex justify-content-between grey-text">
+					<p className="my-0 font-weight-bold">Operating Hours</p>
 					<i className="fa fa-ellipsis-v" />
 				</div>
 				<p className="ml-2">Tue 8.00 AM - 4.00 PM</p>

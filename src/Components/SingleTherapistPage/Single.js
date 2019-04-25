@@ -8,6 +8,7 @@ import Chart from "./Chart";
 import ContactInfo from "./ContactInfo";
 import Knowledge from "./Knowledge";
 import Hours from "./Hours";
+import Recommendations from "./Recommendations";
 
 class Single extends Component {
 	render() {
@@ -22,6 +23,7 @@ class Single extends Component {
 					<div className="col-lg-5">
 						<Appointments />
 						<Knowledge />
+						<Recommendations />
 					</div>
 					<div className="col-lg-4">
 						<Chart />

@@ -1,20 +1,15 @@
-* {
-    box-sizing: border-box;
-}
-
-.main_page{
+.main_page {
     width: 100%;
     margin-bottom: 150px;
-
 }
-.jumbo{
+.jumbo {
     background-color: white;
-    border-bottom: 3px outset rgba(194, 190, 190,0.8);
-    height:300px;
+    border-bottom: 3px outset rgba(194, 190, 190, 0.8);
+    height: 300px;
     flex-direction: column;
 }
 
-.breadcrumb{
+.breadcrumb {
     height: 40px;
     background-color: white;
     display: flex;
@@ -23,7 +18,7 @@
     padding-left: 10%;
 }
 
-.breadcrumb2{
+.breadcrumb2 {
     height: 40px;
     background-color: white;
     display: flex;
@@ -32,14 +27,14 @@
     padding-left: 10%;
     padding-top: 10px;
 }
-.active_link{
+.active_link {
     color: rgb(16, 187, 199);
     font-size: 12px;
     margin-left: 30px;
     font-weight: bold;
 }
 
-.your_profile{
+.your_profile {
     color: rgb(16, 187, 199);
     font-size: 12px;
     margin-left: 30px;
@@ -51,7 +46,7 @@
     cursor: pointer;
 }
 
-.home{
+.home {
     font-size: 12px;
     margin-left: 30px;
     font-weight: bold;
@@ -59,28 +54,28 @@
     cursor: pointer;
     color: black;
 }
-.home a{
+.home a {
     color: black;
 }
 
-.bread_right{
+.bread_right {
     margin-left: 30px;
     color: rgb(243, 240, 240);
     font-size: 30px;
 }
 
-.profile{
+.profile {
     height: 210px;
-    background-color: rgba(238, 241, 238,0.4);
+    background-color: rgba(238, 241, 238, 0.4);
     display: flex;
     flex-direction: row;
     margin-top: -10px;
     padding-top: 30px;
     padding-left: 30px;
 }
-.profile_pic{
+.profile_pic {
     border-radius: 50%;
-    background-color: rgba(194, 190, 190,0.8);
+    background-color: rgba(194, 190, 190, 0.8);
     width: 120px;
     height: 120px;
     font-size: 14px;
@@ -92,73 +87,73 @@
     margin-right: 20px;
 }
 
-.photo_label{
+.photo_label {
     width: 100%;
     font-weight: lighter;
     margin-top: -20px;
 }
 
-.photo{
+.photo {
     width: 40%;
     opacity: 0;
     margin-top: -40px;
     position: absolute;
 }
-.profile_details{
+.profile_details {
     padding: 30px;
 }
 
-.edit_profile{
+.edit_profile {
     font-style: italic;
     color: rgb(16, 187, 199);
     font-size: 12px;
 }
-.user_name{
+.user_name {
     font-weight: bold;
     font-size: 14px;
 }
-.user_email{
+.user_email {
     font-weight: bold;
     font-size: 12px;
 }
 
-.profile_name{
+.profile_name {
     display: flex;
     flex-direction: row;
     margin-bottom: 30px;
     margin-top: 30px;
 }
 
-.tabs{
+.tabs {
     display: flex;
     flex-direction: column;
     padding-left: 20%;
 }
 
-.tab_menu{
+.tab_menu {
     margin-top: 30px;
     font-weight: bolder;
     margin-bottom: -15px;
     font-size: 20px;
 }
 
-label{
+label {
     font-weight: bold;
     margin-top: 25px;
     margin-right: 20px;
     width: 15%;
 }
 
-.mr{
-    width: 13%; 
+.mr {
+    width: 13%;
 }
-.mail{
+.mail {
     width: 70%;
 }
-.name{
+.name {
     width: 27%;
 }
-.profile_inputs{
+.profile_inputs {
     margin-left: 5px;
     margin-right: 1%;
     border-radius: 5px;
@@ -171,48 +166,48 @@ label{
     border-right: 1px solid grey;
 }
 
-.ctry{
-    width: 130px; 
+.ctry {
+    width: 130px;
 }
 
-.update{
+.update {
     background-color: white;
     border-radius: 5px;
     flex-direction: column;
 }
 
-.update_tabs{
+.update_tabs {
     display: flex;
     flex-direction: column;
     padding-left: 20%;
 }
 
 @media screen and (max-width: 768px) {
-    .profile_name{
+    .profile_name {
         display: flex;
-        flex-direction: column
+        flex-direction: column;
     }
-    .mr{
-        width: 30%; 
+    .mr {
+        width: 30%;
     }
-    .mail{
+    .mail {
         width: 70%;
     }
-    .name{
+    .name {
         width: 70%;
     }
-    .profile_inputs{
+    .profile_inputs {
         margin-bottom: 20px;
     }
 }
 
 @media screen and (max-width: 375px) {
-    .profile{
+    .profile {
         display: flex;
         flex-direction: column;
-        height: 350px
+        height: 350px;
     }
-    .jumbo{
+    .jumbo {
         height: 440px;
     }
 }

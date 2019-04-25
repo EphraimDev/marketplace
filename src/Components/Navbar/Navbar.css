@@ -3,11 +3,8 @@
     --hover-color: #008d98;
 }
 
-* {
-    box-sizing: border-box;
+.red {
 }
-
-.red {}
 
 .main {
     width: 100%;
@@ -98,11 +95,11 @@
 }
 
 .navbar-nav {
-    margin-left: 5rem
+    margin-left: 5rem;
 }
 
 .navbar-right {
-    margin-right: 3rem
+    margin-right: 3rem;
 }
 
 .nav-link {
@@ -114,17 +111,16 @@
     /* start of large tablet styles */
 
     .navbar-brand {
-        margin-left: 1rem
+        margin-left: 1rem;
     }
 
     .navbar-nav {
-        margin-left: 1rem !important
+        margin-left: 1rem !important;
     }
 
     .navbar-right {
-        margin-right: 1rem
+        margin-right: 1rem;
     }
-
 }
 
 @media screen and (max-width: 768px) {
@@ -162,10 +158,10 @@
     }
 
     .navbar-brand {
-        margin-left: 1rem
+        margin-left: 1rem;
     }
 
     .navbar-nav {
-        margin-left: 1rem !important
+        margin-left: 1rem !important;
     }
 }
