@@ -2,9 +2,9 @@ import React from "react";
 
 const ContactInfo = props => {
 	return (
-		<div className="contact-details card py-2 mt-5">
+		<div className="contact-details card py-2 mt-5 grey-bg grey-text">
 			<div className="heading px-2 py-2 d-flex justify-content-between">
-				<p className="my-0">Contact Information</p>
+				<p className="my-0 font-weight-bold">Contact Information</p>
 				<i className="fa fa-ellipsis-v" />
 			</div>
 			<p class="email info pb-1 mx-4">

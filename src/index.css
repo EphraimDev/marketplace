@@ -4,4 +4,5 @@ body {
 	font-family: "Lato", san-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	box-sizing: border-box;
 }

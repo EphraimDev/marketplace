@@ -1,21 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-
-*{
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Laato', sans-serif;
-    height: 100vh;
-    width: 100%;
-}
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 
 .nav-p {
-    background: #FAFAFA;
+    background: #fafafa;
     height: 52px;
     width: 100%;
 }
@@ -26,14 +12,14 @@ body {
     font-size: 14px;
     font-weight: 300;
     font-family: Montserrat;
-     color: #333333;
-     margin-left: 13px;
+    color: #333333;
+    margin-left: 13px;
 }
 
 .nav-p p a .color {
-    color:  #01ADBA;
+    color: #01adba;
     font-weight: bold;
-    cursor: pointer
+    cursor: pointer;
 }
 
 h2 {
@@ -45,7 +31,7 @@ h2 {
     text-align: center;
     margin-top: 40px;
 
-    color: #32A636;;
+    color: #32a636;
 }
 
 .book-successful {
@@ -57,7 +43,7 @@ h2 {
 
 h4 {
     text-align: center;
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
     font-size: 14px;
     line-height: 25px;
     text-align: center;
@@ -65,10 +51,9 @@ h4 {
     font-weight: lighter;
 }
 
-
 button {
-    background: #FFFFFF;
-    border: 1px solid #01ADBA;
+    background: #ffffff;
+    border: 1px solid #01adba;
     box-sizing: border-box;
     border-radius: 4px;
 
@@ -79,38 +64,35 @@ button {
     font-size: 14px;
     padding: 15px;
     width: 220px;
-    color: #01ADBA;
+    color: #01adba;
     cursor: pointer;
-
 }
-
 
 @media only screen and (min-width: 650px) {
     .book-successful button {
         width: 258px;
         font-size: 16px;
-}
+    }
 
-.book-successful p, h4 {
-    font-size: 16px;
-    line-height: 25px;
-}
+    .book-successful p,
+    h4 {
+        font-size: 16px;
+        line-height: 25px;
+    }
 
-h2 {
-    font-size: 36px;
-    line-height: 56px;
-    margin-top: 45px;
-}
+    h2 {
+        font-size: 36px;
+        line-height: 56px;
+        margin-top: 45px;
+    }
 
-.nav-p p a {
-    margin-left: 55px;
+    .nav-p p a {
+        margin-left: 55px;
+    }
+    .fa-angle-right {
+        margin-left: 10px;
+    }
 }
-.fa-angle-right {
-    margin-left: 10px;
-}
-
-}
-
 
 @media only screen and (max-width: 359px) {
     .nav-p {

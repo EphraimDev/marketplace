@@ -1,12 +1,7 @@
 *,
 *::before,
-*::after{
-    box-sizing: border-box
-}
-
-body {
-    margin: 0;
-    font-family: 'Lato', sans-serif; 
+*::after {
+    box-sizing: border-box;
 }
 
 img {
@@ -14,29 +9,30 @@ img {
     height: auto;
 }
 
-h3, h4 {
+h3,
+h4 {
     margin-top: 10px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .jumbotron {
     background: url("bg.jpg");
     background-position: center;
     background-size: cover;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 60vh
+    min-height: 60vh;
 }
 
 .jumbotron > * {
-    color: white
+    color: white;
 }
 
 .jumbotron > p {
-    margin-top: 0
+    margin-top: 0;
 }
 
 .lg-container {
@@ -56,17 +52,18 @@ h3, h4 {
     box-shadow: 0 2px 5px grey;
 }
 
-input, select {
+input,
+select {
     margin-right: 5px;
     padding: 10px;
     font-size: 18px;
     border-radius: 4px;
     border: 1px solid grey;
-    width: 40%
+    width: 40%;
 }
 
-select:invalid { 
-    color: gray; 
+select:invalid {
+    color: gray;
 }
 
 .btn {
@@ -74,7 +71,7 @@ select:invalid {
     color: white;
     border-radius: 4px;
     border: 1px solid #64ccd0;
-    padding: 12px 7px; 
+    padding: 12px 7px;
 }
 
 hr {
@@ -83,8 +80,9 @@ hr {
     color: black;
 }
 
-section > h2, section > p {
-    text-align: center
+section > h2,
+section > p {
+    text-align: center;
 }
 
 section {
@@ -104,7 +102,7 @@ hr {
     border: 1px solid #64ccd0;
 }
 
-.card{
+.card {
     width: 22%;
     transition: all 0.3s;
     box-shadow: 0 2px 2px lightgrey;
@@ -123,7 +121,8 @@ hr {
     color: lightgray;
 }
 
-.location, .type {
+.location,
+.type {
     margin: 5px 0;
 }
 
@@ -141,7 +140,7 @@ hr {
 }
 
 .us {
-    width: 12rem
+    width: 12rem;
 }
 
 .issue {
@@ -170,7 +169,7 @@ hr {
     width: 100%;
     border: none;
     height: 0.5px;
-    background-color: lightgray
+    background-color: lightgray;
 }
 
 .icon {
@@ -190,11 +189,11 @@ hr {
 
 .step > h3 {
     text-align: center;
-    font-weight: bold
+    font-weight: bold;
 }
 
 .step > p {
-    margin: 0
+    margin: 0;
 }
 
 .paragraph {
@@ -208,11 +207,12 @@ hr {
 
 .blog-btn {
     display: block;
-    margin: 20px auto
+    margin: 20px auto;
 }
 
 @media screen and (max-width: 750px) {
-    .card, .blog {
+    .card,
+    .blog {
         width: 46%;
         margin-bottom: 20px;
     }
@@ -221,7 +221,6 @@ hr {
         width: 30%;
         margin-bottom: 10px;
     }
-   
 }
 
 @media screen and (max-width: 550px) {
@@ -231,9 +230,10 @@ hr {
         width: 95%;
     }
 
-    input, select {
+    input,
+    select {
         width: 100%;
-        margin-bottom: 10px
+        margin-bottom: 10px;
     }
 
     .lg-container {
@@ -241,10 +241,11 @@ hr {
     }
 
     .row {
-        justify-content: center
+        justify-content: center;
     }
 
-    .card, .blog {
+    .card,
+    .blog {
         width: 90%;
         margin-bottom: 20px;
     }

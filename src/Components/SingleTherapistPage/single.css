@@ -1,3 +1,13 @@
+/* Adds a grey text */
+.grey-text {
+	color: #808489;
+}
+
+/* Adds a grey bg */
+.grey-bg {
+	background-color: #f8f8f8;
+}
+
 .st-page .profile-info {
 	position: relative;
 	width: 150px;
@@ -74,4 +84,13 @@
 	background-color: #01adba;
 	border: none;
 	border-radius: 5px;
+}
+
+.recommendations img {
+	width: 50px;
+	height: 50px;
+}
+
+.desc h6 {
+	color: #000;
 }
